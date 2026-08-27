@@ -2,10 +2,9 @@
 
 Public brand site.
 
-**Live:** https://adil-044.github.io/uptisement/  
-**Domain (later):** https://uptisement.com  
+**Live:** https://uptisement.com · https://adil-044.github.io/uptisement/  
 **Book:** https://calendly.com/uptisement/30min  
-**Phone:** (786) 982-0283 · **Email:** Uptisement@proton.me
+**Phone:** (786) 982-0283 · **Email:** sales@uptisement.com
 
 ## Live work linked on the site
 
