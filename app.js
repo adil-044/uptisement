@@ -106,6 +106,31 @@ window.addEventListener("resize", updateStack);
 desktopStack.addEventListener("change", updateStack);
 updateStack();
 
+/* Force fixed Book CTA on phones (iOS overflow / cache failsafe) */
+(function pinMobileCta() {
+  const bar = document.getElementById("mobile-cta");
+  if (!bar) return;
+  function apply() {
+    const phone =
+      window.matchMedia("(max-width: 900px)").matches ||
+      window.matchMedia("(hover: none) and (pointer: coarse)").matches;
+    if (!phone) {
+      bar.style.removeProperty("display");
+      return;
+    }
+    bar.style.setProperty("display", "flex", "important");
+    bar.style.setProperty("position", "fixed", "important");
+    bar.style.setProperty("left", "0", "important");
+    bar.style.setProperty("right", "0", "important");
+    bar.style.setProperty("bottom", "0", "important");
+    bar.style.setProperty("z-index", "9999", "important");
+    bar.style.setProperty("width", "100%", "important");
+  }
+  apply();
+  window.addEventListener("resize", apply);
+  window.addEventListener("orientationchange", apply);
+})();
+
 /* Hero canvas: skip / lighten on small screens */
 const isMobile = window.matchMedia("(max-width: 900px)");
 
