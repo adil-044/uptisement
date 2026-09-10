@@ -394,6 +394,41 @@ p { text-wrap: pretty; }
 .foot a { text-decoration: none; }
 .foot a:hover { color: var(--paper); }
 
+.privacy-note {
+  margin: 0;
+  padding: 0.75rem var(--pad) 1.5rem;
+  color: color-mix(in srgb, var(--mute) 80%, transparent);
+  font-size: 0.75rem;
+  max-width: 72ch;
+}
+.privacy-note a { color: var(--mute); }
+
+.consent {
+  position: fixed; z-index: 60;
+  left: var(--pad); right: var(--pad); bottom: 1rem;
+  max-width: 420px;
+  margin-inline: auto;
+  display: flex; flex-direction: column; gap: 0.85rem;
+  padding: 1rem 1.1rem;
+  background: var(--ink-2);
+  border: 1px solid var(--line);
+  box-shadow: 0 18px 50px color-mix(in srgb, #000 45%, transparent);
+}
+.consent p { margin: 0; color: var(--mute); font-size: 0.88rem; }
+.consent a { color: var(--paper); }
+.consent-actions { display: flex; gap: 0.6rem; justify-content: flex-end; flex-wrap: wrap; }
+.consent-ok, .consent-ghost {
+  font: inherit; font-size: 0.85rem; font-weight: 600;
+  cursor: pointer; border-radius: 999px; padding: 0.5rem 0.95rem;
+}
+.consent-ok {
+  background: var(--accent); color: var(--ink); border: 0;
+}
+.consent-ghost {
+  background: transparent; color: var(--paper);
+  border: 1px solid var(--line);
+}
+
 /* Reveal */
 .reveal {
   opacity: 1;
