@@ -2,26 +2,87 @@
   "use strict";
 
   var cfg = window.UPTI_TRACK || {};
-  var CONSENT_KEY = "upti_consent_v1";
+  var CONSENT_KEY = "upti_consent_v2";
+  var LEGACY_KEY = "upti_consent_v1";
   var UTM_KEY = "upti_utm_v1";
+  var CONSENT_MAX_MS = 365 * 24 * 60 * 60 * 1000;
   var reduce =
     window.matchMedia &&
     window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   window.dataLayer = window.dataLayer || [];
 
-  function consent() {
-    try {
-      return localStorage.getItem(CONSENT_KEY) || "";
-    } catch (e) {
-      return "";
-    }
+  function gtag() {
+    window.dataLayer.push(arguments);
+  }
+  window.gtag = window.gtag || gtag;
+
+  /* Google Consent Mode v2 — deny until opt-in */
+  gtag("consent", "default", {
+    ad_storage: "denied",
+    ad_user_data: "denied",
+    ad_personalization: "denied",
+    analytics_storage: "denied",
+    functionality_storage: "granted",
+    security_storage: "granted",
+    wait_for_update: 500,
+  });
+
+  function defaultPrefs() {
+    return {
+      essential: true,
+      analytics: false,
+      marketing: false,
+      ts: 0,
+    };
   }
 
-  function setConsent(value) {
+  function readPrefs() {
     try {
-      localStorage.setItem(CONSENT_KEY, value);
+      var raw = localStorage.getItem(CONSENT_KEY);
+      if (raw) {
+        var p = JSON.parse(raw);
+        if (p && p.ts && Date.now() - p.ts < CONSENT_MAX_MS) {
+          return {
+            essential: true,
+            analytics: !!p.analytics,
+            marketing: !!p.marketing,
+            ts: p.ts,
+          };
+        }
+      }
+      var legacy = localStorage.getItem(LEGACY_KEY);
+      if (legacy === "all") {
+        return { essential: true, analytics: true, marketing: true, ts: Date.now() };
+      }
+      if (legacy === "essential") {
+        return { essential: true, analytics: false, marketing: false, ts: Date.now() };
+      }
     } catch (e) {}
+    return null;
+  }
+
+  function savePrefs(prefs) {
+    var next = {
+      essential: true,
+      analytics: !!prefs.analytics,
+      marketing: !!prefs.marketing,
+      ts: Date.now(),
+    };
+    try {
+      localStorage.setItem(CONSENT_KEY, JSON.stringify(next));
+      localStorage.removeItem(LEGACY_KEY);
+    } catch (e) {}
+    return next;
+  }
+
+  function applyConsentMode(prefs) {
+    gtag("consent", "update", {
+      analytics_storage: prefs.analytics ? "granted" : "denied",
+      ad_storage: prefs.marketing ? "granted" : "denied",
+      ad_user_data: prefs.marketing ? "granted" : "denied",
+      ad_personalization: prefs.marketing ? "granted" : "denied",
+    });
   }
 
   function readUtms() {
@@ -74,23 +135,13 @@
     }
   }
 
-  function loadScript(src, attrs) {
+  function loadScript(src) {
     var s = document.createElement("script");
     s.async = true;
     s.src = src;
-    if (attrs) {
-      Object.keys(attrs).forEach(function (k) {
-        s.setAttribute(k, attrs[k]);
-      });
-    }
     document.head.appendChild(s);
     return s;
   }
-
-  function gtag() {
-    window.dataLayer.push(arguments);
-  }
-  window.gtag = window.gtag || gtag;
 
   function track(event, props) {
     props = props || {};
@@ -98,18 +149,17 @@
       Object.assign({ event: event }, props, { utm: utms })
     );
 
-    if (typeof window.gtag === "function" && cfg.ga4) {
+    var prefs = readPrefs() || defaultPrefs();
+    if (prefs.analytics && typeof window.gtag === "function" && cfg.ga4) {
       window.gtag("event", event, props);
     }
 
-    if (typeof window.fbq === "function" && cfg.metaPixel) {
+    if (prefs.marketing && typeof window.fbq === "function" && cfg.metaPixel) {
       if (event === "book_click" || event === "generate_lead") {
         window.fbq("track", "Lead", props);
       } else if (event === "phone_click" || event === "Contact") {
         window.fbq("track", "Contact", props);
-      } else if (event === "page_view") {
-        /* PageView already on init */
-      } else {
+      } else if (event !== "page_view") {
         window.fbq("trackCustom", event, props);
       }
     }
@@ -195,43 +245,124 @@
     })(window, document, "script", "dataLayer", cfg.gtm);
   }
 
-  function bootPixels() {
-    if (window.__uptiPixelsBooted) return;
-    window.__uptiPixelsBooted = true;
-    initGtm();
-    if (!cfg.gtm) {
-      initGa4();
-      initMeta();
+  function bootFromPrefs(prefs) {
+    applyConsentMode(prefs);
+    window.__uptiBootSignature =
+      (prefs.analytics ? "a1" : "a0") + (prefs.marketing ? "m1" : "m0");
+
+    if (prefs.analytics || prefs.marketing) {
+      if (cfg.gtm) initGtm();
     }
-    initClarity();
-    initLinkedIn();
-    track("page_view", {
-      page_location: location.href,
-      page_title: document.title,
-    });
+    if (prefs.analytics) {
+      if (!cfg.gtm) initGa4();
+      initClarity();
+    }
+    if (prefs.marketing) {
+      if (!cfg.gtm) initMeta();
+      initLinkedIn();
+    }
+    if (prefs.analytics || prefs.marketing) {
+      track("page_view", {
+        page_location: location.href,
+        page_title: document.title,
+      });
+    }
+  }
+
+  function removeBanner() {
+    var el = document.querySelector(".consent");
+    if (el) el.remove();
   }
 
   function showConsent() {
-    if (consent() === "all" || consent() === "essential") return;
+    if (document.querySelector(".consent")) return;
     var bar = document.createElement("div");
     bar.className = "consent";
     bar.setAttribute("role", "dialog");
-    bar.setAttribute("aria-label", "Analytics consent");
+    bar.setAttribute("aria-modal", "true");
+    bar.setAttribute("aria-label", "Cookie consent");
     bar.innerHTML =
-      '<p>We use analytics + ad pixels to measure site and ad performance. <a href="#privacy-note">Details</a></p>' +
+      "<p>We use essential cookies to run this site. Analytics (Clarity/GA) and marketing tags load only if you allow them — aligned with GDPR, CCPA, and PIPEDA-style rules. " +
+      '<a href="/privacy.html">Privacy</a> · <a href="/cookies.html">Cookies</a></p>' +
       '<div class="consent-actions">' +
-      '<button type="button" data-c="essential" class="consent-ghost">Essential only</button>' +
-      '<button type="button" data-c="all" class="consent-ok">Accept</button>' +
+      '<button type="button" data-c="reject" class="consent-ghost">Reject non-essential</button>' +
+      '<button type="button" data-c="manage" class="consent-ghost">Manage</button>' +
+      '<button type="button" data-c="accept" class="consent-ok">Accept all</button>' +
       "</div>";
     document.body.appendChild(bar);
     bar.addEventListener("click", function (e) {
       var t = e.target.closest("[data-c]");
       if (!t) return;
       var v = t.getAttribute("data-c");
-      setConsent(v);
-      bar.remove();
-      if (v === "all") bootPixels();
+      if (v === "manage") {
+        location.href = "/cookies.html#preferences";
+        return;
+      }
+      var prefs =
+        v === "accept"
+          ? { analytics: true, marketing: true }
+          : { analytics: false, marketing: false };
+      prefs = savePrefs(prefs);
+      removeBanner();
+      bootFromPrefs(prefs);
+      syncPrefUI(prefs);
     });
+  }
+
+  function syncPrefUI(prefs) {
+    var a = document.getElementById("pref-analytics");
+    var m = document.getElementById("pref-marketing");
+    var status = document.getElementById("pref-status");
+    if (a) a.checked = !!prefs.analytics;
+    if (m) m.checked = !!prefs.marketing;
+    if (status) {
+      status.textContent = prefs.ts
+        ? "Saved. Analytics: " +
+          (prefs.analytics ? "on" : "off") +
+          " · Marketing: " +
+          (prefs.marketing ? "on" : "off")
+        : "";
+    }
+  }
+
+  function wirePrefPanel() {
+    var panel = document.getElementById("pref-panel");
+    if (!panel) return;
+    var current = readPrefs() || defaultPrefs();
+    syncPrefUI(current);
+
+    function persist(next) {
+      next = savePrefs(next);
+      /* full reload so denied tags unload cleanly */
+      syncPrefUI(next);
+      var status = document.getElementById("pref-status");
+      if (status) status.textContent = "Preferences saved. Reloading…";
+      setTimeout(function () {
+        location.reload();
+      }, 400);
+    }
+
+    var save = document.getElementById("pref-save");
+    var reject = document.getElementById("pref-reject");
+    var accept = document.getElementById("pref-accept");
+    if (save) {
+      save.addEventListener("click", function () {
+        persist({
+          analytics: document.getElementById("pref-analytics").checked,
+          marketing: document.getElementById("pref-marketing").checked,
+        });
+      });
+    }
+    if (reject) {
+      reject.addEventListener("click", function () {
+        persist({ analytics: false, marketing: false });
+      });
+    }
+    if (accept) {
+      accept.addEventListener("click", function () {
+        persist({ analytics: true, marketing: true });
+      });
+    }
   }
 
   function wireClicks() {
@@ -243,7 +374,9 @@
 
         var href = a.getAttribute("href") || "";
         var label =
-          (a.textContent || "").trim().slice(0, 80) || a.getAttribute("aria-label") || "";
+          (a.textContent || "").trim().slice(0, 80) ||
+          a.getAttribute("aria-label") ||
+          "";
 
         if (/calendly\.com\/uptisement/i.test(a.href)) {
           var stamped = withUtms(a.href);
@@ -254,7 +387,10 @@
         }
 
         if (a.protocol === "tel:") {
-          track("phone_click", { phone: href.replace(/^tel:/i, ""), link_text: label });
+          track("phone_click", {
+            phone: href.replace(/^tel:/i, ""),
+            link_text: label,
+          });
           track("Contact", { method: "phone" });
           return;
         }
@@ -291,6 +427,8 @@
     window.addEventListener(
       "scroll",
       function () {
+        var prefs = readPrefs();
+        if (!prefs || !prefs.analytics) return;
         var doc = document.documentElement;
         var max = doc.scrollHeight - window.innerHeight;
         if (max <= 0) return;
@@ -316,20 +454,29 @@
   }
 
   ready(function () {
-    document.querySelectorAll('a[href*="calendly.com/uptisement"]').forEach(function (a) {
-      a.href = withUtms(a.href);
-    });
+    document
+      .querySelectorAll('a[href*="calendly.com/uptisement"]')
+      .forEach(function (a) {
+        a.href = withUtms(a.href);
+      });
 
     wireClicks();
     wireScroll();
+    wirePrefPanel();
 
-    var c = consent();
-    if (c === "all") {
-      bootPixels();
-    } else if (c === "essential") {
-      /* no marketing pixels */
-    } else if (cfg.ga4 || cfg.metaPixel || cfg.gtm || cfg.clarity || cfg.linkedinPartner) {
+    var prefs = readPrefs();
+    if (prefs) {
+      bootFromPrefs(prefs);
+      syncPrefUI(prefs);
+    } else {
       showConsent();
     }
+
+    window.uptiOpenConsent = function () {
+      try {
+        localStorage.removeItem(CONSENT_KEY);
+      } catch (e) {}
+      showConsent();
+    };
   });
 })();
