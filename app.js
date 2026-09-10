@@ -70,10 +70,17 @@ document.querySelectorAll("[data-tilt]").forEach((el) => {
   });
 });
 
-/* Scroll stack depth — scale / fade cards behind active sticky */
+/* Scroll stack depth — desktop only (mobile uses simple list) */
 const cards = Array.from(document.querySelectorAll(".stack-card"));
+const desktopStack = window.matchMedia("(min-width: 901px)");
 function updateStack() {
-  if (!cards.length) return;
+  if (!cards.length || !desktopStack.matches || reduce) {
+    cards.forEach((card) => {
+      card.style.transform = "";
+      card.classList.remove("is-behind");
+    });
+    return;
+  }
   const vh = window.innerHeight;
   cards.forEach((card, i) => {
     const rect = card.getBoundingClientRect();
@@ -81,16 +88,26 @@ function updateStack() {
     const progress = Math.min(1, Math.max(0, (stickyTop - rect.top + 40) / (vh * 0.35)));
     const scale = 1 - progress * 0.06;
     const y = progress * -18;
-    if (!reduce) {
-      card.style.transform = `translateY(${y}px) scale(${scale})`;
-    }
+    card.style.transform = `translateY(${y}px) scale(${scale})`;
     card.classList.toggle("is-behind", progress > 0.15 && i < cards.length - 1);
     card.style.zIndex = String(10 + i);
   });
 }
-window.addEventListener("scroll", updateStack, { passive: true });
+let stackRaf = 0;
+function onScrollStack() {
+  if (stackRaf) return;
+  stackRaf = requestAnimationFrame(() => {
+    stackRaf = 0;
+    updateStack();
+  });
+}
+window.addEventListener("scroll", onScrollStack, { passive: true });
 window.addEventListener("resize", updateStack);
+desktopStack.addEventListener("change", updateStack);
 updateStack();
+
+/* Hero canvas: skip / lighten on small screens */
+const isMobile = window.matchMedia("(max-width: 900px)");
 
 /* Floating chips open live sites */
 document.querySelectorAll(".float-chip").forEach((btn) => {
@@ -100,10 +117,13 @@ document.querySelectorAll(".float-chip").forEach((btn) => {
   });
 });
 
-/* Hero particle field — quiet agency motion */
+/* Hero particle field — quiet agency motion (desktop) */
 (function heroCanvas() {
   const canvas = document.getElementById("hero-canvas");
-  if (!canvas || reduce) return;
+  if (!canvas || reduce || isMobile.matches) {
+    if (canvas && isMobile.matches) canvas.style.display = "none";
+    return;
+  }
   const ctx = canvas.getContext("2d");
   if (!ctx) return;
 
