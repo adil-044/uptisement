@@ -32,7 +32,8 @@
   </script>
 </head>
 <body>
-  <a class="skip" href="#sites">Skip to work</a>
+  <a class="skip" href="#work">Skip to work</a>
+  <div class="cursor" aria-hidden="true"><span></span></div>
   <div class="grain" aria-hidden="true"></div>
   <div class="spot" aria-hidden="true"></div>
 
@@ -43,7 +44,7 @@
     </a>
     <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-menu">Menu</button>
     <nav id="nav-menu">
-      <a href="#sites">Sites</a>
+      <a href="#work">Work</a>
       <a href="#build">Build</a>
       <a href="#services">Services</a>
       <a class="btn" href="https://calendly.com/uptisement/30min" target="_blank" rel="noopener">Book 10 min</a>
@@ -53,98 +54,89 @@
   <main id="top">
     <section class="hero">
       <div class="hero-bg" aria-hidden="true">
-        <div class="hero-orb"></div>
-        <div class="hero-grid-lines"></div>
+        <canvas id="hero-canvas" width="1200" height="800"></canvas>
       </div>
       <div class="hero-inner">
         <p class="brand-lockup">Uptisement</p>
         <h1>Stop losing customers to slow sites and manual busywork.</h1>
-        <p class="lede">Done-for-you AI and web makeovers — built for operators, not demos.</p>
+        <p class="lede">Custom AI and booking-first sites for operators who need the work done.</p>
         <div class="hero-cta">
           <a class="btn magnet" href="https://calendly.com/uptisement/30min" target="_blank" rel="noopener">Book a call</a>
-          <a class="ghost" href="#sites">See web work</a>
+          <a class="ghost" href="#work">Scroll the work</a>
         </div>
       </div>
+      <div class="hero-scroll" aria-hidden="true"><span></span></div>
     </section>
 
-    <section class="trust" aria-label="Trust signals">
-      <div class="trust-track">
-        <span>US + Canada</span>
-        <span>Done-for-you</span>
-        <span>10-min discovery</span>
-        <span>(786) 982-0283</span>
-        <span>sales@uptisement.com</span>
-        <span>Open GitHub work</span>
-        <span>Booking-first sites</span>
-        <span>Custom automations</span>
-        <span>US + Canada</span>
-        <span>Done-for-you</span>
-        <span>10-min discovery</span>
-        <span>(786) 982-0283</span>
-        <span>sales@uptisement.com</span>
-        <span>Open GitHub work</span>
-        <span>Booking-first sites</span>
-        <span>Custom automations</span>
-      </div>
-    </section>
-
-    <section class="proof-banners" aria-label="Proof banners">
-      <article class="banner">
-        <p class="banner-k">Remote · operators</p>
-        <h2>Shipped for real desks</h2>
-        <p>Ottawa · Brantford · US remote. Trades, salons, spas — not another SaaS pitch deck.</p>
-      </article>
-      <article class="banner">
-        <p class="banner-k">Talk to a human</p>
-        <h2>Book ten minutes</h2>
-        <p>Leave with a clear next step — or we stop. No funnel maze.</p>
-        <a href="https://calendly.com/uptisement/30min" target="_blank" rel="noopener">Calendly →</a>
-      </article>
-      <article class="banner">
-        <p class="banner-k">Direct line</p>
-        <h2>Quo + email live</h2>
-        <p><a href="tel:+17869820283">(786) 982-0283</a> · <a href="mailto:sales@uptisement.com">sales@uptisement.com</a></p>
-      </article>
-    </section>
-
-    <section id="sites" class="sites">
-      <header class="section-head">
-        <div>
-          <p class="kicker">Web creations</p>
-          <h2>Sites that book.</h2>
-        </div>
-        <p class="section-note">Live samples — open any tile. More client work ships as it finishes.</p>
+    <section id="work" class="work">
+      <header class="work-head">
+        <p class="kicker">Selected work</p>
+        <h2>Sites that book calls.</h2>
+        <p class="work-hint">Scroll — cards stack. Click a frame to open live.</p>
       </header>
 
-      <div class="site-stage">
-        <a class="site-feature reveal" href="https://adil-044.github.io/emergency-hvac-ottawa/" target="_blank" rel="noopener">
-          <img src="https://images.pexels.com/photos/5463575/pexels-photo-5463575.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1600" alt="" width="1600" height="1000" loading="eager" />
-          <div class="site-meta">
-            <span>Trades · Ottawa</span>
-            <h3>Emergency HVAC</h3>
-            <p>After-hours landing built to call now.</p>
-          </div>
-        </a>
+      <div class="stack-wrap" id="stack-wrap">
+        <div class="stack" id="stack">
+          <a class="stack-card" data-tilt href="https://adil-044.github.io/emergency-hvac-ottawa/" target="_blank" rel="noopener">
+            <div class="browser">
+              <div class="browser-bar">
+                <span></span><span></span><span></span>
+                <em>emergency-hvac-ottawa</em>
+              </div>
+              <div class="browser-shot">
+                <img src="https://images.pexels.com/photos/5463575/pexels-photo-5463575.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1600" alt="" width="1600" height="1000" loading="eager" />
+              </div>
+            </div>
+            <div class="stack-meta">
+              <span>01 · Trades · Ottawa</span>
+              <h3>Emergency HVAC</h3>
+            </div>
+          </a>
 
-        <div class="site-rail">
-          <a class="site-tile reveal" href="https://adil-044.github.io/saco-hair-ottawa/" target="_blank" rel="noopener">
-            <img src="https://images.pexels.com/photos/7195803/pexels-photo-7195803.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1000" alt="" width="1000" height="700" loading="lazy" />
-            <div class="site-meta">
-              <span>Salon</span>
+          <a class="stack-card" data-tilt href="https://adil-044.github.io/saco-hair-ottawa/" target="_blank" rel="noopener">
+            <div class="browser">
+              <div class="browser-bar">
+                <span></span><span></span><span></span>
+                <em>saco-hair-ottawa</em>
+              </div>
+              <div class="browser-shot">
+                <img src="https://images.pexels.com/photos/7195803/pexels-photo-7195803.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1600" alt="" width="1600" height="1000" loading="lazy" />
+              </div>
+            </div>
+            <div class="stack-meta">
+              <span>02 · Salon</span>
               <h3>Saco Hair</h3>
             </div>
           </a>
-          <a class="site-tile reveal" href="https://adil-044.github.io/magnolia-spa-ottawa/" target="_blank" rel="noopener">
-            <img src="https://images.pexels.com/photos/9146381/pexels-photo-9146381.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1000" alt="" width="1000" height="700" loading="lazy" />
-            <div class="site-meta">
-              <span>Spa</span>
+
+          <a class="stack-card" data-tilt href="https://adil-044.github.io/magnolia-spa-ottawa/" target="_blank" rel="noopener">
+            <div class="browser">
+              <div class="browser-bar">
+                <span></span><span></span><span></span>
+                <em>magnolia-spa-ottawa</em>
+              </div>
+              <div class="browser-shot">
+                <img src="https://images.pexels.com/photos/9146381/pexels-photo-9146381.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1600" alt="" width="1600" height="1000" loading="lazy" />
+              </div>
+            </div>
+            <div class="stack-meta">
+              <span>03 · Spa</span>
               <h3>Magnolia Spa</h3>
             </div>
           </a>
-          <a class="site-tile reveal" href="https://adil-044.github.io/glorious-nails-ottawa/" target="_blank" rel="noopener">
-            <img src="https://images.pexels.com/photos/13068379/pexels-photo-13068379.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1000" alt="" width="1000" height="700" loading="lazy" />
-            <div class="site-meta">
-              <span>Nails</span>
+
+          <a class="stack-card" data-tilt href="https://adil-044.github.io/glorious-nails-ottawa/" target="_blank" rel="noopener">
+            <div class="browser">
+              <div class="browser-bar">
+                <span></span><span></span><span></span>
+                <em>glorious-nails-ottawa</em>
+              </div>
+              <div class="browser-shot">
+                <img src="https://images.pexels.com/photos/13068379/pexels-photo-13068379.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1600" alt="" width="1600" height="1000" loading="lazy" />
+              </div>
+            </div>
+            <div class="stack-meta">
+              <span>04 · Nails</span>
               <h3>Glorious Nails</h3>
             </div>
           </a>
@@ -152,63 +144,69 @@
       </div>
     </section>
 
-    <section id="build" class="build">
-      <header class="section-head">
-        <div>
-          <p class="kicker">Build in public</p>
-          <h2>Automation on GitHub.</h2>
-        </div>
-        <p class="section-note">Custom builds — not a one-size product store. Open the repo.</p>
-      </header>
+    <section class="float-gallery" aria-label="Quick open">
+      <div class="float-track" id="float-track">
+        <button type="button" class="float-chip" data-url="https://adil-044.github.io/emergency-hvac-ottawa/">Emergency HVAC</button>
+        <button type="button" class="float-chip" data-url="https://adil-044.github.io/saco-hair-ottawa/">Saco Hair</button>
+        <button type="button" class="float-chip" data-url="https://adil-044.github.io/magnolia-spa-ottawa/">Magnolia Spa</button>
+        <button type="button" class="float-chip" data-url="https://adil-044.github.io/glorious-nails-ottawa/">Glorious Nails</button>
+        <button type="button" class="float-chip" data-url="https://adil-044.github.io/emergency-hvac-ottawa/">Emergency HVAC</button>
+        <button type="button" class="float-chip" data-url="https://adil-044.github.io/saco-hair-ottawa/">Saco Hair</button>
+        <button type="button" class="float-chip" data-url="https://adil-044.github.io/magnolia-spa-ottawa/">Magnolia Spa</button>
+        <button type="button" class="float-chip" data-url="https://adil-044.github.io/glorious-nails-ottawa/">Glorious Nails</button>
+      </div>
+    </section>
 
-      <a class="estimator reveal" href="https://github.com/adil-044/commercial-roofing-estimator" target="_blank" rel="noopener">
-        <div class="estimator-visual" aria-hidden="true">
-          <img src="https://images.pexels.com/photos/4115457/pexels-photo-4115457.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1400" alt="" width="1400" height="900" loading="lazy" />
+    <section id="build" class="build">
+      <div class="build-panel">
+        <div class="build-copy">
+          <p class="kicker">Build in public</p>
+          <h2>AI Estimator</h2>
+          <p>Roof photos → same-day written ballpark. Custom per shop — open source on GitHub.</p>
+          <a class="btn magnet" href="https://github.com/adil-044/commercial-roofing-estimator" target="_blank" rel="noopener">Open repo</a>
         </div>
-        <div class="estimator-copy">
-          <p class="kicker">Roofing · custom</p>
-          <h3>AI Estimator</h3>
-          <p>Roof photos → same-day written ballpark. Source on GitHub — scoped per shop, not a public SaaS for everyone.</p>
-          <span class="link-arrow">github.com/adil-044/commercial-roofing-estimator →</span>
-        </div>
-      </a>
+        <a class="build-frame" href="https://github.com/adil-044/commercial-roofing-estimator" target="_blank" rel="noopener" data-tilt>
+          <div class="browser">
+            <div class="browser-bar">
+              <span></span><span></span><span></span>
+              <em>commercial-roofing-estimator</em>
+            </div>
+            <div class="browser-shot">
+              <img src="https://images.pexels.com/photos/4115457/pexels-photo-4115457.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1400" alt="" width="1400" height="900" loading="lazy" />
+            </div>
+          </div>
+        </a>
+      </div>
     </section>
 
     <section id="services" class="services">
       <header class="section-head">
-        <div>
-          <p class="kicker">Services</p>
-          <h2>What we actually do.</h2>
-        </div>
+        <p class="kicker">Services</p>
+        <h2>What we ship.</h2>
       </header>
       <ul class="service-list">
-        <li class="reveal">
+        <li>
           <span class="num">01</span>
           <div>
             <h3>AI consulting</h3>
-            <p>What to build. What to skip. Map the leak before you spend.</p>
+            <p>What to build. What to skip.</p>
           </div>
         </li>
-        <li class="reveal">
+        <li>
           <span class="num">02</span>
           <div>
             <h3>AI automation</h3>
-            <p>Custom workflows for your desk — quotes, ops, follow-up. Built for your stack, not a generic bot.</p>
+            <p>Custom workflows for your desk — not a generic bot for everyone.</p>
           </div>
         </li>
-        <li class="reveal">
+        <li>
           <span class="num">03</span>
           <div>
             <h3>Web makeover</h3>
-            <p>Fast sites that book calls. Mobile-first, clear CTA, no clutter.</p>
+            <p>Fast sites that book. Mobile-first. One clear CTA.</p>
           </div>
         </li>
       </ul>
-      <ol class="flow" aria-label="How we work">
-        <li><span>01</span> Find the leak</li>
-        <li><span>02</span> Ship the fix</li>
-        <li><span>03</span> You keep it</li>
-      </ol>
     </section>
 
     <section id="contact" class="close">
