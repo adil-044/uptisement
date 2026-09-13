@@ -590,6 +590,19 @@ p { text-wrap: pretty; }
   }
   .cursor { display: none; }
   .build-panel { grid-template-columns: 1fr; }
+  .build-panel + .build-panel { margin-top: 2.75rem; padding-top: 2.5rem; }
+  .build-panel--flip .build-copy,
+  .build-panel--flip .build-frame { order: unset; }
+  /* Phone: show IG DM product before Estimator */
+  #build { display: flex; flex-direction: column; }
+  #build > .build-panel:first-child { order: 2; }
+  #ig-dm { order: 1; margin-top: 0; padding-top: 0; border-top: 0; }
+  #ig-dm + .build-panel,
+  #build > .build-panel:first-child {
+    margin-top: 2.75rem;
+    padding-top: 2.5rem;
+    border-top: 1px solid var(--line);
+  }
   .btn, .float-chip { cursor: pointer; }
 
   /* Mobile scroll: shorter sticky stack, less jank */
@@ -605,6 +618,7 @@ p { text-wrap: pretty; }
   .stack-card:last-child { margin-bottom: 0; }
   .stack-card.is-behind { filter: none; }
   .browser-shot { aspect-ratio: 16 / 11; }
+  .browser-shot--dm { min-height: 220px; aspect-ratio: auto; }
   .browser {
     border-radius: 14px;
     box-shadow: 0 16px 40px color-mix(in srgb, #000 40%, transparent);
@@ -612,7 +626,11 @@ p { text-wrap: pretty; }
   .float-track { animation-duration: 36s; }
   .hero { min-height: 88svh; }
   .hero-inner { padding: 16vh var(--pad) 4rem; }
+  .hero h1 { font-size: clamp(1.85rem, 8vw, 2.6rem); max-width: 14ch; }
   .work-hint { display: none; }
+  .build { padding: 3rem var(--pad) 2.5rem; }
+  .services { padding: 1.5rem var(--pad) 4rem; }
+  .close { padding: 4rem var(--pad) 5rem; }
 
   .nav-toggle { display: inline-flex; }
   .nav-cta { display: none !important; }
@@ -633,6 +651,11 @@ p { text-wrap: pretty; }
     box-shadow: inset 0 1px 0 color-mix(in srgb, #fff 12%, transparent);
   }
   .nav.is-open nav { display: flex; }
+  .nav.is-open nav a {
+    padding: 0.65rem 0;
+    font-size: 1.05rem;
+    color: var(--paper);
+  }
 
   .mobile-cta {
     display: flex !important;
