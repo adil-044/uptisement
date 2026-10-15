@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Demo · Missed-call SMS</title>
+  <link href="https://fonts.googleapis.com/css2?family=Anybody:wdth,wght@100,800&family=Archivo:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="demo.css" />
+</head>
+<body>
+  <div class="demo-top">
+    <a class="back" href="../index.html">← Board</a>
+    <span class="tag">Live demo</span>
+  </div>
+  <main class="demo-wrap">
+    <h1>Missed-call SMS</h1>
+    <p class="lede">Lead rings out. Tap “Miss the call” — a text fires in ~90s (simulated).</p>
+    <div class="phone">
+      <div class="screen" id="screen">
+        <p class="muted" style="margin:0 0 1rem">Incoming · Ottawa</p>
+        <p style="font-size:1.4rem;font-weight:700;margin:0 0 0.25rem">Jordan Lee</p>
+        <p class="muted mono" id="status">Ringing…</p>
+        <div class="row" style="margin-top:2rem">
+          <button class="btn" type="button" id="miss">Miss the call</button>
+          <button class="btn btn-ghost" type="button" id="reset">Reset</button>
+        </div>
+        <div class="log" id="log"></div>
+      </div>
+    </div>
+  </main>
+  <script>
+    const log = document.getElementById("log");
+    const status = document.getElementById("status");
+    const miss = document.getElementById("miss");
+    function line(t) {
+      const d = document.createElement("div");
+      d.textContent = t;
+      log.prepend(d);
+    }
+    miss.addEventListener("click", () => {
+      miss.disabled = true;
+      status.textContent = "Missed";
+      line("Call missed · 0s");
+      setTimeout(() => {
+        line("SMS queued · Twilio");
+        status.textContent = "Texting…";
+      }, 400);
+      setTimeout(() => {
+        line('Sent: “Hey Jordan — saw your call. Want a slot today or tomorrow?”');
+        status.textContent = "SMS delivered · 90s sim";
+      }, 1600);
+    });
+    document.getElementById("reset").onclick = () => {
+      miss.disabled = false;
+      status.textContent = "Ringing…";
+      log.innerHTML = "";
+    };
+  </script>
+</body>
+</html>

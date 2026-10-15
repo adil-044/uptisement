@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Demo · Quote estimator</title>
+  <link href="https://fonts.googleapis.com/css2?family=Anybody:wdth,wght@100,800&family=Archivo:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="demo.css" />
+</head>
+<body>
+  <div class="demo-top">
+    <a class="back" href="../index.html">← Board</a>
+    <span class="tag">Live demo</span>
+  </div>
+  <main class="demo-wrap">
+    <h1>Quote estimator</h1>
+    <p class="lede">Type job notes. AI drafts a rough number — you approve before send.</p>
+    <div class="panel">
+      <label class="muted" for="notes">Job notes</label>
+      <textarea class="field" id="notes" rows="4">Furnace not heating · 2-storey · Ottawa · after hours</textarea>
+      <div class="row">
+        <button class="btn" type="button" id="run">Draft quote</button>
+        <button class="btn btn-ghost" type="button" id="approve" disabled>Approve &amp; send</button>
+      </div>
+      <p class="quote" id="price">—</p>
+      <p class="muted" id="out">Waiting for notes…</p>
+    </div>
+  </main>
+  <script>
+    const notes = document.getElementById("notes");
+    const price = document.getElementById("price");
+    const out = document.getElementById("out");
+    const approve = document.getElementById("approve");
+    document.getElementById("run").onclick = () => {
+      const t = notes.value.toLowerCase();
+      let n = 180;
+      if (t.includes("after hours") || t.includes("emergency")) n += 90;
+      if (t.includes("2-storey") || t.includes("two")) n += 40;
+      if (t.includes("furnace") || t.includes("boiler")) n += 60;
+      price.textContent = `$${n}–$${n + 70}`;
+      out.textContent = "Draft only. Not sent.";
+      approve.disabled = false;
+    };
+    approve.onclick = () => {
+      out.textContent = "Approved · quote text queued to SMS/email.";
+      approve.disabled = true;
+    };
+  </script>
+</body>
+</html>

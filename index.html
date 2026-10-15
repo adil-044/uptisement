@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
@@ -7,13 +7,16 @@
   <meta name="description" content="Done-for-you AI consulting, custom automation, and booking-first websites for operators in the US and Canada." />
   <meta name="theme-color" content="#0B1220" />
   <link rel="canonical" href="https://uptisement.com/" />
-  <link rel="icon" href="brand/uptisement-logo-locked-inverse.png" type="image/png" />
+  <link rel="icon" href="brand/uptisement-logo-locked.png" type="image/png" />
   <meta property="og:title" content="Uptisement — AI consulting &amp; automation" />
   <meta property="og:description" content="Done-for-you AI consulting, custom automation, and web makeovers for operators." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://uptisement.com/" />
   <meta property="og:image" content="brand/uptisement-logo-locked-with-services.png" />
-  <link rel="stylesheet" href="styles.css?v=6" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Anybody:wdth,wght@100,700;100,800&family=Archivo:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css?v=21" />
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -32,238 +35,283 @@
   </script>
 </head>
 <body>
-  <a class="skip" href="#work">Skip to work</a>
-  <div class="cursor" aria-hidden="true"><span></span></div>
   <div class="grain" aria-hidden="true"></div>
-  <div class="spot" aria-hidden="true"></div>
 
-  <header class="nav">
-    <a class="brand" href="#top">Uptisement</a>
-    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-menu">Menu</button>
-    <nav id="nav-menu">
-      <a href="#work">Work</a>
-      <a href="#build">Build</a>
-      <a href="/ig-dm/">IG DM</a>
-      <a href="#services">Services</a>
-      <a class="btn nav-cta" href="https://calendly.com/uptisement/30min" target="_blank" rel="noopener">Book 10 min</a>
-    </nav>
+  <header class="ui-float">
+    <a class="logo" href="index.html">
+      <img src="brand/uptisement-logo-locked.png" alt="" width="26" height="26" />
+      Uptisement
+    </a>
+    <button type="button" class="hamburger" id="hamburger" data-mode="faces" aria-label="Menu" aria-expanded="false" aria-controls="menu">
+      <svg class="hamburger-circle" viewBox="0 0 100 100" aria-hidden="true">
+        <circle cx="50" cy="50" r="46" />
+      </svg>
+      <span class="hamburger-layer hamburger-faces" aria-hidden="true">
+        <span class="face-live" id="faceLive" data-mood="smile"><i></i><i></i><b></b></span>
+      </span>
+      <span class="hamburger-layer hamburger-bars" aria-hidden="true">
+        <span></span><span></span><span></span>
+      </span>
+      <span class="hamburger-layer hamburger-close" aria-hidden="true">
+        <span></span><span></span>
+      </span>
+    </button>
   </header>
 
-  <main id="top">
-    <section class="hero">
-      <div class="hero-bg" aria-hidden="true">
-        <canvas id="hero-canvas" width="1200" height="800"></canvas>
-      </div>
-      <div class="hero-inner">
-        <p class="brand-lockup">Uptisement</p>
-        <h1>Stop losing customers to slow sites and manual busywork.</h1>
-        <p class="lede">Custom AI and booking-first sites for operators who need the work done.</p>
-        <div class="hero-cta">
-          <a class="btn magnet" href="https://calendly.com/uptisement/30min" target="_blank" rel="noopener">Book a call</a>
-          <a class="ghost" href="#work">Scroll the work</a>
-        </div>
-      </div>
-      <div class="hero-scroll" aria-hidden="true"><span></span></div>
-    </section>
-
-    <section id="work" class="work">
-      <header class="work-head">
-        <p class="kicker">Selected work</p>
-        <h2>Sites that book calls.</h2>
-        <p class="work-hint">Scroll — cards stack. Click a frame to open live.</p>
-      </header>
-
-      <div class="stack-wrap" id="stack-wrap">
-        <div class="stack" id="stack">
-          <a class="stack-card" data-tilt href="https://adil-044.github.io/emergency-hvac-ottawa/" target="_blank" rel="noopener">
-            <div class="browser">
-              <div class="browser-bar">
-                <span></span><span></span><span></span>
-                <em>emergency-hvac-ottawa</em>
-              </div>
-              <div class="browser-shot">
-                <img src="https://images.pexels.com/photos/5463575/pexels-photo-5463575.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1600" alt="" width="1600" height="1000" loading="eager" />
-              </div>
-            </div>
-            <div class="stack-meta">
-              <span>01 · Trades · Ottawa</span>
-              <h3>Emergency HVAC</h3>
-            </div>
-          </a>
-
-          <a class="stack-card" data-tilt href="https://adil-044.github.io/saco-hair-ottawa/" target="_blank" rel="noopener">
-            <div class="browser">
-              <div class="browser-bar">
-                <span></span><span></span><span></span>
-                <em>saco-hair-ottawa</em>
-              </div>
-              <div class="browser-shot">
-                <img src="https://images.pexels.com/photos/7195803/pexels-photo-7195803.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1600" alt="" width="1600" height="1000" loading="lazy" />
-              </div>
-            </div>
-            <div class="stack-meta">
-              <span>02 · Salon</span>
-              <h3>Saco Hair</h3>
-            </div>
-          </a>
-
-          <a class="stack-card" data-tilt href="https://adil-044.github.io/magnolia-spa-ottawa/" target="_blank" rel="noopener">
-            <div class="browser">
-              <div class="browser-bar">
-                <span></span><span></span><span></span>
-                <em>magnolia-spa-ottawa</em>
-              </div>
-              <div class="browser-shot">
-                <img src="https://images.pexels.com/photos/9146381/pexels-photo-9146381.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1600" alt="" width="1600" height="1000" loading="lazy" />
-              </div>
-            </div>
-            <div class="stack-meta">
-              <span>03 · Spa</span>
-              <h3>Magnolia Spa</h3>
-            </div>
-          </a>
-
-          <a class="stack-card" data-tilt href="https://adil-044.github.io/glorious-nails-ottawa/" target="_blank" rel="noopener">
-            <div class="browser">
-              <div class="browser-bar">
-                <span></span><span></span><span></span>
-                <em>glorious-nails-ottawa</em>
-              </div>
-              <div class="browser-shot">
-                <img src="https://images.pexels.com/photos/13068379/pexels-photo-13068379.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1600" alt="" width="1600" height="1000" loading="lazy" />
-              </div>
-            </div>
-            <div class="stack-meta">
-              <span>04 · Nails</span>
-              <h3>Glorious Nails</h3>
-            </div>
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <section class="float-gallery" aria-label="Quick open">
-      <div class="float-track" id="float-track">
-        <button type="button" class="float-chip" data-url="https://adil-044.github.io/emergency-hvac-ottawa/">Emergency HVAC</button>
-        <button type="button" class="float-chip" data-url="https://adil-044.github.io/saco-hair-ottawa/">Saco Hair</button>
-        <button type="button" class="float-chip" data-url="https://adil-044.github.io/magnolia-spa-ottawa/">Magnolia Spa</button>
-        <button type="button" class="float-chip" data-url="https://adil-044.github.io/glorious-nails-ottawa/">Glorious Nails</button>
-        <button type="button" class="float-chip" data-url="https://adil-044.github.io/emergency-hvac-ottawa/">Emergency HVAC</button>
-        <button type="button" class="float-chip" data-url="https://adil-044.github.io/saco-hair-ottawa/">Saco Hair</button>
-        <button type="button" class="float-chip" data-url="https://adil-044.github.io/magnolia-spa-ottawa/">Magnolia Spa</button>
-        <button type="button" class="float-chip" data-url="https://adil-044.github.io/glorious-nails-ottawa/">Glorious Nails</button>
-      </div>
-    </section>
-
-    <section id="build" class="build">
-      <div class="build-panel">
-        <div class="build-copy">
-          <p class="kicker">Build in public</p>
-          <h2>AI Estimator</h2>
-          <p>Roof photos → same-day written ballpark. Live demo open now.</p>
-          <a class="btn magnet" href="https://passengers-ribbon-venice-ripe.trycloudflare.com/" target="_blank" rel="noopener">Open live demo</a>
-          <p class="build-repo"><a href="https://github.com/adil-044/commercial-roofing-estimator" target="_blank" rel="noopener">GitHub repo</a></p>
-        </div>
-        <a class="build-frame" href="https://passengers-ribbon-venice-ripe.trycloudflare.com/" target="_blank" rel="noopener" data-tilt>
-          <div class="browser">
-            <div class="browser-bar">
-              <span></span><span></span><span></span>
-              <em>ai-estimator · live</em>
-            </div>
-            <div class="browser-shot">
-              <img src="https://images.pexels.com/photos/4115457/pexels-photo-4115457.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1400" alt="" width="1400" height="900" loading="lazy" />
-            </div>
-          </div>
-        </a>
-      </div>
-
-      <div class="build-panel build-panel--flip" id="ig-dm">
-        <div class="build-copy">
-          <p class="kicker">Product demo</p>
-          <h2>Instagram inbound DM</h2>
-          <p>Your IG gets DMs. This turns them into booked calls — try the live inbox.</p>
-          <a class="btn magnet" href="/ig-dm/">Open IG DM demo</a>
-        </div>
-        <a class="build-frame" href="/ig-dm/" data-tilt>
-          <div class="browser">
-            <div class="browser-bar">
-              <span></span><span></span><span></span>
-              <em>ig-dm · live inbox</em>
-            </div>
-            <div class="browser-shot browser-shot--dm">
-              <div class="dm-preview">
-                <p class="dm-preview__from">uptisement</p>
-                <p class="dm-preview__bubble">Hey — thanks for messaging. What do you need help with?</p>
-                <p class="dm-preview__chip">Website · Quotes · Book a call</p>
-              </div>
-            </div>
-          </div>
-        </a>
-      </div>
-    </section>
-
-    <section id="services" class="services">
-      <header class="section-head">
-        <p class="kicker">Services</p>
-        <h2>What we ship.</h2>
-      </header>
-      <ul class="service-list">
-        <li>
-          <span class="num">01</span>
-          <div>
-            <h3>AI consulting</h3>
-            <p>What to build. What to skip.</p>
-          </div>
-        </li>
-        <li>
-          <span class="num">02</span>
-          <div>
-            <h3>AI automation</h3>
-            <p>Custom workflows for your desk — including Instagram inbound DMs that book calls. <a href="/ig-dm/" style="color:var(--accent)">Try the demo</a>.</p>
-          </div>
-        </li>
-        <li>
-          <span class="num">03</span>
-          <div>
-            <h3>Web makeover</h3>
-            <p>Fast sites that book. Mobile-first. One clear CTA.</p>
-          </div>
-        </li>
+  <div class="menu" id="menu" role="dialog" aria-modal="true" aria-label="Site menu">
+    <div class="menu-bg" aria-hidden="true"></div>
+    <div class="menu-panel">
+      <ul class="menu-nav">
+        <li><a href="index.html" data-close-menu>Home</a></li>
+        <li><a href="work.html" data-close-menu>Work</a></li>
+        <li><a href="offer.html" data-close-menu>Offer</a></li>
+        <li><a href="shop.html" data-close-menu>Shop</a></li>
+        <li><a href="/ig-dm/" data-close-menu>IG DM</a></li>
       </ul>
-    </section>
-
-    <section id="contact" class="close">
-      <p class="brand-lockup">Uptisement</p>
-      <h2>Book ten minutes.</h2>
-      <p class="close-sub">Leave with a clear next step or we stop.</p>
-      <a class="btn magnet lg" href="https://calendly.com/uptisement/30min" target="_blank" rel="noopener">Book a call</a>
-      <div class="contact-row">
-        <a href="tel:+17869820283">(786) 982-0283</a>
-        <a href="mailto:sales@uptisement.com">sales@uptisement.com</a>
+      <div class="menu-cta">
+        <a href="https://calendly.com/uptisement/30min" target="_blank" rel="noopener" data-close-menu>
+          Book a call
+        </a>
+        <span class="sub">
+          <a href="mailto:sales@uptisement.com">sales@uptisement.com</a><br />
+          +1 786 982 0283
+        </span>
+        <div class="menu-moods" role="group" aria-label="Mood">
+          <button type="button" data-mood="light" class="on">Light</button>
+          <button type="button" data-mood="dark">Dark</button>
+          <button type="button" data-mood="mint">Mint</button>
+        </div>
       </div>
-    </section>
-  </main>
-
-  <footer class="foot">
-    <span>© 2026 Uptisement</span>
-    <a href="/privacy.html">Privacy</a>
-    <a href="/cookies.html">Cookies</a>
-    <a href="/cookies.html#preferences">Do not sell/share</a>
-    <a href="https://github.com/adil-044/uptisement" target="_blank" rel="noopener">Site repo</a>
-  </footer>
-
-  <p id="privacy-note" class="privacy-note">
-    Global privacy: essential cookies always; analytics/marketing only with consent (GDPR / CCPA / PIPEDA-style).
-    <a href="/privacy.html">Privacy Policy</a> · <a href="/cookies.html">Cookies</a> ·
-    <a href="mailto:sales@uptisement.com">sales@uptisement.com</a>
-  </p>
-
-  <div class="mobile-cta" id="mobile-cta" role="region" aria-label="Book a call">
-    <a class="btn" href="https://calendly.com/uptisement/30min" target="_blank" rel="noopener">Book a call</a>
+    </div>
   </div>
 
+  <p class="hint" id="hint">Drag the board</p>
+
+  <div class="stage" id="stage">
+    <div class="canvas" id="canvas">
+
+      <!-- zone labels -->
+      <div class="zone -z-auto" aria-hidden="true"><span>Auto</span></div>
+      <div class="zone -z-work" aria-hidden="true"><span>Work</span></div>
+      <div class="zone -z-ai" aria-hidden="true"><span>AI</span></div>
+      <div class="zone -z-book" aria-hidden="true"><span>Book</span></div>
+
+      <!-- hero -->
+      <a class="block depth-mid -n1 heading-block" data-zoom href="work.html">
+        <div class="heading -main">
+          <h1>Welcome into<br />our shop</h1>
+          <p>Sites that book work.</p>
+        </div>
+      </a>
+
+      <!-- projects -->
+      <a class="block depth-near -n2 project -xl glass" data-zoom href="https://adil-044.github.io/emergency-hvac-ottawa/">
+        <figure><img src="https://images.pexels.com/photos/5463575/pexels-photo-5463575.jpeg?auto=compress&cs=tinysrgb&w=1100" alt="HVAC technician on a live call-out" loading="lazy" /></figure>
+        <div class="cap"><strong>Emergency HVAC</strong><span>Live site</span></div>
+      </a>
+
+      <a class="block depth-mid -n3 project glass" data-zoom href="https://adil-044.github.io/saco-hair-ottawa/">
+        <figure><img src="https://images.pexels.com/photos/7750144/pexels-photo-7750144.jpeg?auto=compress&cs=tinysrgb&w=700" alt="Salon chair" loading="lazy" /></figure>
+        <div class="cap"><strong>Saco Hair</strong><span>Live site</span></div>
+      </a>
+
+      <a class="block depth-near -n4 project glass" data-zoom href="https://adil-044.github.io/magnolia-spa-ottawa/">
+        <figure><img src="https://images.pexels.com/photos/3757942/pexels-photo-3757942.jpeg?auto=compress&cs=tinysrgb&w=1000" alt="Spa atmosphere" loading="lazy" /></figure>
+        <div class="cap"><strong>Magnolia Spa</strong><span>Live site</span></div>
+      </a>
+
+      <a class="block depth-near -n7 project glass" data-zoom href="https://adil-044.github.io/glorious-nails-ottawa/">
+        <figure><img src="https://images.pexels.com/photos/3992850/pexels-photo-3992850.jpeg?auto=compress&cs=tinysrgb&w=1000" alt="Nail studio" loading="lazy" /></figure>
+        <div class="cap"><strong>Glorious Nails</strong><span>Live site</span></div>
+      </a>
+
+      <a class="block depth-near -n25 project glass" data-zoom href="https://adil-044.github.io/beaumore-demo/">
+        <figure><img src="https://images.pexels.com/photos/34885844/pexels-photo-34885844.jpeg?auto=compress&cs=tinysrgb&w=1000" alt="Beau More nail art" loading="lazy" /></figure>
+        <div class="cap"><strong>Beau More</strong><span>Nails · live demo</span></div>
+      </a>
+
+      <a class="block depth-mid -n26 project glass" data-zoom href="https://adil-044.github.io/john-a-atelier/">
+        <figure><img src="https://images.pexels.com/photos/18503604/pexels-photo-18503604.jpeg?auto=compress&cs=tinysrgb&w=1000" alt="Barber fade detail" loading="lazy" /></figure>
+        <div class="cap"><strong>John A</strong><span>Barbershop · live demo</span></div>
+      </a>
+
+      <a class="block depth-near -n27 project -sm glass" data-zoom href="https://adil-044.github.io/og-barbershop-demo/">
+        <figure><img src="https://images.pexels.com/photos/12074386/pexels-photo-12074386.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Fade haircut" loading="lazy" /></figure>
+        <div class="cap"><strong>OG Barbershop</strong><span>Live demo</span></div>
+      </a>
+
+      <a class="block depth-mid -n19 project glass" data-zoom href="demos/roofing.html">
+        <figure><img src="https://images.pexels.com/photos/32050401/pexels-photo-32050401.jpeg?auto=compress&cs=tinysrgb&w=900" alt="Roofers on a job" loading="lazy" /></figure>
+        <div class="cap"><strong>Trade roofing</strong><span>Live demo</span></div>
+      </a>
+
+      <a class="block depth-near -n20 project -sm glass" data-zoom href="demos/boiler.html">
+        <figure><img src="https://images.pexels.com/photos/7859953/pexels-photo-7859953.jpeg?auto=compress&cs=tinysrgb&w=700" alt="Boiler tech hands" loading="lazy" /></figure>
+        <div class="cap"><strong>Boiler</strong><span>Live demo</span></div>
+      </a>
+
+      <!-- people -->
+      <a class="block depth-far -n5 member glass" data-zoom href="demos/crm.html">
+        <figure><img src="https://images.pexels.com/photos/19432567/pexels-photo-19432567.jpeg?auto=compress&cs=tinysrgb&w=500" alt="" loading="lazy" /></figure>
+        <h2>Ops</h2>
+        <p>Build</p>
+      </a>
+
+      <a class="block depth-far -n8 member glass" data-zoom href="offer.html">
+        <figure><img src="https://images.pexels.com/photos/8422528/pexels-photo-8422528.jpeg?auto=compress&cs=tinysrgb&w=500" alt="" loading="lazy" /></figure>
+        <h2>Craft</h2>
+        <p>Motion</p>
+      </a>
+
+      <a class="block depth-mid -n11 member glass" data-zoom href="shop.html">
+        <figure><img src="https://images.pexels.com/photos/6030092/pexels-photo-6030092.jpeg?auto=compress&cs=tinysrgb&w=500" alt="" loading="lazy" /></figure>
+        <h2>Adil</h2>
+        <p>Founder</p>
+      </a>
+
+      <!-- copy blocks → related demos -->
+      <a class="block depth-far -n6 heading-block" data-zoom href="demos/sms.html">
+        <div class="heading">
+          <h2>Follow-up<br />that runs</h2>
+          <p>While you’re on the truck.</p>
+        </div>
+      </a>
+
+      <a class="block depth-mid -n9 heading-block" data-zoom href="demos/estimator.html">
+        <div class="heading">
+          <h2>AI that<br />earns rent</h2>
+          <p>Quotes · replies · triage.</p>
+        </div>
+      </a>
+
+      <a class="block depth-far -n12 heading-block" data-zoom href="shop.html">
+        <div class="heading">
+          <h2>Built tight</h2>
+          <p>Remote across US &amp; Canada.</p>
+        </div>
+      </a>
+
+      <a class="block depth-mid -n15 heading-block" data-zoom href="work.html">
+        <div class="heading">
+          <h2>Proof, not<br />moodboards</h2>
+          <p>Live sites. Real scopes.</p>
+        </div>
+      </a>
+
+      <!-- visuals -->
+      <a class="block depth-far -n10 visual glass" data-zoom href="offer.html">
+        <img src="https://images.pexels.com/photos/16243258/pexels-photo-16243258.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Workshop tools wall" loading="lazy" />
+      </a>
+
+      <a class="block depth-mid -n13 visual glass" data-zoom href="demos/book-fold.html">
+        <img src="https://images.pexels.com/photos/8488061/pexels-photo-8488061.jpeg?auto=compress&cs=tinysrgb&w=900" alt="Hand tools" loading="lazy" />
+      </a>
+
+      <a class="block depth-near -n16 visual -odd glass" data-zoom href="demos/sms.html">
+        <img src="https://images.pexels.com/photos/3943951/pexels-photo-3943951.jpeg?auto=compress&cs=tinysrgb&w=700" alt="Phone in hand — the follow-up channel" loading="lazy" />
+      </a>
+
+      <a class="block depth-far -n18 visual glass" data-zoom href="work.html">
+        <img src="https://images.pexels.com/photos/1170412/pexels-photo-1170412.jpeg?auto=compress&cs=tinysrgb&w=800" alt="" loading="lazy" />
+      </a>
+
+      <!-- automation / AI system cards -->
+      <a class="block sys glass depth-near -n21" data-zoom href="demos/sms.html">
+        <p class="sys-kicker">Automation</p>
+        <h3>Missed-call SMS</h3>
+        <p>Lead rings out. Text fires while you’re still on the ladder.</p>
+        <span class="sys-meta">Live demo</span>
+      </a>
+
+      <a class="block sys glass depth-far -n22" data-zoom href="demos/crm.html">
+        <p class="sys-kicker">Pipeline</p>
+        <h3>Hot-lead CRM</h3>
+        <p>Inbox → stage board. No copy-paste. Reply logged.</p>
+        <span class="sys-meta">Live demo</span>
+      </a>
+
+      <a class="block sys glass depth-near -n23" data-zoom href="demos/estimator.html">
+        <p class="sys-kicker">AI</p>
+        <h3>Quote estimator</h3>
+        <p>Rough numbers from job notes. You approve before it sends.</p>
+        <span class="sys-meta">Live demo</span>
+      </a>
+
+      <a class="block sys glass depth-mid -n24" data-zoom href="demos/book-fold.html">
+        <p class="sys-kicker">Site</p>
+        <h3>Book above the fold</h3>
+        <p>Calendar or call — first screen, not buried in contact.</p>
+        <span class="sys-meta">Live demo</span>
+      </a>
+
+      <!-- book + contact -->
+      <a class="block depth-near -n14 project glass" data-zoom href="https://calendly.com/uptisement/30min">
+        <figure><img src="https://images.pexels.com/photos/6224/hands-people-woman-working.jpg?auto=compress&cs=tinysrgb&w=1000" alt="" loading="lazy" /></figure>
+        <div class="cap"><strong>Book 10 min</strong><span>Calendly</span></div>
+      </a>
+
+      <a class="block depth-mid -n17 cta-card glass" data-zoom href="demos/contact.html">
+        <p class="eyebrow">Contact</p>
+        <span>sales@uptisement.com</span>
+        <span>+1 786 982 0283</span>
+        <p class="tiny">Remote</p>
+      </a>
+
+      <!-- sticky notes → related demos -->
+      <a class="note -sales -note1" data-zoom data-arrow="w" href="https://adil-044.github.io/emergency-hvac-ottawa/">
+        <span class="tag">Sales</span>
+        <p>Lead in. Job on calendar.</p>
+        <svg class="arrow" viewBox="0 0 56 28" aria-hidden="true"><path d="M4 14 H40"/><polygon points="40,14 30,8 30,20"/></svg>
+      </a>
+      <a class="note -mint -note2" data-zoom data-arrow="e" href="https://adil-044.github.io/saco-hair-ottawa/">
+        <span class="tag">Salon</span>
+        <p>Chair books itself. You keep cutting.</p>
+        <svg class="arrow" viewBox="0 0 56 28" aria-hidden="true"><path d="M4 14 H40"/><polygon points="40,14 30,8 30,20"/></svg>
+      </a>
+      <a class="note -cream -note3" data-zoom data-arrow="n" href="offer.html">
+        <span class="tag">Craft</span>
+        <p>Type that feels like a shop sign, not a SaaS login.</p>
+        <svg class="arrow" viewBox="0 0 56 28" aria-hidden="true"><path d="M4 14 H40"/><polygon points="40,14 30,8 30,20"/></svg>
+      </a>
+      <a class="note -sales -note4" data-zoom data-arrow="nw" href="demos/sms.html">
+        <span class="tag">Auto</span>
+        <p>Automation that texts back so you don’t lose the job.</p>
+        <svg class="arrow" viewBox="0 0 56 28" aria-hidden="true"><path d="M4 14 H40"/><polygon points="40,14 30,8 30,20"/></svg>
+      </a>
+      <a class="note -note5" data-zoom data-arrow="w" href="demos/estimator.html">
+        <span class="tag">AI</span>
+        <p>Not a chatbot. A helper that quotes faster.</p>
+        <svg class="arrow" viewBox="0 0 56 28" aria-hidden="true"><path d="M4 14 H40"/><polygon points="40,14 30,8 30,20"/></svg>
+      </a>
+      <a class="note -mint -note6" data-zoom data-arrow="n" href="https://adil-044.github.io/magnolia-spa-ottawa/">
+        <span class="tag">Spa</span>
+        <p>Soft brand. Hard book button.</p>
+        <svg class="arrow" viewBox="0 0 56 28" aria-hidden="true"><path d="M4 14 H40"/><polygon points="40,14 30,8 30,20"/></svg>
+      </a>
+      <a class="note -cream -note7" data-zoom data-arrow="se" href="https://adil-044.github.io/emergency-hvac-ottawa/">
+        <span class="tag">Vision</span>
+        <p>Pin the win. Pan until it clicks.</p>
+        <svg class="arrow" viewBox="0 0 56 28" aria-hidden="true"><path d="M4 14 H40"/><polygon points="40,14 30,8 30,20"/></svg>
+      </a>
+      <a class="note -sales -note8" data-zoom data-arrow="nw" href="demos/roofing.html">
+        <span class="tag">Trade</span>
+        <p>Same day. Same crew. Site that doesn’t blink.</p>
+        <svg class="arrow" viewBox="0 0 56 28" aria-hidden="true"><path d="M4 14 H40"/><polygon points="40,14 30,8 30,20"/></svg>
+      </a>
+      <a class="note -mint -note9" data-zoom data-arrow="w" href="demos/contact.html">
+        <span class="tag">Next</span>
+        <p>Book 10 min. We say what to ship first.</p>
+        <svg class="arrow" viewBox="0 0 56 28" aria-hidden="true"><path d="M4 14 H40"/><polygon points="40,14 30,8 30,20"/></svg>
+      </a>
+
+    </div>
+  </div>
+
+  <script src="chrome.js?v=21"></script>
+  <script src="pan.js?v=21"></script>
+  <script src="zoom.js?v=21"></script>
   <script src="track-config.js"></script>
   <script src="track.js?v=4"></script>
-  <script src="app.js?v=4"></script>
 </body>
 </html>
+

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Demo · Hot-lead CRM</title>
+  <link href="https://fonts.googleapis.com/css2?family=Anybody:wdth,wght@100,800&family=Archivo:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="demo.css" />
+</head>
+<body>
+  <div class="demo-top">
+    <a class="back" href="../index.html">← Board</a>
+    <span class="tag">Live demo</span>
+  </div>
+  <main class="demo-wrap">
+    <h1>Hot-lead CRM</h1>
+    <p class="lede">Tap a lead to advance stage. Inbox → warm → booked. No copy-paste.</p>
+    <div class="panel kanban" id="board">
+      <div class="col" data-stage="new"><h3>New</h3></div>
+      <div class="col" data-stage="warm"><h3>Warm</h3></div>
+      <div class="col" data-stage="booked"><h3>Booked</h3></div>
+    </div>
+    <p class="muted" style="margin-top:1rem" id="toast">Tap a card to move it forward.</p>
+  </main>
+  <script>
+    const leads = [
+      { id: 1, name: "Nova HVAC", stage: "new" },
+      { id: 2, name: "Saco walk-in", stage: "new" },
+      { id: 3, name: "Magnolia refill", stage: "warm" },
+    ];
+    const order = ["new", "warm", "booked"];
+    const board = document.getElementById("board");
+    const toast = document.getElementById("toast");
+    function render() {
+      board.querySelectorAll(".card").forEach((c) => c.remove());
+      leads.forEach((l) => {
+        const col = board.querySelector(`[data-stage="${l.stage}"]`);
+        const el = document.createElement("button");
+        el.type = "button";
+        el.className = "card";
+        el.style.width = "100%";
+        el.style.textAlign = "left";
+        el.style.color = "inherit";
+        el.textContent = l.name;
+        el.onclick = () => {
+          const i = order.indexOf(l.stage);
+          if (i < order.length - 1) {
+            l.stage = order[i + 1];
+            toast.textContent = `${l.name} → ${l.stage}`;
+            render();
+          } else {
+            toast.textContent = `${l.name} already booked.`;
+          }
+        };
+        col.appendChild(el);
+      });
+    }
+    render();
+  </script>
+</body>
+</html>
