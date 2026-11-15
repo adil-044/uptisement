@@ -1,10 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://uptisement.com/</loc></url>
-  <url><loc>https://uptisement.com/work.html</loc></url>
-  <url><loc>https://uptisement.com/offer.html</loc></url>
-  <url><loc>https://uptisement.com/shop.html</loc></url>
+  <url><loc>https://uptisement.com/services/</loc></url>
+  <url><loc>https://uptisement.com/work/</loc></url>
+  <url><loc>https://uptisement.com/pricing/</loc></url>
   <url><loc>https://uptisement.com/ig-dm/</loc></url>
   <url><loc>https://uptisement.com/privacy.html</loc></url>
   <url><loc>https://uptisement.com/cookies.html</loc></url>
+  <url><loc>https://uptisement.com/demos/sms.html</loc></url>
+  <url><loc>https://uptisement.com/demos/estimator.html</loc></url>
+  <url><loc>https://uptisement.com/demos/crm.html</loc></url>
+  <url><loc>https://uptisement.com/demos/roofing.html</loc></url>
+  <url><loc>https://uptisement.com/demos/boiler.html</loc></url>
+  <url><loc>https://uptisement.com/demos/book-fold.html</loc></url>
 </urlset>

@@ -1,0 +1,55 @@
+# Optional GitHub Actions deploy for when Pages source is switched to "GitHub Actions".
+# Until then, the live site is served from the static export synced to the repo root
+# (branch `main`, folder `/`).
+name: Deploy to GitHub Pages
+
+on:
+  workflow_dispatch:
+  # Enable the push trigger after:
+  # Settings → Pages → Build and deployment → Source → GitHub Actions
+  # push:
+  #   branches: [main]
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install
+        run: npm ci
+
+      - name: Build static export
+        run: npx next build
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: out
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

@@ -1,23 +1,32 @@
 # Uptisement
 
-Public brand site.
+Premium Next.js (App Router) brand site for [uptisement.com](https://uptisement.com).
 
-**Live:** https://uptisement.com · https://adil-044.github.io/uptisement/
+**Stack:** Next.js · TypeScript · Tailwind CSS v4 · GSAP (`@gsap/react`) · static export for GitHub Pages.
 
-Honest work only: web samples + AI Estimator GitHub. No dead product tiles.
+## Develop
 
-## Tracking
-
-Edit `track-config.js`:
-
-```js
-window.UPTI_TRACK = {
-  ga4: "G-XXXXXXXXXX",
-  metaPixel: "123456789012345",
-  clarity: "",           // optional
-  linkedinPartner: "",   // optional
-  gtm: "",               // optional — if set, use GTM instead of direct GA/Meta
-};
+```bash
+npm install
+npm run dev
 ```
 
-Events: `page_view`, `book_click`, `generate_lead`, `phone_click`, `email_click`, `site_open`, `estimator_open`, `scroll_depth`. UTMs + gclid/fbclid stick and append to Calendly. Consent banner gates pixels (Accept / Essential only).
+## Build
+
+```bash
+npm run build
+```
+
+`next build` writes `out/`, then `scripts/sync-pages.mjs` mirrors the export to the repository root so GitHub Pages can keep serving from `main` `/` (legacy branch deploy).
+
+## Booking URL
+
+Edit one constant: `app/lib/config.ts` → `BOOK_URL`.
+
+## Deploy
+
+**Current Pages setting:** Deploy from branch `main` / (legacy). The synced root files (`index.html`, `_next/`, …) are what Pages serves after merge.
+
+**Preferred (optional):** Settings → Pages → Source → **GitHub Actions**. Then `.github/workflows/deploy.yml` builds `out/` and deploys via `actions/deploy-pages`. Until that switch is made, keep committing the synced root export (run `npm run build` before push).
+
+Custom domain: `public/CNAME` → `uptisement.com`.
