@@ -1,5 +1,6 @@
 (() => {
-  const CAL = "https://calendly.com/uptisement/30min";
+  // Keep in sync with /book.js — single booking URL for the site
+  const CAL = (typeof window !== "undefined" && window.UPTISMENT_BOOK_URL) || "https://calendly.com/uptisement/30min";
   const thread = document.getElementById("thread");
   const quick = document.getElementById("quick");
   const form = document.getElementById("form");
@@ -111,7 +112,7 @@
     for (const line of preLines) await botSay(line);
     await botSay("Pick a time that works — reply BOOKED when it’s on the calendar.", {
       link: true,
-      linkLabel: "Book 30 min with Adil",
+      linkLabel: "Book a 15-min call with Adil",
     });
     setChips([
       { label: "BOOKED ✓", value: "BOOKED" },
@@ -262,7 +263,7 @@
 
       if (state.step === "est_q") {
         if (text === "book" || /just book|book a call/i.test(lower)) {
-          return sendBook(["Let’s put 30 min on the calendar."]);
+          return sendBook(["Let’s put 15 min on the calendar."]);
         }
         let ack = "Got it.";
         if (/cold/i.test(lower)) ack = "Yeah — first written price usually wins.";
@@ -270,7 +271,7 @@
         else if (/see/i.test(lower)) ack = "Perfect — call is the fastest demo.";
         await botSay(ack);
         await botSay("Setup: photos → same-day written ballpark. $500 + $50/estimate, or 5–10% of jobs closed. 30-day refund if the bottleneck stays.");
-        return sendBook(["Grab 30 min and we’ll see if it fits:"]);
+        return sendBook(["Grab 15 min and we’ll see if it fits:"]);
       }
 
       if (state.step === "auto_q") {
@@ -287,7 +288,7 @@
                 : "that";
         await botSay(`Got it — ${label}.`);
         await botSay("We’ll map a done-for-you flow on the call so scope (and price) stay honest.");
-        return sendBook(["Book 30 min with Adil:"]);
+        return sendBook(["Book a 15-min call with Adil:"]);
       }
 
       if (state.step === "done") {

@@ -3,22 +3,36 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <title>Offer — Uptisement</title>
-  <meta name="description" content="Booking-first sites, follow-up automation, AI ops helpers." />
+  <title>Offer — Booking-first sites &amp; missed-call text-back | Uptisement</title>
+  <meta name="description" content="Booking-first websites from $300, hosting $30/mo, missed-call text-back, and a Booked-Jobs Bundle for Southern Ontario HVAC and roofing shops. Free demo available." />
+  <link rel="canonical" href="https://uptisement.com/offer.html" />
   <link rel="icon" href="brand/uptisement-logo-locked.png" type="image/png" />
+  <meta property="og:title" content="Offer | Uptisement" />
+  <meta property="og:description" content="Booking-first websites from $300, hosting $30/mo, and missed-call text-back for Southern Ontario trades." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://uptisement.com/offer.html" />
+  <meta property="og:image" content="https://uptisement.com/brand/uptisement-logo-locked-with-services.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Anybody:wdth,wght@100,700;100,800&family=Archivo:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=20" />
+  <link rel="stylesheet" href="styles.css?v=30" />
 </head>
 <body class="page">
   <div class="grain" aria-hidden="true"></div>
 
-  <header class="ui-float">
+  <header class="site-header">
     <a class="logo" href="index.html">
       <img src="brand/uptisement-logo-locked.png" alt="" width="26" height="26" />
       Uptisement
     </a>
+    <nav class="site-nav" aria-label="Primary">
+      <a href="index.html#how">How it works</a>
+      <a href="offer.html" aria-current="page">Offer</a>
+      <a href="work.html">Work</a>
+      <a href="index.html#faq">FAQ</a>
+      <!-- BOOKING URL: edit book.js if the Calendly event slug changes -->
+      <a class="btn-book" data-book href="https://calendly.com/uptisement/30min">Book a 15-min call</a>
+    </nav>
     <button type="button" class="hamburger" id="hamburger" data-mode="faces" aria-label="Menu" aria-expanded="false" aria-controls="menu">
       <svg class="hamburger-circle" viewBox="0 0 100 100" aria-hidden="true">
         <circle cx="50" cy="50" r="46" />
@@ -42,15 +56,13 @@
         <li><a href="index.html" data-close-menu>Home</a></li>
         <li><a href="work.html" data-close-menu>Work</a></li>
         <li><a href="offer.html" data-close-menu>Offer</a></li>
-        <li><a href="shop.html" data-close-menu>Shop</a></li>
+        <li><a href="shop.html" data-close-menu>How it works</a></li>
       </ul>
       <div class="menu-cta">
-        <a href="https://calendly.com/uptisement/30min" target="_blank" rel="noopener" data-close-menu>
-          Book a call
-        </a>
+        <a data-book href="https://calendly.com/uptisement/30min" data-close-menu>Book a 15-min call</a>
         <span class="sub">
           <a href="mailto:sales@uptisement.com">sales@uptisement.com</a><br />
-          +1 786 982 0283
+          Southern Ontario
         </span>
         <div class="menu-moods" role="group" aria-label="Mood">
           <button type="button" data-mood="light" class="on">Light</button>
@@ -63,33 +75,54 @@
 
   <main class="page-shell">
     <h1>Offer</h1>
-    <p class="lede">Three things. More booked work.</p>
-    <div class="offer-rows">
-      <article>
-        <span class="num">01</span>
-        <div>
-          <h2>Booking-first site</h2>
-          <p>Fast mobile page. Clear offer. Calendar or call path above the fold. No brochure fluff.</p>
-        </div>
+    <p class="lede">Pick what fixes the leak first. Prices are starting points — fixed quote in writing after a 15-min call. Free demo of your site before you commit.</p>
+
+    <div class="offer-grid" style="margin-bottom:2rem">
+      <article class="offer-card">
+        <h3>Booking-first website</h3>
+        <p class="price">From $300</p>
+        <!-- PRICE: confirmed starter; adjust if Adil changes -->
+        <ul>
+          <li>Mobile-first site built around getting the call or booking</li>
+          <li>“Book” and “Call” on the first screen of every page</li>
+          <li>Service pages for your trade and Southern Ontario towns you cover</li>
+          <li>Google Business Profile links, reviews, basic local SEO</li>
+          <li>Fast hosting set-up</li>
+        </ul>
+        <p class="addon">Hosting &amp; updates: $30/mo</p>
       </article>
-      <article>
-        <span class="num">02</span>
-        <div>
-          <h2>Follow-up automation</h2>
-          <p>Missed lead gets a text or email while you’re on the job. Pipeline stays warm.</p>
-        </div>
+      <article class="offer-card">
+        <h3>Missed-call text-back</h3>
+        <p class="price">Starting price on a quick call</p>
+        <!-- PRICE: fill in -->
+        <ul>
+          <li>Missed caller gets a text within minutes</li>
+          <li>Replies land on your phone</li>
+          <li>Optional after-hours emergency message</li>
+          <li>Monthly summary of calls caught</li>
+        </ul>
       </article>
-      <article>
-        <span class="num">03</span>
-        <div>
-          <h2>AI ops helpers</h2>
-          <p>Estimators, reply drafts, lead triage — scoped to your trade, not a generic chatbot.</p>
-        </div>
+      <article class="offer-card">
+        <h3>Booked-Jobs Bundle</h3>
+        <p class="price">Starting price on a quick call</p>
+        <!-- PRICE: fill in -->
+        <ul>
+          <li>Everything in 1 and 2</li>
+          <li>Quote estimator you approve before it sends</li>
+          <li>Lead board for calls, texts, and forms</li>
+          <li>Hosting &amp; updates available at $30/mo</li>
+        </ul>
       </article>
     </div>
-    <a class="btn-primary" href="https://calendly.com/uptisement/30min" target="_blank" rel="noopener">Book 10 minutes</a>
+
+    <p class="offer-note">Not sure which? Book a 15-min call — or get a free demo of your site.</p>
+    <div class="cta-row">
+      <a class="btn-primary" data-book href="https://calendly.com/uptisement/30min">Book a 15-min call</a>
+      <a class="btn-secondary" data-book href="https://calendly.com/uptisement/30min">Get a free demo of your site</a>
+    </div>
   </main>
 
-  <script src="chrome.js?v=17"></script>
+  <script src="book.js?v=1"></script>
+  <script src="chrome.js?v=30"></script>
 </body>
 </html>

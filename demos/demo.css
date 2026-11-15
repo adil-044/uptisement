@@ -17,6 +17,31 @@ html, body {
   font-family: Archivo, system-ui, sans-serif;
 }
 a { color: inherit; }
+.demo-banner {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem 0.85rem;
+  padding: 0.7rem 1rem;
+  background: #3ddc97;
+  color: #06100b;
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-align: center;
+}
+.demo-banner a {
+  color: #06100b;
+  font-weight: 800;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+}
 .demo-top {
   position: sticky;
   top: 0;
@@ -30,6 +55,7 @@ a { color: inherit; }
   background: rgba(10,14,11,0.72);
   border-bottom: 1px solid var(--edge);
 }
+body:has(.demo-banner) .demo-top { top: 2.75rem; }
 .demo-top a.back {
   font-weight: 700;
   text-decoration: none;

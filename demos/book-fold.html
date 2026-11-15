@@ -8,21 +8,26 @@
   <link rel="stylesheet" href="demo.css" />
 </head>
 <body>
+  <div class="demo-banner">
+    This is a demo.
+    <a data-book href="https://calendly.com/uptisement/30min">Want this for your shop? Book a call</a>
+  </div>
   <div class="demo-top">
-    <a class="back" href="../index.html">← Board</a>
-    <span class="tag">Live demo</span>
+    <a class="back" href="../index.html">← Home</a>
+    <span class="tag">Demo build</span>
   </div>
   <main class="demo-wrap">
     <h1>Book above the fold</h1>
     <p class="lede">First screen = calendar or call. No buried contact page.</p>
     <div class="hero-demo">
       <h2>Same-day service</h2>
-      <p class="muted" style="color:#d7ffe8;margin:0 0 0.9rem">Ottawa · open now</p>
+      <p class="muted" style="color:#d7ffe8;margin:0 0 0.9rem">Southern Ontario · open now</p>
       <div class="row">
-        <a class="btn" href="https://calendly.com/uptisement/30min" target="_blank" rel="noopener">Book now</a>
-        <a class="btn btn-ghost" href="tel:+17869820283">Call</a>
+        <a class="btn" data-book href="https://calendly.com/uptisement/30min">Book now</a>
+        <button class="btn btn-ghost" type="button" disabled title="Demo only — not a real phone line">Call (demo)</button>
       </div>
     </div>
   </main>
+  <script src="../book.js?v=1"></script>
 </body>
 </html>

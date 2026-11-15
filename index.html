@@ -1,22 +1,22 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
+<html lang="en" data-theme="light" class="page-mode">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <title>Uptisement — AI consulting, automation &amp; web makeovers</title>
-  <meta name="description" content="Done-for-you AI consulting, custom automation, and booking-first websites for operators in the US and Canada." />
+  <title>Booking-first websites &amp; missed-call text-back for Ontario HVAC and roofing | Uptisement</title>
+  <meta name="description" content="Websites that put Book and Call on the first screen, plus automatic text-back for missed calls. Built for owner-run HVAC and roofing shops in Southern Ontario. Starting prices listed. Free demo available." />
   <meta name="theme-color" content="#0B1220" />
   <link rel="canonical" href="https://uptisement.com/" />
   <link rel="icon" href="brand/uptisement-logo-locked.png" type="image/png" />
-  <meta property="og:title" content="Uptisement — AI consulting &amp; automation" />
-  <meta property="og:description" content="Done-for-you AI consulting, custom automation, and web makeovers for operators." />
+  <meta property="og:title" content="Booking-first websites for Southern Ontario HVAC &amp; roofing | Uptisement" />
+  <meta property="og:description" content="Booking-first sites and missed-call text-back for owner-run HVAC and roofing shops in Southern Ontario. Free demo of your site before you commit." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://uptisement.com/" />
-  <meta property="og:image" content="brand/uptisement-logo-locked-with-services.png" />
+  <meta property="og:image" content="https://uptisement.com/brand/uptisement-logo-locked-with-services.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Anybody:wdth,wght@100,700;100,800&family=Archivo:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=21" />
+  <link rel="stylesheet" href="styles.css?v=30" />
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -24,9 +24,15 @@
     "name": "Uptisement",
     "url": "https://uptisement.com/",
     "email": "sales@uptisement.com",
-    "telephone": "+17869820283",
-    "description": "AI consulting, custom automation, and booking-first web makeovers for operators in the US and Canada.",
-    "areaServed": ["US", "CA"],
+    "description": "Booking-first websites and missed-call text-back for owner-run HVAC and roofing shops in Southern Ontario.",
+    "areaServed": {
+      "@type": "AdministrativeArea",
+      "name": "Southern Ontario, Canada"
+    },
+    "founder": {
+      "@type": "Person",
+      "name": "Adil"
+    },
     "sameAs": [
       "https://github.com/adil-044/uptisement",
       "https://calendly.com/uptisement/30min"
@@ -34,14 +40,22 @@
   }
   </script>
 </head>
-<body>
+<body class="page home">
   <div class="grain" aria-hidden="true"></div>
 
-  <header class="ui-float">
+  <header class="site-header">
     <a class="logo" href="index.html">
       <img src="brand/uptisement-logo-locked.png" alt="" width="26" height="26" />
       Uptisement
     </a>
+    <nav class="site-nav" aria-label="Primary">
+      <a href="#how">How it works</a>
+      <a href="#offer">Offer</a>
+      <a href="#work">Work</a>
+      <a href="#faq">FAQ</a>
+      <!-- BOOKING URL: edit book.js (UPTISMENT_BOOK_URL / BOOK_URL) if the Calendly event slug changes -->
+      <a class="btn-book" data-book href="https://calendly.com/uptisement/30min">Book a 15-min call</a>
+    </nav>
     <button type="button" class="hamburger" id="hamburger" data-mode="faces" aria-label="Menu" aria-expanded="false" aria-controls="menu">
       <svg class="hamburger-circle" viewBox="0 0 100 100" aria-hidden="true">
         <circle cx="50" cy="50" r="46" />
@@ -62,19 +76,17 @@
     <div class="menu-bg" aria-hidden="true"></div>
     <div class="menu-panel">
       <ul class="menu-nav">
-        <li><a href="index.html" data-close-menu>Home</a></li>
-        <li><a href="work.html" data-close-menu>Work</a></li>
-        <li><a href="offer.html" data-close-menu>Offer</a></li>
-        <li><a href="shop.html" data-close-menu>Shop</a></li>
-        <li><a href="/ig-dm/" data-close-menu>IG DM</a></li>
+        <li><a href="#how" data-close-menu>How it works</a></li>
+        <li><a href="#offer" data-close-menu>Offer</a></li>
+        <li><a href="#work" data-close-menu>Work</a></li>
+        <li><a href="#faq" data-close-menu>FAQ</a></li>
+        <li><a href="work.html" data-close-menu>All work</a></li>
       </ul>
       <div class="menu-cta">
-        <a href="https://calendly.com/uptisement/30min" target="_blank" rel="noopener" data-close-menu>
-          Book a call
-        </a>
+        <a data-book href="https://calendly.com/uptisement/30min" data-close-menu>Book a 15-min call</a>
         <span class="sub">
           <a href="mailto:sales@uptisement.com">sales@uptisement.com</a><br />
-          +1 786 982 0283
+          Southern Ontario
         </span>
         <div class="menu-moods" role="group" aria-label="Mood">
           <button type="button" data-mood="light" class="on">Light</button>
@@ -85,233 +97,291 @@
     </div>
   </div>
 
-  <p class="hint" id="hint">Drag the board</p>
+  <main>
+    <section class="home-hero" aria-labelledby="hero-title">
+      <p class="eyebrow">For owner-run HVAC &amp; roofing shops in Southern Ontario</p>
+      <h1 id="hero-title">Stop losing jobs to missed calls.</h1>
+      <p class="hero-sub">I build booking-first websites and missed-call text-back for HVAC and roofing owners. When you're on a roof or under a furnace, every missed caller gets a text within minutes and a way to book.</p>
+      <div class="cta-row">
+        <a class="btn-primary" data-book href="https://calendly.com/uptisement/30min">Book a 15-min call</a>
+        <a class="btn-secondary" data-book href="https://calendly.com/uptisement/30min">Get a free demo of your site</a>
+      </div>
+      <p class="trust-line">Built by Adil, based in Southern Ontario. Fixed scope, price and timeline in writing before you pay anything.</p>
+    </section>
 
-  <div class="stage" id="stage">
-    <div class="canvas" id="canvas">
+    <section class="home-section problem-strip" aria-labelledby="problem-title">
+      <h2 id="problem-title">Missed call → they call the next guy.</h2>
+      <ul class="pain-list">
+        <li>Missed calls while you're on the job</li>
+        <li>A website with no clear book or call button</li>
+        <li>Quotes that take days to go out</li>
+      </ul>
+    </section>
 
-      <!-- zone labels -->
-      <div class="zone -z-auto" aria-hidden="true"><span>Auto</span></div>
-      <div class="zone -z-work" aria-hidden="true"><span>Work</span></div>
-      <div class="zone -z-ai" aria-hidden="true"><span>AI</span></div>
-      <div class="zone -z-book" aria-hidden="true"><span>Book</span></div>
+    <section class="home-section" id="offer" aria-labelledby="offer-title">
+      <h2 id="offer-title">Pick what fixes the leak first</h2>
+      <p class="section-lede">Prices are starting points. You get a fixed quote in writing after a 15-min call. Want to see it on your shop first? Ask for a free demo of your site.</p>
+      <div class="offer-grid">
+        <article class="offer-card">
+          <h3>Booking-first website</h3>
+          <p class="price">From $300</p>
+          <!-- PRICE: confirmed starter; adjust if Adil changes -->
+          <ul>
+            <li>Mobile-first site built around one job: getting the call or booking</li>
+            <li>“Book” and “Call” buttons on the first screen of every page</li>
+            <li>Service pages for your trade and the Southern Ontario towns you cover</li>
+            <li>Google Business Profile links, reviews section, and basic local SEO</li>
+            <li>Fast hosting set-up</li>
+          </ul>
+          <p class="addon">Hosting &amp; updates: $30/mo</p>
+        </article>
+        <article class="offer-card">
+          <h3>Missed-call text-back</h3>
+          <p class="price">Starting price on a quick call</p>
+          <!-- PRICE: fill in -->
+          <ul>
+            <li>When you miss a call, the caller gets a text within minutes: “Saw your call. Want a slot today or tomorrow?”</li>
+            <li>Replies land on your phone, so you don't need a new app</li>
+            <li>Optional after-hours message for emergency calls</li>
+            <li>Monthly summary of calls caught</li>
+          </ul>
+        </article>
+        <article class="offer-card">
+          <h3>Booked-Jobs Bundle</h3>
+          <p class="price">Starting price on a quick call</p>
+          <!-- PRICE: fill in -->
+          <ul>
+            <li>Everything in Booking-first website and Missed-call text-back</li>
+            <li>Quote estimator: turn job notes into a rough price range you approve before it sends</li>
+            <li>Lead board so every call, text and form lands in one place</li>
+            <li>Hosting &amp; updates available at $30/mo</li>
+          </ul>
+        </article>
+      </div>
+      <p class="offer-note">Not sure which? Book a 15-min call — I'll tell you which one fixes the most lost jobs first. Or get a free demo of your site before you commit.</p>
+      <div class="cta-row">
+        <a class="btn-primary" data-book href="https://calendly.com/uptisement/30min">Book a 15-min call</a>
+        <a class="btn-secondary" data-book href="https://calendly.com/uptisement/30min">Get a free demo of your site</a>
+      </div>
+    </section>
 
-      <!-- hero -->
-      <a class="block depth-mid -n1 heading-block" data-zoom href="work.html">
-        <div class="heading -main">
-          <h1>Welcome into<br />our shop</h1>
-          <p>Sites that book work.</p>
+    <section class="home-section" id="how" aria-labelledby="how-title">
+      <h2 id="how-title">How it works</h2>
+      <p class="section-lede">Tight scopes. Southern Ontario shops. One primary fix at a time.</p>
+      <ol class="steps">
+        <li>
+          <span class="num">01</span>
+          <div>
+            <h3>Call</h3>
+            <p>15 minutes. Your site + how calls are handled. Where you're losing leads.</p>
+          </div>
+        </li>
+        <li>
+          <span class="num">02</span>
+          <div>
+            <h3>Scope</h3>
+            <p>One primary fix. Price and timeline in writing.</p>
+          </div>
+        </li>
+        <li>
+          <span class="num">03</span>
+          <div>
+            <h3>Ship</h3>
+            <p>Live booking path. You approve from your phone.</p>
+          </div>
+        </li>
+      </ol>
+    </section>
+
+    <section class="home-section" id="demos" aria-labelledby="demos-title">
+      <h2 id="demos-title">Try the demos</h2>
+      <p class="section-lede">Interactive walkthroughs in the browser. No real SMS or AI is running.</p>
+      <div class="demo-grid">
+        <a class="demo-card" href="demos/sms.html">
+          <span class="label">Interactive demo (simulated)</span>
+          <strong>Missed-call SMS</strong>
+          <span>See the text-back fire</span>
+        </a>
+        <a class="demo-card" href="demos/estimator.html">
+          <span class="label">Interactive demo (simulated)</span>
+          <strong>Quote estimator</strong>
+          <span>Job notes in, rough range out, you approve</span>
+        </a>
+        <a class="demo-card" href="demos/book-fold.html">
+          <span class="label">Demo build</span>
+          <strong>Book above the fold</strong>
+          <span>Calendar or call on screen one</span>
+        </a>
+        <a class="demo-card" href="demos/crm.html">
+          <span class="label">Interactive demo (simulated)</span>
+          <strong>Hot-lead CRM</strong>
+          <span>New → Warm → Booked board</span>
+        </a>
+      </div>
+    </section>
+
+    <section class="home-section" id="work" aria-labelledby="work-title">
+      <h2 id="work-title">Demo builds and pitch concepts</h2>
+      <p class="work-disclaimer">These are demo builds and unsolicited redesign concepts I made to show what's possible. None of them is a paid client site yet, and the businesses named didn't commission them.</p>
+      <div class="work-grid trades-first">
+        <a class="work-card" href="https://adil-044.github.io/emergency-hvac-ottawa/" target="_blank" rel="noopener">
+          <img src="https://images.pexels.com/photos/5463575/pexels-photo-5463575.jpeg?auto=compress&cs=tinysrgb&w=900" width="900" height="600" alt="HVAC technician on a call-out" loading="lazy" />
+          <div class="cap">
+            <span class="label">Pitch concept</span>
+            <strong>Emergency HVAC</strong>
+            <span>Redesign concept: urgency + book-first layout</span>
+          </div>
+        </a>
+        <a class="work-card" href="demos/roofing.html">
+          <img src="https://images.pexels.com/photos/32050401/pexels-photo-32050401.jpeg?auto=compress&cs=tinysrgb&w=900" width="900" height="600" alt="Roofers on a residential job" loading="lazy" />
+          <div class="cap">
+            <span class="label">Demo build</span>
+            <strong>Trade roofing</strong>
+            <span>Fictional roofer: “Leak today? Crew today.” booking path</span>
+          </div>
+        </a>
+        <a class="work-card" href="demos/boiler.html">
+          <img src="https://images.pexels.com/photos/7859953/pexels-photo-7859953.jpeg?auto=compress&cs=tinysrgb&w=900" width="900" height="600" alt="Technician working on heating equipment" loading="lazy" />
+          <div class="cap">
+            <span class="label">Demo build</span>
+            <strong>Boiler / hydronic</strong>
+            <span>Fictional heating co: no-heat urgency layout</span>
+          </div>
+        </a>
+        <a class="work-card" href="demos/sms.html">
+          <img src="https://images.pexels.com/photos/3943951/pexels-photo-3943951.jpeg?auto=compress&cs=tinysrgb&w=900" width="900" height="600" alt="Phone in hand for follow-up texts" loading="lazy" />
+          <div class="cap">
+            <span class="label">Interactive demo (simulated)</span>
+            <strong>Missed-call SMS</strong>
+            <span>See the text-back fire</span>
+          </div>
+        </a>
+      </div>
+      <h3 class="work-subhead">Other local businesses</h3>
+      <div class="work-grid">
+        <a class="work-card" href="https://adil-044.github.io/saco-hair-ottawa/" target="_blank" rel="noopener">
+          <img src="https://images.pexels.com/photos/7750144/pexels-photo-7750144.jpeg?auto=compress&cs=tinysrgb&w=700" width="700" height="500" alt="Salon chair redesign concept" loading="lazy" />
+          <div class="cap">
+            <span class="label">Pitch concept</span>
+            <strong>Saco Hair</strong>
+            <span>Salon redesign concept</span>
+          </div>
+        </a>
+        <a class="work-card" href="https://adil-044.github.io/magnolia-spa-ottawa/" target="_blank" rel="noopener">
+          <img src="https://images.pexels.com/photos/3757942/pexels-photo-3757942.jpeg?auto=compress&cs=tinysrgb&w=700" width="700" height="500" alt="Spa atmosphere redesign concept" loading="lazy" />
+          <div class="cap">
+            <span class="label">Pitch concept</span>
+            <strong>Magnolia Spa</strong>
+            <span>Spa redesign concept</span>
+          </div>
+        </a>
+        <a class="work-card" href="https://adil-044.github.io/glorious-nails-ottawa/" target="_blank" rel="noopener">
+          <img src="https://images.pexels.com/photos/3992850/pexels-photo-3992850.jpeg?auto=compress&cs=tinysrgb&w=700" width="700" height="500" alt="Nail studio redesign concept" loading="lazy" />
+          <div class="cap">
+            <span class="label">Pitch concept</span>
+            <strong>Glorious Nails</strong>
+            <span>Nail studio redesign concept</span>
+          </div>
+        </a>
+        <a class="work-card" href="https://adil-044.github.io/beaumore-demo/" target="_blank" rel="noopener">
+          <img src="https://images.pexels.com/photos/34885844/pexels-photo-34885844.jpeg?auto=compress&cs=tinysrgb&w=700" width="700" height="500" alt="Nail spa redesign concept" loading="lazy" />
+          <div class="cap">
+            <span class="label">Pitch concept</span>
+            <strong>Beau More</strong>
+            <span>Nail spa redesign concept</span>
+          </div>
+        </a>
+        <a class="work-card" href="https://adil-044.github.io/john-a-atelier/" target="_blank" rel="noopener">
+          <img src="https://images.pexels.com/photos/18503604/pexels-photo-18503604.jpeg?auto=compress&cs=tinysrgb&w=700" width="700" height="500" alt="Barbershop redesign concept" loading="lazy" />
+          <div class="cap">
+            <span class="label">Pitch concept</span>
+            <strong>John A</strong>
+            <span>Barbershop redesign concept</span>
+          </div>
+        </a>
+        <a class="work-card" href="https://adil-044.github.io/og-barbershop-demo/" target="_blank" rel="noopener">
+          <img src="https://images.pexels.com/photos/12074386/pexels-photo-12074386.jpeg?auto=compress&cs=tinysrgb&w=700" width="700" height="500" alt="Barbershop booking concept" loading="lazy" />
+          <div class="cap">
+            <span class="label">Pitch concept</span>
+            <strong>OG Barbershop</strong>
+            <span>Barbershop booking concept</span>
+          </div>
+        </a>
+      </div>
+      <p class="offer-note">Want one of these built for your shop, for real?</p>
+      <div class="cta-row">
+        <a class="btn-primary" data-book href="https://calendly.com/uptisement/30min">Book a 15-min call</a>
+        <a class="btn-secondary" href="work.html">See all work</a>
+      </div>
+    </section>
+
+    <section class="home-section about" id="about" aria-labelledby="about-title">
+      <h2 id="about-title">About Adil</h2>
+      <div class="about-block">
+        <div class="about-avatar" aria-hidden="true">A</div>
+        <div>
+          <p>I'm Adil. I build booking-first websites and missed-call follow-up for owner-run HVAC and roofing shops in Southern Ontario.</p>
+          <p>No pitch deck on the call — just where you're losing jobs, and the one fix I'd ship first.</p>
         </div>
-      </a>
+      </div>
+    </section>
 
-      <!-- projects -->
-      <a class="block depth-near -n2 project -xl glass" data-zoom href="https://adil-044.github.io/emergency-hvac-ottawa/">
-        <figure><img src="https://images.pexels.com/photos/5463575/pexels-photo-5463575.jpeg?auto=compress&cs=tinysrgb&w=1100" alt="HVAC technician on a live call-out" loading="lazy" /></figure>
-        <div class="cap"><strong>Emergency HVAC</strong><span>Live site</span></div>
-      </a>
+    <section class="home-section" id="faq" aria-labelledby="faq-title">
+      <h2 id="faq-title">FAQ</h2>
+      <div class="faq-list">
+        <details>
+          <summary>What does a booking-first site cost?</summary>
+          <p>Sites start from $300. Hosting &amp; updates are $30/mo if you want me to keep it online and tuned. Missed-call text-back and the Booked-Jobs Bundle are scoped on a 15-min call with a fixed quote in writing.</p>
+        </details>
+        <details>
+          <summary>Can I see a demo of my site first?</summary>
+          <p>Yes. Book a 15-min call and ask for a free demo — a mockup of your shop's booking-first layout before you commit.</p>
+        </details>
+        <details>
+          <summary>How long does it take?</summary>
+          <p>Depends on scope. On the call I'll give you a timeline in writing with the price. Many booking-first sites ship in days, not months.</p>
+        </details>
+        <details>
+          <summary>Do I need new phone numbers for text-back?</summary>
+          <p>Usually no. Replies can land on the phone you already use. We'll confirm the setup on the call.</p>
+        </details>
+        <details>
+          <summary>What about domain and hosting?</summary>
+          <p>Hosting &amp; updates are $30/mo. Domain and content handoff details are covered in your written scope before you pay.</p>
+        </details>
+      </div>
+    </section>
 
-      <a class="block depth-mid -n3 project glass" data-zoom href="https://adil-044.github.io/saco-hair-ottawa/">
-        <figure><img src="https://images.pexels.com/photos/7750144/pexels-photo-7750144.jpeg?auto=compress&cs=tinysrgb&w=700" alt="Salon chair" loading="lazy" /></figure>
-        <div class="cap"><strong>Saco Hair</strong><span>Live site</span></div>
-      </a>
+    <section class="home-section closing-cta" aria-labelledby="close-title">
+      <h2 id="close-title">Find out where you're losing jobs.</h2>
+      <p>Book a call and get a free demo. 15 minutes, no pitch deck. I'll look at your site and how calls are handled, and tell you the one fix I'd ship first, with a price in writing.</p>
+      <a class="btn-primary" data-book href="https://calendly.com/uptisement/30min">Book a 15-min call</a>
+      <p class="small-print">Prefer email? <a href="mailto:sales@uptisement.com">sales@uptisement.com</a></p>
+    </section>
+  </main>
 
-      <a class="block depth-near -n4 project glass" data-zoom href="https://adil-044.github.io/magnolia-spa-ottawa/">
-        <figure><img src="https://images.pexels.com/photos/3757942/pexels-photo-3757942.jpeg?auto=compress&cs=tinysrgb&w=1000" alt="Spa atmosphere" loading="lazy" /></figure>
-        <div class="cap"><strong>Magnolia Spa</strong><span>Live site</span></div>
-      </a>
-
-      <a class="block depth-near -n7 project glass" data-zoom href="https://adil-044.github.io/glorious-nails-ottawa/">
-        <figure><img src="https://images.pexels.com/photos/3992850/pexels-photo-3992850.jpeg?auto=compress&cs=tinysrgb&w=1000" alt="Nail studio" loading="lazy" /></figure>
-        <div class="cap"><strong>Glorious Nails</strong><span>Live site</span></div>
-      </a>
-
-      <a class="block depth-near -n25 project glass" data-zoom href="https://adil-044.github.io/beaumore-demo/">
-        <figure><img src="https://images.pexels.com/photos/34885844/pexels-photo-34885844.jpeg?auto=compress&cs=tinysrgb&w=1000" alt="Beau More nail art" loading="lazy" /></figure>
-        <div class="cap"><strong>Beau More</strong><span>Nails · live demo</span></div>
-      </a>
-
-      <a class="block depth-mid -n26 project glass" data-zoom href="https://adil-044.github.io/john-a-atelier/">
-        <figure><img src="https://images.pexels.com/photos/18503604/pexels-photo-18503604.jpeg?auto=compress&cs=tinysrgb&w=1000" alt="Barber fade detail" loading="lazy" /></figure>
-        <div class="cap"><strong>John A</strong><span>Barbershop · live demo</span></div>
-      </a>
-
-      <a class="block depth-near -n27 project -sm glass" data-zoom href="https://adil-044.github.io/og-barbershop-demo/">
-        <figure><img src="https://images.pexels.com/photos/12074386/pexels-photo-12074386.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Fade haircut" loading="lazy" /></figure>
-        <div class="cap"><strong>OG Barbershop</strong><span>Live demo</span></div>
-      </a>
-
-      <a class="block depth-mid -n19 project glass" data-zoom href="demos/roofing.html">
-        <figure><img src="https://images.pexels.com/photos/32050401/pexels-photo-32050401.jpeg?auto=compress&cs=tinysrgb&w=900" alt="Roofers on a job" loading="lazy" /></figure>
-        <div class="cap"><strong>Trade roofing</strong><span>Live demo</span></div>
-      </a>
-
-      <a class="block depth-near -n20 project -sm glass" data-zoom href="demos/boiler.html">
-        <figure><img src="https://images.pexels.com/photos/7859953/pexels-photo-7859953.jpeg?auto=compress&cs=tinysrgb&w=700" alt="Boiler tech hands" loading="lazy" /></figure>
-        <div class="cap"><strong>Boiler</strong><span>Live demo</span></div>
-      </a>
-
-      <!-- people -->
-      <a class="block depth-far -n5 member glass" data-zoom href="demos/crm.html">
-        <figure><img src="https://images.pexels.com/photos/19432567/pexels-photo-19432567.jpeg?auto=compress&cs=tinysrgb&w=500" alt="" loading="lazy" /></figure>
-        <h2>Ops</h2>
-        <p>Build</p>
-      </a>
-
-      <a class="block depth-far -n8 member glass" data-zoom href="offer.html">
-        <figure><img src="https://images.pexels.com/photos/8422528/pexels-photo-8422528.jpeg?auto=compress&cs=tinysrgb&w=500" alt="" loading="lazy" /></figure>
-        <h2>Craft</h2>
-        <p>Motion</p>
-      </a>
-
-      <a class="block depth-mid -n11 member glass" data-zoom href="shop.html">
-        <figure><img src="https://images.pexels.com/photos/6030092/pexels-photo-6030092.jpeg?auto=compress&cs=tinysrgb&w=500" alt="" loading="lazy" /></figure>
-        <h2>Adil</h2>
-        <p>Founder</p>
-      </a>
-
-      <!-- copy blocks → related demos -->
-      <a class="block depth-far -n6 heading-block" data-zoom href="demos/sms.html">
-        <div class="heading">
-          <h2>Follow-up<br />that runs</h2>
-          <p>While you’re on the truck.</p>
-        </div>
-      </a>
-
-      <a class="block depth-mid -n9 heading-block" data-zoom href="demos/estimator.html">
-        <div class="heading">
-          <h2>AI that<br />earns rent</h2>
-          <p>Quotes · replies · triage.</p>
-        </div>
-      </a>
-
-      <a class="block depth-far -n12 heading-block" data-zoom href="shop.html">
-        <div class="heading">
-          <h2>Built tight</h2>
-          <p>Remote across US &amp; Canada.</p>
-        </div>
-      </a>
-
-      <a class="block depth-mid -n15 heading-block" data-zoom href="work.html">
-        <div class="heading">
-          <h2>Proof, not<br />moodboards</h2>
-          <p>Live sites. Real scopes.</p>
-        </div>
-      </a>
-
-      <!-- visuals -->
-      <a class="block depth-far -n10 visual glass" data-zoom href="offer.html">
-        <img src="https://images.pexels.com/photos/16243258/pexels-photo-16243258.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Workshop tools wall" loading="lazy" />
-      </a>
-
-      <a class="block depth-mid -n13 visual glass" data-zoom href="demos/book-fold.html">
-        <img src="https://images.pexels.com/photos/8488061/pexels-photo-8488061.jpeg?auto=compress&cs=tinysrgb&w=900" alt="Hand tools" loading="lazy" />
-      </a>
-
-      <a class="block depth-near -n16 visual -odd glass" data-zoom href="demos/sms.html">
-        <img src="https://images.pexels.com/photos/3943951/pexels-photo-3943951.jpeg?auto=compress&cs=tinysrgb&w=700" alt="Phone in hand — the follow-up channel" loading="lazy" />
-      </a>
-
-      <a class="block depth-far -n18 visual glass" data-zoom href="work.html">
-        <img src="https://images.pexels.com/photos/1170412/pexels-photo-1170412.jpeg?auto=compress&cs=tinysrgb&w=800" alt="" loading="lazy" />
-      </a>
-
-      <!-- automation / AI system cards -->
-      <a class="block sys glass depth-near -n21" data-zoom href="demos/sms.html">
-        <p class="sys-kicker">Automation</p>
-        <h3>Missed-call SMS</h3>
-        <p>Lead rings out. Text fires while you’re still on the ladder.</p>
-        <span class="sys-meta">Live demo</span>
-      </a>
-
-      <a class="block sys glass depth-far -n22" data-zoom href="demos/crm.html">
-        <p class="sys-kicker">Pipeline</p>
-        <h3>Hot-lead CRM</h3>
-        <p>Inbox → stage board. No copy-paste. Reply logged.</p>
-        <span class="sys-meta">Live demo</span>
-      </a>
-
-      <a class="block sys glass depth-near -n23" data-zoom href="demos/estimator.html">
-        <p class="sys-kicker">AI</p>
-        <h3>Quote estimator</h3>
-        <p>Rough numbers from job notes. You approve before it sends.</p>
-        <span class="sys-meta">Live demo</span>
-      </a>
-
-      <a class="block sys glass depth-mid -n24" data-zoom href="demos/book-fold.html">
-        <p class="sys-kicker">Site</p>
-        <h3>Book above the fold</h3>
-        <p>Calendar or call — first screen, not buried in contact.</p>
-        <span class="sys-meta">Live demo</span>
-      </a>
-
-      <!-- book + contact -->
-      <a class="block depth-near -n14 project glass" data-zoom href="https://calendly.com/uptisement/30min">
-        <figure><img src="https://images.pexels.com/photos/6224/hands-people-woman-working.jpg?auto=compress&cs=tinysrgb&w=1000" alt="" loading="lazy" /></figure>
-        <div class="cap"><strong>Book 10 min</strong><span>Calendly</span></div>
-      </a>
-
-      <a class="block depth-mid -n17 cta-card glass" data-zoom href="demos/contact.html">
-        <p class="eyebrow">Contact</p>
-        <span>sales@uptisement.com</span>
-        <span>+1 786 982 0283</span>
-        <p class="tiny">Remote</p>
-      </a>
-
-      <!-- sticky notes → related demos -->
-      <a class="note -sales -note1" data-zoom data-arrow="w" href="https://adil-044.github.io/emergency-hvac-ottawa/">
-        <span class="tag">Sales</span>
-        <p>Lead in. Job on calendar.</p>
-        <svg class="arrow" viewBox="0 0 56 28" aria-hidden="true"><path d="M4 14 H40"/><polygon points="40,14 30,8 30,20"/></svg>
-      </a>
-      <a class="note -mint -note2" data-zoom data-arrow="e" href="https://adil-044.github.io/saco-hair-ottawa/">
-        <span class="tag">Salon</span>
-        <p>Chair books itself. You keep cutting.</p>
-        <svg class="arrow" viewBox="0 0 56 28" aria-hidden="true"><path d="M4 14 H40"/><polygon points="40,14 30,8 30,20"/></svg>
-      </a>
-      <a class="note -cream -note3" data-zoom data-arrow="n" href="offer.html">
-        <span class="tag">Craft</span>
-        <p>Type that feels like a shop sign, not a SaaS login.</p>
-        <svg class="arrow" viewBox="0 0 56 28" aria-hidden="true"><path d="M4 14 H40"/><polygon points="40,14 30,8 30,20"/></svg>
-      </a>
-      <a class="note -sales -note4" data-zoom data-arrow="nw" href="demos/sms.html">
-        <span class="tag">Auto</span>
-        <p>Automation that texts back so you don’t lose the job.</p>
-        <svg class="arrow" viewBox="0 0 56 28" aria-hidden="true"><path d="M4 14 H40"/><polygon points="40,14 30,8 30,20"/></svg>
-      </a>
-      <a class="note -note5" data-zoom data-arrow="w" href="demos/estimator.html">
-        <span class="tag">AI</span>
-        <p>Not a chatbot. A helper that quotes faster.</p>
-        <svg class="arrow" viewBox="0 0 56 28" aria-hidden="true"><path d="M4 14 H40"/><polygon points="40,14 30,8 30,20"/></svg>
-      </a>
-      <a class="note -mint -note6" data-zoom data-arrow="n" href="https://adil-044.github.io/magnolia-spa-ottawa/">
-        <span class="tag">Spa</span>
-        <p>Soft brand. Hard book button.</p>
-        <svg class="arrow" viewBox="0 0 56 28" aria-hidden="true"><path d="M4 14 H40"/><polygon points="40,14 30,8 30,20"/></svg>
-      </a>
-      <a class="note -cream -note7" data-zoom data-arrow="se" href="https://adil-044.github.io/emergency-hvac-ottawa/">
-        <span class="tag">Vision</span>
-        <p>Pin the win. Pan until it clicks.</p>
-        <svg class="arrow" viewBox="0 0 56 28" aria-hidden="true"><path d="M4 14 H40"/><polygon points="40,14 30,8 30,20"/></svg>
-      </a>
-      <a class="note -sales -note8" data-zoom data-arrow="nw" href="demos/roofing.html">
-        <span class="tag">Trade</span>
-        <p>Same day. Same crew. Site that doesn’t blink.</p>
-        <svg class="arrow" viewBox="0 0 56 28" aria-hidden="true"><path d="M4 14 H40"/><polygon points="40,14 30,8 30,20"/></svg>
-      </a>
-      <a class="note -mint -note9" data-zoom data-arrow="w" href="demos/contact.html">
-        <span class="tag">Next</span>
-        <p>Book 10 min. We say what to ship first.</p>
-        <svg class="arrow" viewBox="0 0 56 28" aria-hidden="true"><path d="M4 14 H40"/><polygon points="40,14 30,8 30,20"/></svg>
-      </a>
-
+  <footer class="site-footer">
+    <div class="footer-row">
+      <a data-book href="https://calendly.com/uptisement/30min">Book a 15-min call</a>
+      <a href="mailto:sales@uptisement.com">sales@uptisement.com</a>
+      <span>Southern Ontario</span>
     </div>
+    <div class="footer-row muted">
+      <a href="privacy.html">Privacy</a>
+      <a href="cookies.html">Cookies</a>
+      <a href="offer.html">Offer</a>
+      <a href="work.html">Work</a>
+      <a href="lab.html">Lab</a>
+    </div>
+  </footer>
+
+  <div class="mobile-book-bar" aria-label="Book a call">
+    <a class="btn-primary" data-book href="https://calendly.com/uptisement/30min">Book a 15-min call</a>
   </div>
 
-  <script src="chrome.js?v=21"></script>
-  <script src="pan.js?v=21"></script>
-  <script src="zoom.js?v=21"></script>
+  <script src="book.js?v=1"></script>
+  <script src="chrome.js?v=30"></script>
   <script src="track-config.js"></script>
   <script src="track.js?v=4"></script>
 </body>
 </html>
-

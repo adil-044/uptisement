@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://adil-044.github.io/uptisement/sitemap.xml
+Sitemap: https://uptisement.com/sitemap.xml
