@@ -3,22 +3,36 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <title>Shop — Uptisement</title>
-  <meta name="description" content="Tight shop. Remote delivery. Operator in the room." />
+  <title>How it works — Uptisement</title>
+  <meta name="description" content="Call, scope, ship. 15-min call, price and timeline in writing, then a live booking path for Southern Ontario HVAC and roofing shops." />
+  <link rel="canonical" href="https://uptisement.com/shop.html" />
   <link rel="icon" href="brand/uptisement-logo-locked.png" type="image/png" />
+  <meta property="og:title" content="How it works | Uptisement" />
+  <meta property="og:description" content="Call, scope, ship for Southern Ontario HVAC and roofing shops." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://uptisement.com/shop.html" />
+  <meta property="og:image" content="https://uptisement.com/brand/uptisement-logo-locked-with-services.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Anybody:wdth,wght@100,700;100,800&family=Archivo:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=20" />
+  <link rel="stylesheet" href="styles.css?v=30" />
 </head>
 <body class="page">
   <div class="grain" aria-hidden="true"></div>
 
-  <header class="ui-float">
+  <header class="site-header">
     <a class="logo" href="index.html">
       <img src="brand/uptisement-logo-locked.png" alt="" width="26" height="26" />
       Uptisement
     </a>
+    <nav class="site-nav" aria-label="Primary">
+      <a href="shop.html" aria-current="page">How it works</a>
+      <a href="offer.html">Offer</a>
+      <a href="work.html">Work</a>
+      <a href="index.html#faq">FAQ</a>
+      <!-- BOOKING URL: edit book.js if the Calendly event slug changes -->
+      <a class="btn-book" data-book href="https://calendly.com/uptisement/30min">Book a 15-min call</a>
+    </nav>
     <button type="button" class="hamburger" id="hamburger" data-mode="faces" aria-label="Menu" aria-expanded="false" aria-controls="menu">
       <svg class="hamburger-circle" viewBox="0 0 100 100" aria-hidden="true">
         <circle cx="50" cy="50" r="46" />
@@ -42,15 +56,13 @@
         <li><a href="index.html" data-close-menu>Home</a></li>
         <li><a href="work.html" data-close-menu>Work</a></li>
         <li><a href="offer.html" data-close-menu>Offer</a></li>
-        <li><a href="shop.html" data-close-menu>Shop</a></li>
+        <li><a href="shop.html" data-close-menu>How it works</a></li>
       </ul>
       <div class="menu-cta">
-        <a href="https://calendly.com/uptisement/30min" target="_blank" rel="noopener" data-close-menu>
-          Book a call
-        </a>
+        <a data-book href="https://calendly.com/uptisement/30min" data-close-menu>Book a 15-min call</a>
         <span class="sub">
           <a href="mailto:sales@uptisement.com">sales@uptisement.com</a><br />
-          +1 786 982 0283
+          Southern Ontario
         </span>
         <div class="menu-moods" role="group" aria-label="Mood">
           <button type="button" data-mood="light" class="on">Light</button>
@@ -62,34 +74,36 @@
   </div>
 
   <main class="page-shell">
-    <h1>Shop</h1>
-    <p class="lede">Tight scopes. Remote. US &amp; Canada.</p>
-    <div class="offer-rows">
-      <article>
+    <h1>How it works</h1>
+    <p class="lede">Tight scopes. Southern Ontario. One primary fix at a time.</p>
+    <ol class="steps">
+      <li>
         <span class="num">01</span>
         <div>
-          <h2>Call</h2>
-          <p>10–30 min. Site + follow-up. What leaks first.</p>
+          <h3>Call</h3>
+          <p>15 minutes. Your site + how calls are handled. Where you're losing leads.</p>
         </div>
-      </article>
-      <article>
+      </li>
+      <li>
         <span class="num">02</span>
         <div>
-          <h2>Scope</h2>
+          <h3>Scope</h3>
           <p>One primary fix. Price and timeline in writing.</p>
         </div>
-      </article>
-      <article>
+      </li>
+      <li>
         <span class="num">03</span>
         <div>
-          <h2>Ship</h2>
-          <p>Live booking path. You approve on phone if needed.</p>
+          <h3>Ship</h3>
+          <p>Live booking path. You approve from your phone.</p>
         </div>
-      </article>
-    </div>
-    <a class="btn-primary" href="https://calendly.com/uptisement/30min" target="_blank" rel="noopener">Book a call</a>
+      </li>
+    </ol>
+    <p class="offer-note">Ask for a free demo of your site on the call.</p>
+    <a class="btn-primary" data-book href="https://calendly.com/uptisement/30min">Book a 15-min call</a>
   </main>
 
-  <script src="chrome.js?v=17"></script>
+  <script src="book.js?v=1"></script>
+  <script src="chrome.js?v=30"></script>
 </body>
 </html>

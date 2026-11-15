@@ -97,6 +97,22 @@
     );
   }
 
+  // scrolling pages also poke the face briefly
+  if (document.documentElement.classList.contains("page-mode")) {
+    let scrollTick = null;
+    window.addEventListener(
+      "scroll",
+      () => {
+        if (scrollTick) return;
+        scrollTick = window.setTimeout(() => {
+          scrollTick = null;
+          pokeBars();
+        }, 120);
+      },
+      { passive: true },
+    );
+  }
+
   startFaceCycle();
   setMode("faces");
 })();

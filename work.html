@@ -3,22 +3,36 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <title>Work — Uptisement</title>
-  <meta name="description" content="Shipped booking-first sites for operators." />
+  <title>Work — Demo builds &amp; pitch concepts | Uptisement</title>
+  <meta name="description" content="Demo builds and pitch concepts for HVAC, roofing, and local businesses in Southern Ontario. Honestly labelled — none are paid client sites yet." />
+  <link rel="canonical" href="https://uptisement.com/work.html" />
   <link rel="icon" href="brand/uptisement-logo-locked.png" type="image/png" />
+  <meta property="og:title" content="Work — Demo builds &amp; pitch concepts | Uptisement" />
+  <meta property="og:description" content="Demo builds and pitch concepts for HVAC, roofing, and local businesses. Honestly labelled." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://uptisement.com/work.html" />
+  <meta property="og:image" content="https://uptisement.com/brand/uptisement-logo-locked-with-services.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Anybody:wdth,wght@100,700;100,800&family=Archivo:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=20" />
+  <link rel="stylesheet" href="styles.css?v=30" />
 </head>
 <body class="page">
   <div class="grain" aria-hidden="true"></div>
 
-  <header class="ui-float">
+  <header class="site-header">
     <a class="logo" href="index.html">
       <img src="brand/uptisement-logo-locked.png" alt="" width="26" height="26" />
       Uptisement
     </a>
+    <nav class="site-nav" aria-label="Primary">
+      <a href="index.html#how">How it works</a>
+      <a href="index.html#offer">Offer</a>
+      <a href="work.html" aria-current="page">Work</a>
+      <a href="index.html#faq">FAQ</a>
+      <!-- BOOKING URL: edit book.js if the Calendly event slug changes -->
+      <a class="btn-book" data-book href="https://calendly.com/uptisement/30min">Book a 15-min call</a>
+    </nav>
     <button type="button" class="hamburger" id="hamburger" data-mode="faces" aria-label="Menu" aria-expanded="false" aria-controls="menu">
       <svg class="hamburger-circle" viewBox="0 0 100 100" aria-hidden="true">
         <circle cx="50" cy="50" r="46" />
@@ -42,15 +56,13 @@
         <li><a href="index.html" data-close-menu>Home</a></li>
         <li><a href="work.html" data-close-menu>Work</a></li>
         <li><a href="offer.html" data-close-menu>Offer</a></li>
-        <li><a href="shop.html" data-close-menu>Shop</a></li>
+        <li><a href="shop.html" data-close-menu>How it works</a></li>
       </ul>
       <div class="menu-cta">
-        <a href="https://calendly.com/uptisement/30min" target="_blank" rel="noopener" data-close-menu>
-          Book a call
-        </a>
+        <a data-book href="https://calendly.com/uptisement/30min" data-close-menu>Book a 15-min call</a>
         <span class="sub">
           <a href="mailto:sales@uptisement.com">sales@uptisement.com</a><br />
-          +1 786 982 0283
+          Southern Ontario
         </span>
         <div class="menu-moods" role="group" aria-label="Mood">
           <button type="button" data-mood="light" class="on">Light</button>
@@ -63,48 +75,126 @@
 
   <main class="page-shell">
     <h1>Work</h1>
-    <p class="lede">Shipped. Click through.</p>
+    <p class="lede">Demo builds and pitch concepts.</p>
+    <p class="page-disclaimer">These are demo builds and unsolicited redesign concepts I made to show what's possible. None of them is a paid client site yet, and the businesses named didn't commission them.</p>
+
+    <h2 class="work-subhead">Trades first</h2>
     <div class="page-grid">
       <a class="page-card" href="https://adil-044.github.io/emergency-hvac-ottawa/" target="_blank" rel="noopener">
-        <img src="https://images.pexels.com/photos/5463575/pexels-photo-5463575.jpeg?auto=compress&cs=tinysrgb&w=1000" alt="" loading="lazy" />
-        <div class="cap"><strong>Emergency HVAC</strong><span>Book + urgency</span></div>
+        <img src="https://images.pexels.com/photos/5463575/pexels-photo-5463575.jpeg?auto=compress&cs=tinysrgb&w=1000" width="1000" height="750" alt="HVAC technician on a call-out" loading="lazy" />
+        <div class="cap">
+          <span class="label">Pitch concept</span>
+          <strong>Emergency HVAC</strong>
+          <span>Redesign concept: urgency + book-first layout</span>
+        </div>
       </a>
-      <a class="page-card" href="https://adil-044.github.io/saco-hair-ottawa/" target="_blank" rel="noopener">
-        <img src="https://images.pexels.com/photos/3992850/pexels-photo-3992850.jpeg?auto=compress&cs=tinysrgb&w=900" alt="" loading="lazy" />
-        <div class="cap"><strong>Saco Hair</strong><span>Salon book flow</span></div>
+      <a class="page-card" href="demos/roofing.html">
+        <img src="https://images.pexels.com/photos/32050401/pexels-photo-32050401.jpeg?auto=compress&cs=tinysrgb&w=1000" width="1000" height="750" alt="Roofers on a residential job" loading="lazy" />
+        <div class="cap">
+          <span class="label">Demo build</span>
+          <strong>Trade roofing</strong>
+          <span>Fictional roofer: “Leak today? Crew today.” booking path</span>
+        </div>
       </a>
-      <a class="page-card" href="https://adil-044.github.io/magnolia-spa-ottawa/" target="_blank" rel="noopener">
-        <img src="https://images.pexels.com/photos/3757942/pexels-photo-3757942.jpeg?auto=compress&cs=tinysrgb&w=1000" alt="" loading="lazy" />
-        <div class="cap"><strong>Magnolia Spa</strong><span>Service + book</span></div>
+      <a class="page-card" href="demos/boiler.html">
+        <img src="https://images.pexels.com/photos/7859953/pexels-photo-7859953.jpeg?auto=compress&cs=tinysrgb&w=1000" width="1000" height="750" alt="Technician working on heating equipment" loading="lazy" />
+        <div class="cap">
+          <span class="label">Demo build</span>
+          <strong>Boiler / hydronic</strong>
+          <span>Fictional heating co: no-heat urgency layout</span>
+        </div>
       </a>
-      <a class="page-card" href="https://adil-044.github.io/glorious-nails-ottawa/" target="_blank" rel="noopener">
-        <img src="https://images.pexels.com/photos/7750144/pexels-photo-7750144.jpeg?auto=compress&cs=tinysrgb&w=900" alt="" loading="lazy" />
-        <div class="cap"><strong>Glorious Nails</strong><span>Local conversion</span></div>
+      <a class="page-card" href="demos/sms.html">
+        <img src="https://images.pexels.com/photos/3943951/pexels-photo-3943951.jpeg?auto=compress&cs=tinysrgb&w=1000" width="1000" height="750" alt="Phone in hand for follow-up texts" loading="lazy" />
+        <div class="cap">
+          <span class="label">Interactive demo (simulated)</span>
+          <strong>Missed-call SMS</strong>
+          <span>See the text-back fire</span>
+        </div>
       </a>
-      <a class="page-card" href="https://adil-044.github.io/beaumore-demo/" target="_blank" rel="noopener">
-        <img src="https://images.pexels.com/photos/34885844/pexels-photo-34885844.jpeg?auto=compress&cs=tinysrgb&w=1000" alt="" loading="lazy" />
-        <div class="cap"><strong>Beau More</strong><span>Nails · live demo</span></div>
+      <a class="page-card" href="demos/estimator.html">
+        <img src="https://images.pexels.com/photos/16243258/pexels-photo-16243258.jpeg?auto=compress&cs=tinysrgb&w=1000" width="1000" height="750" alt="Workshop tools for quote estimating" loading="lazy" />
+        <div class="cap">
+          <span class="label">Interactive demo (simulated)</span>
+          <strong>Quote estimator</strong>
+          <span>Job notes in, rough range out, you approve</span>
+        </div>
       </a>
-      <a class="page-card" href="https://adil-044.github.io/john-a-atelier/" target="_blank" rel="noopener">
-        <img src="https://images.pexels.com/photos/18503604/pexels-photo-18503604.jpeg?auto=compress&cs=tinysrgb&w=1000" alt="" loading="lazy" />
-        <div class="cap"><strong>John A</strong><span>Barbershop · live demo</span></div>
+      <a class="page-card" href="demos/crm.html">
+        <img src="https://images.pexels.com/photos/19432567/pexels-photo-19432567.jpeg?auto=compress&cs=tinysrgb&w=1000" width="1000" height="750" alt="Lead pipeline board concept" loading="lazy" />
+        <div class="cap">
+          <span class="label">Interactive demo (simulated)</span>
+          <strong>Hot-lead CRM</strong>
+          <span>New → Warm → Booked board</span>
+        </div>
       </a>
-      <a class="page-card" href="https://adil-044.github.io/og-barbershop-demo/" target="_blank" rel="noopener">
-        <img src="https://images.pexels.com/photos/12074386/pexels-photo-12074386.jpeg?auto=compress&cs=tinysrgb&w=800" alt="" loading="lazy" />
-        <div class="cap"><strong>OG Barbershop</strong><span>Live demo</span></div>
-      </a>
-      <a class="page-card" href="demos/roofing.html" target="_blank" rel="noopener">
-        <img src="https://images.pexels.com/photos/32050401/pexels-photo-32050401.jpeg?auto=compress&cs=tinysrgb&w=1000" alt="" loading="lazy" />
-        <div class="cap"><strong>Trade roofing</strong><span>Concept · book path</span></div>
-      </a>
-      <a class="page-card" href="https://calendly.com/uptisement/30min" target="_blank" rel="noopener">
-        <img src="https://images.pexels.com/photos/7859953/pexels-photo-7859953.jpeg?auto=compress&cs=tinysrgb&w=1000" alt="" loading="lazy" />
-        <div class="cap"><strong>Boiler / hydronic</strong><span>Urgency layout</span></div>
+      <a class="page-card" href="demos/book-fold.html">
+        <img src="https://images.pexels.com/photos/8488061/pexels-photo-8488061.jpeg?auto=compress&cs=tinysrgb&w=1000" width="1000" height="750" alt="Booking path above the fold concept" loading="lazy" />
+        <div class="cap">
+          <span class="label">Demo build</span>
+          <strong>Book above the fold</strong>
+          <span>Calendar or call on screen one</span>
+        </div>
       </a>
     </div>
-    <a class="btn-primary" href="https://calendly.com/uptisement/30min" target="_blank" rel="noopener">Book a call</a>
+
+    <h2 class="work-subhead">Other local businesses</h2>
+    <div class="page-grid">
+      <a class="page-card" href="https://adil-044.github.io/saco-hair-ottawa/" target="_blank" rel="noopener">
+        <img src="https://images.pexels.com/photos/7750144/pexels-photo-7750144.jpeg?auto=compress&cs=tinysrgb&w=900" width="900" height="675" alt="Salon chair redesign concept" loading="lazy" />
+        <div class="cap">
+          <span class="label">Pitch concept</span>
+          <strong>Saco Hair</strong>
+          <span>Salon redesign concept</span>
+        </div>
+      </a>
+      <a class="page-card" href="https://adil-044.github.io/magnolia-spa-ottawa/" target="_blank" rel="noopener">
+        <img src="https://images.pexels.com/photos/3757942/pexels-photo-3757942.jpeg?auto=compress&cs=tinysrgb&w=1000" width="1000" height="750" alt="Spa redesign concept" loading="lazy" />
+        <div class="cap">
+          <span class="label">Pitch concept</span>
+          <strong>Magnolia Spa</strong>
+          <span>Spa redesign concept</span>
+        </div>
+      </a>
+      <a class="page-card" href="https://adil-044.github.io/glorious-nails-ottawa/" target="_blank" rel="noopener">
+        <img src="https://images.pexels.com/photos/3992850/pexels-photo-3992850.jpeg?auto=compress&cs=tinysrgb&w=900" width="900" height="675" alt="Nail studio redesign concept" loading="lazy" />
+        <div class="cap">
+          <span class="label">Pitch concept</span>
+          <strong>Glorious Nails</strong>
+          <span>Nail studio redesign concept</span>
+        </div>
+      </a>
+      <a class="page-card" href="https://adil-044.github.io/beaumore-demo/" target="_blank" rel="noopener">
+        <img src="https://images.pexels.com/photos/34885844/pexels-photo-34885844.jpeg?auto=compress&cs=tinysrgb&w=1000" width="1000" height="750" alt="Nail spa redesign concept" loading="lazy" />
+        <div class="cap">
+          <span class="label">Pitch concept</span>
+          <strong>Beau More</strong>
+          <span>Nail spa redesign concept</span>
+        </div>
+      </a>
+      <a class="page-card" href="https://adil-044.github.io/john-a-atelier/" target="_blank" rel="noopener">
+        <img src="https://images.pexels.com/photos/18503604/pexels-photo-18503604.jpeg?auto=compress&cs=tinysrgb&w=1000" width="1000" height="750" alt="Barbershop redesign concept" loading="lazy" />
+        <div class="cap">
+          <span class="label">Pitch concept</span>
+          <strong>John A</strong>
+          <span>Barbershop redesign concept</span>
+        </div>
+      </a>
+      <a class="page-card" href="https://adil-044.github.io/og-barbershop-demo/" target="_blank" rel="noopener">
+        <img src="https://images.pexels.com/photos/12074386/pexels-photo-12074386.jpeg?auto=compress&cs=tinysrgb&w=800" width="800" height="600" alt="Barbershop booking concept" loading="lazy" />
+        <div class="cap">
+          <span class="label">Pitch concept</span>
+          <strong>OG Barbershop</strong>
+          <span>Barbershop booking concept</span>
+        </div>
+      </a>
+    </div>
+
+    <p class="offer-note" style="margin-top:2rem">Want one of these built for your shop, for real?</p>
+    <a class="btn-primary" data-book href="https://calendly.com/uptisement/30min">Book a 15-min call</a>
   </main>
 
-  <script src="chrome.js?v=17"></script>
+  <script src="book.js?v=1"></script>
+  <script src="chrome.js?v=30"></script>
 </body>
 </html>
