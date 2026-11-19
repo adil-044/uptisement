@@ -1,10 +1,6 @@
 "use client";
 
-import { useGSAP } from "@gsap/react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { useRef } from "react";
-import { prefersReducedMotion } from "@/app/lib/motion";
+import { m, useReducedMotion } from "motion/react";
 import {
   AUTOMATION_PRICE,
   BUNDLE_PRICE,
@@ -14,11 +10,11 @@ import {
 import { BookLink } from "./BookLink";
 import { PriceTag } from "./PriceTag";
 
-gsap.registerPlugin(ScrollTrigger);
-
 const PACKAGES = [
   {
+    id: "website",
     title: "Booking-first website",
+    description: "Book on screen one for owner-run Ontario trades.",
     price: WEBSITE_FROM_SHORT,
     items: [
       "Mobile-first site built around getting the call or booking",
@@ -28,9 +24,10 @@ const PACKAGES = [
     ],
   },
   {
+    id: "textback",
     title: "Missed-call text-back",
+    description: "Catch the lead while you're still on the job.",
     price: AUTOMATION_PRICE,
-    // PRICE: confirm with Adil
     items: [
       "Auto text within a minute of a missed call",
       "Replies on the phone you already use",
@@ -39,9 +36,10 @@ const PACKAGES = [
     ],
   },
   {
+    id: "bundle",
     title: "Booked-Jobs Bundle",
+    description: "Site + text-back + quote path + lead board.",
     price: BUNDLE_PRICE,
-    // PRICE: confirm with Adil
     items: [
       "Website + missed-call text-back",
       "Quote estimator with your approval step",
@@ -51,62 +49,87 @@ const PACKAGES = [
   },
 ];
 
-export function Pricing() {
-  const root = useRef<HTMLElement>(null);
+type Props = { compact?: boolean };
 
-  useGSAP(
-    () => {
-      if (!root.current || prefersReducedMotion()) return;
-      gsap.from(root.current.querySelectorAll("[data-reveal]"), {
-        y: 36,
-        opacity: 0,
-        duration: 0.65,
-        stagger: 0.1,
-        ease: "power2.out",
-        scrollTrigger: { trigger: root.current, start: "top 78%", once: true },
-      });
-    },
-    { scope: root },
-  );
+/**
+ * Superdesign pricing-section: split layout, orange checks, depth on the Book button.
+ * Prices stay from prices.ts — nothing invented.
+ */
+export function Pricing({ compact = false }: Props) {
+  const reduce = useReducedMotion();
 
   return (
-    <section ref={root} id="pricing" className="section" aria-labelledby="pricing-title">
-      <div className="container-x">
-        <p className="eyebrow" data-reveal>
-          Offer
-        </p>
-        <h2 id="pricing-title" className="mt-3 text-3xl md:text-5xl" data-reveal>
+    <section
+      id="pricing"
+      className={compact ? "w-full" : "section"}
+      aria-labelledby="pricing-title"
+      data-superdesign="pricing-section"
+    >
+      <div className="container-x wrap">
+        <p className="eyebrow">Offer</p>
+        <h2
+          id="pricing-title"
+          className="mt-3 font-display text-3xl font-extrabold tracking-[-0.03em] md:text-5xl"
+        >
           Pick what fixes the leak first
         </h2>
-        <p className="section-lede" data-reveal>
+        <p className="section-lede">
           Websites from $300. Hosting &amp; updates $30/mo. Everything else: starting price on
           a 15-min call — fixed quote in writing after.
         </p>
-        <div className="mt-12 grid gap-6 md:grid-cols-3">
-          {PACKAGES.map((pkg) => (
-            <article
-              key={pkg.title}
-              data-reveal
-              className="bg-[color-mix(in_srgb,white_70%,transparent)] p-6 md:p-7"
+
+        <div className="pricing-stack mt-10 space-y-5">
+          {PACKAGES.map((pkg, i) => (
+            <m.article
+              key={pkg.id}
+              className="pricing-card m-card"
+              /* Visible at rest (scripts-off); Motion only lifts slightly */
+              initial={false}
+              whileInView={reduce ? undefined : { y: [8, 0] }}
+              viewport={{ once: true, amount: 0.35 }}
+              transition={{
+                duration: 0.45,
+                delay: reduce ? 0 : i * 0.06,
+                ease: [0.22, 1, 0.36, 1],
+              }}
             >
-              <h3 className="text-xl">{pkg.title}</h3>
-              <PriceTag label={pkg.price} className="mt-3 font-display text-2xl font-bold" />
-              <ul className="mt-5 space-y-2.5 text-sm text-[var(--color-ink-soft)]">
+              <div className="pricing-card__summary">
+                <h3 className="font-display text-xl font-bold md:text-2xl">{pkg.title}</h3>
+                <p className="mt-2 text-sm text-[var(--color-muted)]">{pkg.description}</p>
+                <PriceTag
+                  label={pkg.price}
+                  className="mt-4 font-display text-2xl font-bold md:text-3xl"
+                />
+                <BookLink className="btn btn-book pricing-card__btn mt-5 w-full sm:w-auto">
+                  Book a 15-min call
+                </BookLink>
+              </div>
+              <ul className="pricing-card__features">
                 {pkg.items.map((item) => (
-                  <li key={item}>{item}</li>
+                  <li key={item}>
+                    <span className="pricing-card__check" aria-hidden>
+                      ✓
+                    </span>
+                    {item}
+                  </li>
                 ))}
               </ul>
-            </article>
+            </m.article>
           ))}
         </div>
-        <p className="mt-8 text-[var(--color-muted)]" data-reveal>
-          AI consulting is scoped on the same call. Not sure which package? I&apos;ll tell you
-          which one fixes the most lost jobs first.
-        </p>
-        <div className="mt-5 flex flex-wrap gap-3" data-reveal>
-          <BookLink>Book a 15-min call</BookLink>
-          <BookLink className="btn btn-secondary">Get a free demo</BookLink>
-        </div>
+
+        {!compact && (
+          <>
+            <p className="mt-8 text-[var(--color-muted)]">
+              AI consulting is scoped on the same call. Not sure which package? I&apos;ll tell you
+              which one fixes the most lost jobs first.
+            </p>
+            <div className="mt-5 flex flex-wrap gap-3">
+              <BookLink>Book a 15-min call</BookLink>
+              <BookLink className="btn btn-secondary">Get a free demo</BookLink>
+            </div>
+          </>
+        )}
       </div>
     </section>
   );

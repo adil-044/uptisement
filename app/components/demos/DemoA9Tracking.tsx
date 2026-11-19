@@ -1,14 +1,16 @@
 "use client";
 
 import { useState } from "react";
+import { CountUp } from "../CountUp";
 import { DemoFrame } from "../DemoFrame";
+import { MotionButton } from "../MotionButton";
 
 type Stage = "ig" | "site" | "book" | "done";
 
 const STORYBOARD = [
   { title: "1 · IG", detail: "Tap the fictional post." },
   { title: "2 · Site", detail: "Land on screen one." },
-  { title: "3 · Book", detail: "CTA click (example)." },
+  { title: "3 · Book", detail: "CTA click." },
   { title: "4 · Funnel", detail: "Numbers marked example." },
 ];
 
@@ -54,26 +56,28 @@ export function DemoA9Tracking() {
             <p className="text-xs font-bold uppercase tracking-wide text-[var(--color-muted)]">
               {col.label}
             </p>
-            <p className="mt-1 font-display text-3xl font-bold">{col.n}</p>
+            <p className="mt-1 font-display text-3xl font-bold">
+              <CountUp value={col.n} />
+            </p>
             <p className="text-xs text-[var(--color-muted)]">example</p>
           </div>
         ))}
       </div>
       <div className="mt-4 flex flex-wrap gap-2">
         {stage === "ig" && (
-          <button type="button" className="btn btn-primary" onClick={() => setStage("site")}>
+          <MotionButton className="btn btn-book" onClick={() => setStage("site")}>
             Click IG post
-          </button>
+          </MotionButton>
         )}
         {stage === "site" && (
-          <button type="button" className="btn btn-primary" onClick={() => setStage("book")}>
+          <MotionButton className="btn btn-book" onClick={() => setStage("book")}>
             Open site
-          </button>
+          </MotionButton>
         )}
         {stage === "book" && (
-          <button type="button" className="btn btn-mint" onClick={() => setStage("done")}>
+          <MotionButton className="btn btn-book" onClick={() => setStage("done")}>
             Click Book
-          </button>
+          </MotionButton>
         )}
         {stage === "done" && (
           <p className="text-sm font-semibold text-[var(--color-mint-deep)]">

@@ -30,7 +30,7 @@ export function DemoFrame({
       {storyboard && storyboard.length > 0 && (
         <div className="mt-4">
           <p className="mb-2 text-xs font-bold uppercase tracking-wider text-[var(--color-muted)]">
-            Storyboard (static fallback)
+            How it works
           </p>
           <div className="storyboard">
             {storyboard.map((frame) => (
@@ -48,7 +48,7 @@ export function DemoFrame({
             Replay
           </button>
         )}
-        <BookLink className="btn btn-primary !min-h-10 !text-sm">Book a 15-min call</BookLink>
+        <BookLink className="btn btn-book !min-h-10 !text-sm">Book a 15-min call</BookLink>
       </div>
     </div>
   );

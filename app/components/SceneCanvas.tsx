@@ -10,8 +10,9 @@ type Props = {
 };
 
 /**
- * Fixed WebGL canvas behind content. Loads three.js after first paint / idle.
- * Falls back to gradient poster when WebGL or reduced-motion.
+ * Fixed WebGL canvas behind content.
+ * Boots after first paint with a short idle timeout so the town is visible ~1s on desktop,
+ * without blocking LCP.
  */
 export function SceneCanvas({
   progressRef,
@@ -47,6 +48,7 @@ export function SceneCanvas({
 
     let cancelled = false;
     let api: typeof apiRef.current = null;
+    let cleanupResize: (() => void) | undefined;
 
     const boot = async () => {
       const canvas = canvasRef.current;
@@ -68,27 +70,27 @@ export function SceneCanvas({
       apiRef.current = api;
 
       const loop = () => {
-        if (!api || !visibleRef.current) {
-          rafRef.current = requestAnimationFrame(loop);
-          return;
+        if (!api) return;
+        if (visibleRef.current) {
+          const p = progressRef?.current ?? 0;
+          if (variant === "calm") {
+            api.setProgress(0.04 + Math.min(0.04, p * 0.05));
+          } else {
+            api.setProgress(p);
+            setFaded(p >= 0.92);
+          }
+          api.render();
         }
-        const p = progressRef?.current ?? 0;
-        if (variant === "calm") {
-          api.setProgress(0.04 + Math.min(0.04, p * 0.05));
-        } else {
-          api.setProgress(p);
-          setFaded(p >= 0.92);
-        }
-        api.render();
         rafRef.current = requestAnimationFrame(loop);
       };
       rafRef.current = requestAnimationFrame(loop);
 
       const onResize = () => {
         if (!api || !canvas) return;
-        const h = ambient
-          ? Math.min(window.innerHeight * 0.42, 320)
-          : window.innerHeight;
+        const h =
+          ambient && variant === "story"
+            ? Math.min(window.innerHeight * 0.42, 320)
+            : window.innerHeight;
         api.resize(window.innerWidth, h);
       };
       onResize();
@@ -99,30 +101,29 @@ export function SceneCanvas({
       };
       document.addEventListener("visibilitychange", onVis);
 
-      return () => {
+      cleanupResize = () => {
         window.removeEventListener("resize", onResize);
         document.removeEventListener("visibilitychange", onVis);
       };
     };
 
-    const ric =
-      typeof window !== "undefined" && "requestIdleCallback" in window
-        ? window.requestIdleCallback
-        : (cb: () => void) => window.setTimeout(cb, 200);
-
-    const idleId = ric(() => {
-      // Defer past LCP
-      requestAnimationFrame(() => {
-        void boot();
-      });
-    });
+    // After paint: idle with 700ms timeout so town appears within ~1s on desktop
+    let idleHandle: number | undefined;
+    let timeoutHandle: ReturnType<typeof setTimeout> | undefined;
+    if (typeof window.requestIdleCallback === "function") {
+      idleHandle = window.requestIdleCallback(() => void boot(), { timeout: 700 });
+    } else {
+      timeoutHandle = setTimeout(() => void boot(), 200);
+    }
 
     return () => {
       cancelled = true;
       cancelAnimationFrame(rafRef.current);
-      if ("cancelIdleCallback" in window && typeof idleId === "number") {
-        window.cancelIdleCallback(idleId);
+      if (idleHandle !== undefined && typeof window.cancelIdleCallback === "function") {
+        window.cancelIdleCallback(idleHandle);
       }
+      if (timeoutHandle !== undefined) clearTimeout(timeoutHandle);
+      cleanupResize?.();
       api?.dispose();
       apiRef.current = null;
     };

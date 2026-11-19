@@ -3,6 +3,7 @@ import { Footer } from "./components/Footer";
 import { Header } from "./components/Header";
 import { JsonLd } from "./components/JsonLd";
 import { MobileBookBar } from "./components/MobileBookBar";
+import { MotionRoot } from "./components/MotionRoot";
 import { SITE_URL } from "./lib/config";
 import "./globals.css";
 
@@ -52,22 +53,40 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" data-type="software" data-motion="" data-radius="soft">
       <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
+        <meta name="page-type" content="software" />
+        <meta name="site-kind" content="software" />
+        <meta name="theme-color" content="#0B1220" />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `document.documentElement.classList.add("m-enter");`,
+          }}
+        />
         <link
-          href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Syne:wght@600;700;800&display=swap"
-          rel="stylesheet"
+          rel="preload"
+          href="/fonts/manrope.woff2"
+          as="font"
+          type="font/woff2"
+          crossOrigin=""
+        />
+        <link
+          rel="preload"
+          href="/fonts/syne.woff2"
+          as="font"
+          type="font/woff2"
+          crossOrigin=""
         />
       </head>
       <body className="site-shell font-body antialiased">
-        <JsonLd />
-        <div className="site-bg" aria-hidden="true" />
-        <Header />
-        <main>{children}</main>
-        <Footer />
-        <MobileBookBar />
+        <MotionRoot>
+          <JsonLd />
+          <div className="site-bg" aria-hidden="true" />
+          <Header />
+          <main>{children}</main>
+          <Footer />
+          <MobileBookBar />
+        </MotionRoot>
       </body>
     </html>
   );

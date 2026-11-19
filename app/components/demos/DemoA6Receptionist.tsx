@@ -6,10 +6,10 @@ import { DemoFrame } from "../DemoFrame";
 type Msg = { from: "visitor" | "bot" | "system"; text: string };
 
 const STORYBOARD = [
-  { title: "1 · Ask", detail: "Pick a scripted question." },
+  { title: "1 · Ask", detail: "Pick a common question." },
   { title: "2 · Reply", detail: "Honest, short answers." },
-  { title: "3 · Escalate", detail: "Handing to Adil when needed." },
-  { title: "4 · STOP", detail: "Opt-out honoured." },
+  { title: "3 · Escalate", detail: "Hands off to Adil when needed." },
+  { title: "4 · STOP", detail: "Opt-out is honoured." },
 ];
 
 const REPLIES: Record<string, string> = {
@@ -53,7 +53,7 @@ export function DemoA6Receptionist() {
     if (key === "price" || key === "websites") {
       next.push({
         from: "system",
-        text: "Handing to Adil — book a 15-min call for your shop (not a client install).",
+        text: "Handing to Adil — book a 15-min call for your shop.",
       });
     }
     setMsgs(next);
@@ -67,7 +67,7 @@ export function DemoA6Receptionist() {
       id="receptionist"
     >
       <p className="mb-3 text-sm text-[var(--color-muted)]">
-        Scripted demo only. Does not claim client installs. STOP is honoured.
+        Fictional shop thread. STOP is honoured. No real texts sent.
       </p>
       <div className="min-h-[220px] space-y-2 rounded-md border border-[var(--color-line)] bg-white p-3">
         {msgs.map((m, i) => (

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { CountUp } from "../CountUp";
 import { DemoFrame } from "../DemoFrame";
 
 type Tab = "roof" | "hvac";
@@ -18,7 +19,7 @@ const STORYBOARD = [
   { title: "2 · Size", detail: "Slider for approximate roof size." },
   { title: "3 · Scan", detail: "Boxes land on ponding / seam." },
   { title: "4 · Range", detail: "Sample ballpark — you approve." },
-  { title: "5 · Queue", detail: "Draft queued (simulated)." },
+  { title: "5 · Queue", detail: "Draft queued for your approval." },
 ];
 
 export function DemoA2Estimator() {
@@ -148,7 +149,8 @@ export function DemoA2Estimator() {
               </p>
               {/* Demo per-sq-ft band — not a real quote */}
               <p className="mt-1 font-display text-2xl font-bold">
-                ${low.toLocaleString()}–${high.toLocaleString()}
+                $<CountUp value={low} rolling />–$
+                <CountUp value={high} rolling />
               </p>
               <p className="text-sm text-[var(--color-muted)]">
                 Rough written range. You approve before it goes.
@@ -165,7 +167,7 @@ export function DemoA2Estimator() {
               {phase === "queued" && (
                 <div className="mt-3 space-y-2">
                   <p className="font-semibold text-[var(--color-mint-deep)]">
-                    Draft queued (simulated)
+                    Draft queued — you approve before it sends
                   </p>
                   <div className="rounded-md bg-[var(--color-ink)] p-3 text-sm text-white">
                     <p className="text-xs text-white/60">Owner inbox preview</p>
@@ -206,7 +208,7 @@ export function DemoA2Estimator() {
           <p className="mt-3 font-display text-2xl font-bold">{hvacRange ?? "—"}</p>
           <p className="text-sm text-[var(--color-muted)]">
             {approved
-              ? "Approved · quote text queued (simulated)."
+              ? "Approved · quote text queued."
               : hvacRange
                 ? "Draft only. Not sent."
                 : "Waiting for notes…"}

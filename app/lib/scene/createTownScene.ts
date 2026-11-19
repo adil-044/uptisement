@@ -63,7 +63,8 @@ export async function createTownScene(
   const THREE: ThreeModule = await import("three");
   const mobile = window.matchMedia("(max-width: 767px)").matches;
   const low = isLowEnd();
-  const dpr = Math.min(window.devicePixelRatio || 1, mobile || low ? 1 : 1.5);
+  // Cap DPR hard for perf (Lighthouse + mid Android)
+  const dpr = Math.min(window.devicePixelRatio || 1, mobile || low ? 1 : 1.25);
 
   const renderer = new THREE.WebGLRenderer({
     canvas,
@@ -72,7 +73,8 @@ export async function createTownScene(
     powerPreference: "high-performance",
   });
   renderer.setPixelRatio(dpr);
-  renderer.setClearColor(INK, 0.92);
+  // Transparent clear so chapter gradients can wash left while town shows right
+  renderer.setClearColor(INK, 0);
   renderer.outputColorSpace = THREE.SRGBColorSpace;
 
   const scene: Scene = new THREE.Scene();
@@ -437,14 +439,15 @@ export async function createTownScene(
   }
 
   function camPath(p: number) {
-    // Camera keyframes along story
+    // Camera keyframes — hero frames town + lit truck on the right half
     if (p < 0.08) {
-      camera.position.set(0, 8 - p * 10, 16 - p * 20);
-      camera.lookAt(0, 1, 0);
+      const t = p / 0.08;
+      camera.position.set(-5.5 + t * 0.8, 5.8 - t * 0.4, 13.5 - t * 1.5);
+      camera.lookAt(1.5, 1.2, 0.5);
     } else if (p < 0.18) {
       const t = (p - 0.08) / 0.1;
       camera.position.lerpVectors(
-        new THREE.Vector3(0, 7.2, 14.4),
+        new THREE.Vector3(-4.7, 5.4, 12),
         new THREE.Vector3(-1.2, 3.2, 7),
         t,
       );

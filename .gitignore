@@ -36,3 +36,6 @@ yarn-error.log*
 /tmp/
 /screenshots/
 /artifacts-tmp/
+
+# taste-skill gate state (skill itself lives outside the repo)
+.taste-skill/

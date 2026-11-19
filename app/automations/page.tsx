@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { BookLink } from "../components/BookLink";
 import { CTA } from "../components/CTA";
+import { StackingCards } from "../components/StackingCards";
 import {
   DemoA1TextBack,
   DemoA2Estimator,
@@ -20,49 +21,67 @@ export const metadata: Metadata = {
   alternates: { canonical: "/automations/" },
 };
 
-const TOC = [
-  { href: "#text-back", label: "Text-back" },
-  { href: "#estimator", label: "Estimator" },
-  { href: "#reviews", label: "Reviews" },
-  { href: "#booking", label: "Salon booking" },
-  { href: "#ig-dm", label: "IG DM" },
-  { href: "#receptionist", label: "Receptionist" },
-  { href: "#lead-board", label: "Lead board" },
-  { href: "#ai-booking", label: "AI booking" },
-  { href: "#tracking", label: "Tracking" },
+const STACK = [
+  {
+    id: "text-back",
+    eyebrow: "A1",
+    title: "Missed-call text-back",
+    body: "Auto text within a minute. Replies on the phone you already use. Simulated only.",
+    href: "#text-back",
+  },
+  {
+    id: "estimator",
+    eyebrow: "A2",
+    title: "Photo-to-quote estimator",
+    body: "Rough written range the same night — you approve before it goes.",
+    href: "#estimator",
+  },
+  {
+    id: "reviews",
+    eyebrow: "A3",
+    title: "Thank-you + review link",
+    body: "Same link to everyone. No review gating.",
+    href: "#reviews",
+  },
+  {
+    id: "booking",
+    eyebrow: "A4–A5",
+    title: "Salon backfill & IG DM",
+    body: "Cancels get waitlisted; DMs get answered and booked.",
+    href: "#booking",
+  },
+  {
+    id: "board",
+    eyebrow: "A6–A9",
+    title: "Receptionist, lead board, chat, tracking",
+    body: "One night, many shops — routing stays simple. All demos simulated.",
+    href: "#receptionist",
+  },
 ];
 
 export default function AutomationsPage() {
   return (
     <div className="pt-28">
-      <div className="container-x section !pt-0 !pb-8">
+      <div className="container-x wrap section !pt-0 !pb-8">
         <p className="eyebrow">Automations</p>
-        <h1 className="mt-3 text-4xl md:text-6xl">See each fix work</h1>
+        <h1 className="mt-3 font-display text-4xl font-extrabold tracking-[-0.03em] md:text-6xl">
+          See each fix work
+        </h1>
         <p className="section-lede">
-          Every demo is scripted and labelled simulated — no real SMS, call, or AI runs.
-          Fictional businesses only. Starting price on a 15-min call.
+          Interactive demos of each automation — no real SMS, call, or AI runs. Fictional
+          businesses only. Starting price on a 15-min call.
         </p>
         <div className="mt-6 flex flex-wrap gap-3">
           <BookLink>Book a 15-min call</BookLink>
           <BookLink className="btn btn-secondary">Get a free demo</BookLink>
         </div>
-        <nav
-          className="mt-8 flex flex-wrap gap-2"
-          aria-label="Automation demos"
-        >
-          {TOC.map((item) => (
-            <a
-              key={item.href}
-              href={item.href}
-              className="rounded-md border border-[var(--color-line)] bg-white px-3 py-1.5 text-sm font-semibold"
-            >
-              {item.label}
-            </a>
-          ))}
-        </nav>
       </div>
 
-      <div className="container-x space-y-16 pb-20">
+      <div className="container-x wrap pb-10">
+        <StackingCards cards={STACK} />
+      </div>
+
+      <div className="container-x wrap space-y-16 pb-20">
         <section aria-labelledby="a1-heading">
           <h2 id="a1-heading" className="sr-only">
             Missed-call text-back

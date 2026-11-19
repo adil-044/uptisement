@@ -2,6 +2,8 @@
  * Shared theme for plain-HTML pages (demos, lab, privacy, cookies, ig-dm).
  * Keep in sync with app/globals.css @theme tokens.
  */
+@import url("/fonts/fonts.css");
+
 :root {
   --color-ink: #0b1220;
   --color-ink-soft: #152033;
@@ -72,8 +74,14 @@ h4 {
 }
 
 .container-x {
-  width: min(1120px, calc(100% - 2rem));
+  width: min(1280px, calc(100% - 2.5rem));
   margin-inline: auto;
+}
+
+@media (min-width: 1024px) {
+  .container-x {
+    width: min(1280px, calc(100% - 10rem));
+  }
 }
 
 .btn {
@@ -106,6 +114,19 @@ h4 {
 
 .btn-primary:hover {
   background: var(--color-accent);
+}
+
+.btn-book,
+.btn-mint {
+  background: var(--color-mint);
+  color: var(--color-ink);
+  box-shadow: 0 10px 28px rgba(61, 220, 151, 0.28);
+}
+
+.btn-book:hover,
+.btn-mint:hover {
+  background: var(--color-mint-deep);
+  color: white;
 }
 
 .btn-secondary {

@@ -9,7 +9,7 @@ const STORYBOARD = [
   { title: "1 · Done", detail: "Mark visit done." },
   { title: "2 · Wait", detail: "Clock fast-forwards 2 hours." },
   { title: "3 · Ask", detail: "Customer gets review ask." },
-  { title: "4 · Stars", detail: "Tap 5 stars (simulated)." },
+  { title: "4 · Stars", detail: "Tap 5 stars." },
   { title: "5 · Count", detail: "Demo counter ticks to 1." },
 ];
 
@@ -71,9 +71,9 @@ export function DemoA3Reviews() {
           </div>
           {phase === "stars" || phase === "done" ? (
             <div className="mt-3 rounded-md bg-[var(--color-paper)] p-3 text-sm">
-              <p className="font-bold">Mock review screen · simulated</p>
+              <p className="font-bold">Review preview</p>
               <p className="text-[var(--color-muted)]">
-                “Great furnace visit — on time and clear.” — fictional
+                “Great furnace visit — on time and clear.”
               </p>
             </div>
           ) : null}
