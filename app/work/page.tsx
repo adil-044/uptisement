@@ -91,10 +91,12 @@ export default function WorkPage() {
   const other = WORK_ITEMS.filter((w) => w.group === "other");
 
   return (
-    <div className="pt-28">
+    <div className="pt-28 page-inner-ink">
       <div className="container-x section !pt-0">
         <p className="eyebrow">Portfolio</p>
-        <h1 className="mt-3 text-4xl md:text-6xl">Work</h1>
+        <h1 className="mt-3 text-4xl font-extrabold tracking-[-0.04em] md:text-6xl lg:text-7xl">
+          Work
+        </h1>
         <p className="section-lede">{WORK_DISCLAIMER}</p>
         <div className="mt-6">
           <BookLink>Book a 15-min call</BookLink>

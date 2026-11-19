@@ -2,72 +2,76 @@
 
 import { useEffect, useRef, useState } from "react";
 import { prefersReducedMotion } from "@/app/lib/motion";
+import type { PhoneState } from "@/app/lib/scene/createPhoneScene";
 
 type Props = {
   progressRef?: React.MutableRefObject<number>;
+  stateRef?: React.MutableRefObject<PhoneState>;
   variant?: "story" | "calm";
   className?: string;
+  onReady?: () => void;
+  onFallback?: () => void;
 };
 
 /**
  * Fixed WebGL canvas behind content.
- * Boots after first paint with a short idle timeout so the town is visible ~1s on desktop,
- * without blocking LCP.
+ * Lazy-loads three after first paint. Phone hero object (no town).
  */
 export function SceneCanvas({
   progressRef,
+  stateRef,
   variant = "story",
   className = "",
+  onReady,
+  onFallback,
 }: Props) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [usePoster, setUsePoster] = useState(false);
-  const [ambient, setAmbient] = useState(false);
   const [faded, setFaded] = useState(false);
   const apiRef = useRef<{
     setProgress: (p: number) => void;
+    setState: (s: PhoneState) => void;
+    setPointer: (nx: number, ny: number) => void;
     resize: (w: number, h: number) => void;
     render: () => void;
     dispose: () => void;
   } | null>(null);
   const rafRef = useRef(0);
   const visibleRef = useRef(true);
-
-  useEffect(() => {
-    setAmbient(window.matchMedia("(max-width: 767px)").matches);
-    const mq = window.matchMedia("(max-width: 767px)");
-    const onMq = () => setAmbient(mq.matches);
-    mq.addEventListener("change", onMq);
-    return () => mq.removeEventListener("change", onMq);
-  }, []);
+  const lastState = useRef<PhoneState>("idle");
 
   useEffect(() => {
     if (prefersReducedMotion()) {
       setUsePoster(true);
+      onFallback?.();
       return;
     }
 
     let cancelled = false;
     let api: typeof apiRef.current = null;
-    let cleanupResize: (() => void) | undefined;
+    let cleanup: (() => void) | undefined;
 
     const boot = async () => {
       const canvas = canvasRef.current;
       if (!canvas || cancelled) return;
 
-      const { createTownScene, shouldSkipWebGL } = await import(
-        "@/app/lib/scene/createTownScene"
+      const { createPhoneScene, shouldSkipWebGL } = await import(
+        "@/app/lib/scene/createPhoneScene"
       );
       if (cancelled || shouldSkipWebGL()) {
         setUsePoster(true);
+        onFallback?.();
         return;
       }
 
-      api = await createTownScene(canvas);
+      api = await createPhoneScene(canvas);
       if (!api || cancelled) {
         setUsePoster(true);
+        onFallback?.();
         return;
       }
       apiRef.current = api;
+      onReady?.();
 
       const loop = () => {
         if (!api) return;
@@ -77,7 +81,12 @@ export function SceneCanvas({
             api.setProgress(0.04 + Math.min(0.04, p * 0.05));
           } else {
             api.setProgress(p);
-            setFaded(p >= 0.92);
+            setFaded(p >= 0.9);
+          }
+          const s = stateRef?.current ?? "idle";
+          if (s !== lastState.current) {
+            lastState.current = s;
+            api.setState(s);
           }
           api.render();
         }
@@ -86,12 +95,8 @@ export function SceneCanvas({
       rafRef.current = requestAnimationFrame(loop);
 
       const onResize = () => {
-        if (!api || !canvas) return;
-        const h =
-          ambient && variant === "story"
-            ? Math.min(window.innerHeight * 0.42, 320)
-            : window.innerHeight;
-        api.resize(window.innerWidth, h);
+        if (!api) return;
+        api.resize(window.innerWidth, window.innerHeight);
       };
       onResize();
       window.addEventListener("resize", onResize);
@@ -101,19 +106,28 @@ export function SceneCanvas({
       };
       document.addEventListener("visibilitychange", onVis);
 
-      cleanupResize = () => {
+      const fine = window.matchMedia("(pointer: fine)").matches;
+      const onPointer = (e: PointerEvent) => {
+        if (!api || !fine) return;
+        const nx = (e.clientX / window.innerWidth) * 2 - 1;
+        const ny = -((e.clientY / window.innerHeight) * 2 - 1);
+        api.setPointer(nx, ny);
+      };
+      if (fine) window.addEventListener("pointermove", onPointer, { passive: true });
+
+      cleanup = () => {
         window.removeEventListener("resize", onResize);
         document.removeEventListener("visibilitychange", onVis);
+        if (fine) window.removeEventListener("pointermove", onPointer);
       };
     };
 
-    // After paint: short idle so dusk town shows ~1s without blocking LCP
     let idleHandle: number | undefined;
     let timeoutHandle: ReturnType<typeof setTimeout> | undefined;
     if (typeof window.requestIdleCallback === "function") {
-      idleHandle = window.requestIdleCallback(() => void boot(), { timeout: 400 });
+      idleHandle = window.requestIdleCallback(() => void boot(), { timeout: 500 });
     } else {
-      timeoutHandle = setTimeout(() => void boot(), 120);
+      timeoutHandle = setTimeout(() => void boot(), 150);
     }
 
     return () => {
@@ -123,21 +137,21 @@ export function SceneCanvas({
         window.cancelIdleCallback(idleHandle);
       }
       if (timeoutHandle !== undefined) clearTimeout(timeoutHandle);
-      cleanupResize?.();
+      cleanup?.();
       api?.dispose();
       apiRef.current = null;
     };
-  }, [progressRef, variant, ambient]);
+  }, [progressRef, stateRef, variant, onReady, onFallback]);
 
   if (usePoster) {
-    return <div className={`scene-poster ${className}`} aria-hidden="true" />;
+    return null;
   }
 
   return (
     <canvas
       ref={canvasRef}
       className={`scene-canvas ${className}`}
-      data-mode={ambient && variant === "story" ? "ambient" : "full"}
+      data-mode="full"
       data-faded={faded ? "true" : "false"}
       aria-hidden="true"
     />

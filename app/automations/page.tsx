@@ -61,13 +61,13 @@ const STACK = [
 
 export default function AutomationsPage() {
   return (
-    <div className="pt-28">
+    <div className="pt-28 page-inner-ink">
       <div className="container-x wrap section !pt-0 !pb-8">
-        <p className="eyebrow">Automations</p>
-        <h1 className="mt-3 font-display text-4xl font-extrabold tracking-[-0.03em] md:text-6xl">
+        <p className="eyebrow font-mono !text-[0.65rem] !tracking-[0.16em]">Automations</p>
+        <h1 className="mt-3 font-display text-4xl font-extrabold tracking-[-0.04em] md:text-6xl lg:text-7xl">
           See each fix work
         </h1>
-        <p className="section-lede">
+        <p className="section-lede text-[var(--color-ink-soft)] md:text-[1.1rem]">
           Interactive demos of each automation — no real SMS, call, or AI runs. Fictional
           businesses only. Starting price on a 15-min call.
         </p>
