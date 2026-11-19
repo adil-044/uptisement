@@ -294,8 +294,7 @@
 
   .chapter[data-theme="paper"] .chapter-panel,
   .chapter[data-theme="mint"] .chapter-panel {
-    background: color-mix(in srgb, var(--color-paper) 92%, transparent);
-    backdrop-filter: blur(8px);
+    background: var(--color-paper);
     padding: 1.5rem 1.25rem;
     border-radius: 0.75rem;
   }
@@ -307,8 +306,7 @@
     border-radius: 0.75rem;
   }
 
-  .chapter[data-theme="paper"],
-  .chapter[data-theme="mint"] {
+  .chapter[data-theme="paper"] {
     background: var(--color-paper);
   }
 
