@@ -271,11 +271,8 @@
   .chapter[data-theme="ink"],
   .chapter[data-theme="dusk"] {
     color: var(--color-paper);
-    background: linear-gradient(
-      180deg,
-      color-mix(in srgb, var(--color-ink) 82%, transparent) 0%,
-      color-mix(in srgb, var(--color-ink) 72%, transparent) 100%
-    );
+    /* Opaque so previous chapter copy cannot show through while scrolling */
+    background: var(--color-ink);
   }
 
   .chapter[data-theme="ink"] .section-lede,
@@ -305,10 +302,14 @@
 
   .chapter[data-theme="ink"] .chapter-panel,
   .chapter[data-theme="dusk"] .chapter-panel {
-    background: color-mix(in srgb, var(--color-ink) 55%, transparent);
-    backdrop-filter: blur(6px);
+    background: transparent;
     padding: 1.5rem 1.25rem;
     border-radius: 0.75rem;
+  }
+
+  .chapter[data-theme="paper"],
+  .chapter[data-theme="mint"] {
+    background: var(--color-paper);
   }
 
   .chapter[data-theme="mint"] {
