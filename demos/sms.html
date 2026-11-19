@@ -3,31 +3,48 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <title>Demo · Missed-call SMS</title>
-  <link href="https://fonts.googleapis.com/css2?family=Anybody:wdth,wght@100,800&family=Archivo:wght@400;600;700&display=swap" rel="stylesheet" />
+  <title>Demo · Missed-call SMS — Uptisement</title>
+  <meta name="description" content="Interactive simulated missed-call text-back demo. No real SMS. Southern Ontario." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Syne:wght@600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="demo.css" />
 </head>
 <body>
+  <div class="demo-banner">
+    Interactive demo (simulated): no real SMS, call or AI runs ·
+    <a data-book href="https://calendly.com/uptisement/30min" target="_blank" rel="noopener">Book a 15-min call</a>
+  </div>
   <div class="demo-top">
-    <a class="back" href="../index.html">← Home</a>
+    <a class="back" href="/">← Home</a>
     <span class="tag">Interactive demo (simulated)</span>
   </div>
   <main class="demo-wrap">
-    <h1>Missed-call SMS</h1>
-    <p class="lede">Lead rings out. Tap “Miss the call” — a text fires in ~90s (simulated).</p>
+    <h1>Missed-call text-back</h1>
+    <p class="lede">Fictional HVAC shop. Lead rings out. Tap “Miss the call” — a text fires within a minute (simulated).</p>
     <div class="phone">
       <div class="screen" id="screen">
-        <p class="muted" style="margin:0 0 1rem">Incoming · Ottawa</p>
-        <p style="font-size:1.4rem;font-weight:700;margin:0 0 0.25rem">Jordan Lee</p>
+        <p class="muted" style="margin:0 0 1rem">Incoming · fictional</p>
+        <p style="font-size:1.4rem;font-weight:700;margin:0 0 0.25rem;font-family:var(--font-display)">Jordan</p>
         <p class="muted mono" id="status">Ringing…</p>
         <div class="row" style="margin-top:2rem">
-          <button class="btn" type="button" id="miss">Miss the call</button>
-          <button class="btn btn-ghost" type="button" id="reset">Reset</button>
+          <button class="btn btn-primary" type="button" id="miss">Miss the call</button>
+          <button class="btn btn-ghost" type="button" id="reset">Replay</button>
         </div>
         <div class="log" id="log"></div>
       </div>
     </div>
+    <p class="muted" style="margin-top:1.5rem">Full interactive version with Without/With toggle: <a href="/automations/#text-back">/automations/#text-back</a></p>
+    <div style="margin-top:1.5rem">
+      <a class="btn btn-primary" data-book href="https://calendly.com/uptisement/30min" target="_blank" rel="noopener">Book a 15-min call</a>
+    </div>
   </main>
+  <footer class="site-footer-mini">
+    <a href="mailto:sales@uptisement.com">sales@uptisement.com</a>
+    <span>Southern Ontario · Since 2023</span>
+    <a href="/privacy.html">Privacy</a>
+    <a href="/cookies.html">Cookies</a>
+  </footer>
   <script>
     const log = document.getElementById("log");
     const status = document.getElementById("status");
@@ -40,15 +57,15 @@
     miss.addEventListener("click", () => {
       miss.disabled = true;
       status.textContent = "Missed";
-      line("Call missed · 0s");
+      line("Call missed");
       setTimeout(() => {
-        line("SMS queued · Twilio");
+        line("Text queued (simulated)");
         status.textContent = "Texting…";
       }, 400);
       setTimeout(() => {
-        line('Sent: “Hey Jordan — saw your call. Want a slot today or tomorrow?”');
-        status.textContent = "SMS delivered · 90s sim";
-      }, 1600);
+        line('Sent: “Hey Jordan — saw your call. Want a slot today or tomorrow? Reply 1 or 2.”');
+        status.textContent = "Delivered · within a minute (sim)";
+      }, 1200);
     });
     document.getElementById("reset").onclick = () => {
       miss.disabled = false;
@@ -56,5 +73,6 @@
       log.innerHTML = "";
     };
   </script>
+  <script src="/track.js" defer></script>
 </body>
 </html>

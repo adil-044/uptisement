@@ -8,10 +8,13 @@ export type WorkItem = {
   title: string;
   label: WorkLabel;
   subline: string;
-  href: string;
+  /** Omit or leave empty for non-clickable cards (e.g. offline client sites). */
+  href?: string;
   image: string;
   imageAlt: string;
   external?: boolean;
+  /** Domain lapsed / site offline — show card without a link. */
+  offline?: boolean;
   group: "client" | "trades" | "other";
 };
 
@@ -22,11 +25,10 @@ export const WORK_ITEMS: WorkItem[] = [
   {
     title: "Chocor",
     label: "Client site",
-    subline: "Live client site built by Adil",
-    href: "https://chocor.com",
+    subline: "Client site built by Adil",
     image: "/work/chocor.jpg",
-    imageAlt: "Chocor client site",
-    external: true,
+    imageAlt: "Chocor client site (offline)",
+    offline: true,
     group: "client",
   },
   {

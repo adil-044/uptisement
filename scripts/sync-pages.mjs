@@ -29,6 +29,7 @@ const PRESERVE = new Set([
   "README.md",
   "scripts",
   "public",
+  "docs",
   ".DS_Store",
 ]);
 

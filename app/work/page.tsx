@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { BookLink } from "../components/BookLink";
 import { CTA } from "../components/CTA";
-import { WORK_DISCLAIMER, WORK_ITEMS } from "../lib/work";
+import { WORK_DISCLAIMER, WORK_ITEMS, type WorkItem } from "../lib/work";
 
 export const metadata: Metadata = {
   title: "Work — Client sites, demos & pitch concepts",
@@ -11,6 +11,32 @@ export const metadata: Metadata = {
     "Real client sites plus honestly labelled demo builds and pitch concepts for Ontario trades and local businesses.",
   alternates: { canonical: "/work/" },
 };
+
+function WorkCardBody({ item }: { item: WorkItem }) {
+  return (
+    <>
+      <div className="relative aspect-[16/10] overflow-hidden bg-[var(--color-paper-warm)]">
+        <Image
+          src={item.image}
+          alt={item.imageAlt}
+          fill
+          sizes="(max-width: 768px) 100vw, 33vw"
+          className={`object-cover object-top ${item.offline ? "opacity-80" : "transition duration-500 group-hover:scale-[1.03]"}`}
+        />
+      </div>
+      <div className="mt-3">
+        <span className="label-pill" data-kind={item.label}>
+          {item.label}
+        </span>
+        <h3 className="mt-2 text-xl">{item.title}</h3>
+        <p className="mt-1 text-sm text-[var(--color-muted)]">{item.subline}</p>
+        {item.offline && (
+          <p className="mt-1 text-xs font-semibold text-[var(--color-muted)]">Site offline</p>
+        )}
+      </div>
+    </>
+  );
+}
 
 function WorkGrid({
   items,
@@ -25,26 +51,14 @@ function WorkGrid({
       <div className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {items.map((item) => {
           const className = "group block focus-visible:outline-offset-4";
-          const body = (
-            <>
-              <div className="relative aspect-[16/10] overflow-hidden bg-[var(--color-paper-warm)]">
-                <Image
-                  src={item.image}
-                  alt={item.imageAlt}
-                  fill
-                  sizes="(max-width: 768px) 100vw, 33vw"
-                  className="object-cover object-top transition duration-500 group-hover:scale-[1.03]"
-                />
+
+          if (item.offline || !item.href) {
+            return (
+              <div key={item.title} className={className} aria-label={`${item.title} — site offline`}>
+                <WorkCardBody item={item} />
               </div>
-              <div className="mt-3">
-                <span className="label-pill" data-kind={item.label}>
-                  {item.label}
-                </span>
-                <h3 className="mt-2 text-xl">{item.title}</h3>
-                <p className="mt-1 text-sm text-[var(--color-muted)]">{item.subline}</p>
-              </div>
-            </>
-          );
+            );
+          }
 
           if (item.external || item.href.startsWith("http") || item.href.endsWith(".html")) {
             return (
@@ -55,14 +69,14 @@ function WorkGrid({
                 target={item.external ? "_blank" : undefined}
                 rel={item.external ? "noopener noreferrer" : undefined}
               >
-                {body}
+                <WorkCardBody item={item} />
               </a>
             );
           }
 
           return (
             <Link key={item.title} href={item.href} className={className}>
-              {body}
+              <WorkCardBody item={item} />
             </Link>
           );
         })}

@@ -3,30 +3,44 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <title>Demo · Hot-lead CRM</title>
-  <link href="https://fonts.googleapis.com/css2?family=Anybody:wdth,wght@100,800&family=Archivo:wght@400;600;700&display=swap" rel="stylesheet" />
+  <title>Demo · Hot-lead CRM — Uptisement</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Syne:wght@600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="demo.css" />
 </head>
 <body>
+  <div class="demo-banner">
+    Interactive demo (simulated): no real SMS, call or AI runs ·
+    <a data-book href="https://calendly.com/uptisement/30min" target="_blank" rel="noopener">Book a 15-min call</a>
+  </div>
   <div class="demo-top">
-    <a class="back" href="../index.html">← Home</a>
+    <a class="back" href="/">← Home</a>
     <span class="tag">Interactive demo (simulated)</span>
   </div>
   <main class="demo-wrap">
-    <h1>Hot-lead CRM</h1>
-    <p class="lede">Tap a lead to advance stage. Inbox → warm → booked. No copy-paste.</p>
+    <h1>Hot-lead board</h1>
+    <p class="lede">Tap a lead to advance stage. New → Warm → Booked. Fictional names only.</p>
     <div class="panel kanban" id="board">
       <div class="col" data-stage="new"><h3>New</h3></div>
       <div class="col" data-stage="warm"><h3>Warm</h3></div>
       <div class="col" data-stage="booked"><h3>Booked</h3></div>
     </div>
     <p class="muted" style="margin-top:1rem" id="toast">Tap a card to move it forward.</p>
+    <p class="muted" style="margin-top:1.5rem">Shared demo state version: <a href="/automations/#lead-board">/automations/#lead-board</a></p>
+    <div style="margin-top:1.5rem">
+      <a class="btn btn-primary" data-book href="https://calendly.com/uptisement/30min" target="_blank" rel="noopener">Book a 15-min call</a>
+    </div>
   </main>
+  <footer class="site-footer-mini">
+    <a href="mailto:sales@uptisement.com">sales@uptisement.com</a>
+    <span>Southern Ontario · Since 2023</span>
+  </footer>
   <script>
     const leads = [
-      { id: 1, name: "Nova HVAC", stage: "new" },
-      { id: 2, name: "Saco walk-in", stage: "new" },
-      { id: 3, name: "Magnolia refill", stage: "warm" },
+      { id: 1, name: "Alex (furnace)", stage: "new" },
+      { id: 2, name: "Sam (gutter)", stage: "new" },
+      { id: 3, name: "Jordan (text-back)", stage: "warm" },
     ];
     const order = ["new", "warm", "booked"];
     const board = document.getElementById("board");
@@ -38,9 +52,6 @@
         const el = document.createElement("button");
         el.type = "button";
         el.className = "card";
-        el.style.width = "100%";
-        el.style.textAlign = "left";
-        el.style.color = "inherit";
         el.textContent = l.name;
         el.onclick = () => {
           const i = order.indexOf(l.stage);
@@ -57,5 +68,6 @@
     }
     render();
   </script>
+  <script src="/track.js" defer></script>
 </body>
 </html>

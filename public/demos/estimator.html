@@ -3,29 +3,43 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <title>Demo · Quote estimator</title>
-  <link href="https://fonts.googleapis.com/css2?family=Anybody:wdth,wght@100,800&family=Archivo:wght@400;600;700&display=swap" rel="stylesheet" />
+  <title>Demo · Quote estimator — Uptisement</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Syne:wght@600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="demo.css" />
 </head>
 <body>
+  <div class="demo-banner">
+    Interactive demo (simulated): no real SMS, call or AI runs ·
+    <a data-book href="https://calendly.com/uptisement/30min" target="_blank" rel="noopener">Book a 15-min call</a>
+  </div>
   <div class="demo-top">
-    <a class="back" href="../index.html">← Home</a>
+    <a class="back" href="/">← Home</a>
     <span class="tag">Interactive demo (simulated)</span>
   </div>
   <main class="demo-wrap">
     <h1>Quote estimator</h1>
-    <p class="lede">Type job notes. AI drafts a rough number — you approve before send.</p>
+    <p class="lede">Type job notes for a fictional HVAC call. AI drafts a rough number — you approve before send. Customers never climb.</p>
     <div class="panel">
       <label class="muted" for="notes">Job notes</label>
-      <textarea class="field" id="notes" rows="4">Furnace not heating · 2-storey · Ottawa · after hours</textarea>
+      <textarea class="field" id="notes" rows="4">Furnace not heating · 2-storey · after hours</textarea>
       <div class="row">
-        <button class="btn" type="button" id="run">Draft quote</button>
+        <button class="btn btn-primary" type="button" id="run">Draft quote</button>
         <button class="btn btn-ghost" type="button" id="approve" disabled>Approve &amp; send</button>
       </div>
       <p class="quote" id="price">—</p>
       <p class="muted" id="out">Waiting for notes…</p>
     </div>
+    <p class="muted" style="margin-top:1.5rem">Photo-to-quote + HVAC tabs: <a href="/automations/#estimator">/automations/#estimator</a></p>
+    <div style="margin-top:1.5rem">
+      <a class="btn btn-primary" data-book href="https://calendly.com/uptisement/30min" target="_blank" rel="noopener">Book a 15-min call</a>
+    </div>
   </main>
+  <footer class="site-footer-mini">
+    <a href="mailto:sales@uptisement.com">sales@uptisement.com</a>
+    <span>Southern Ontario · Since 2023</span>
+  </footer>
   <script>
     const notes = document.getElementById("notes");
     const price = document.getElementById("price");
@@ -33,18 +47,19 @@
     const approve = document.getElementById("approve");
     document.getElementById("run").onclick = () => {
       const t = notes.value.toLowerCase();
-      let n = 180;
+      let n = 180; // demo values only
       if (t.includes("after hours") || t.includes("emergency")) n += 90;
       if (t.includes("2-storey") || t.includes("two")) n += 40;
       if (t.includes("furnace") || t.includes("boiler")) n += 60;
       price.textContent = `$${n}–$${n + 70}`;
-      out.textContent = "Draft only. Not sent.";
+      out.textContent = "Draft only. Not sent. Sample ballpark.";
       approve.disabled = false;
     };
     approve.onclick = () => {
-      out.textContent = "Approved · quote text queued to SMS/email.";
+      out.textContent = "Approved · quote text queued (simulated).";
       approve.disabled = true;
     };
   </script>
+  <script src="/track.js" defer></script>
 </body>
 </html>

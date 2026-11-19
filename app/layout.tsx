@@ -1,24 +1,11 @@
 import type { Metadata } from "next";
-import { Manrope, Syne } from "next/font/google";
 import { Footer } from "./components/Footer";
 import { Header } from "./components/Header";
 import { JsonLd } from "./components/JsonLd";
+import { MobileBookBar } from "./components/MobileBookBar";
+import { MotionRoot } from "./components/MotionRoot";
 import { SITE_URL } from "./lib/config";
 import "./globals.css";
-
-const syne = Syne({
-  subsets: ["latin"],
-  variable: "--font-display",
-  display: "swap",
-  weight: ["600", "700", "800"],
-});
-
-const manrope = Manrope({
-  subsets: ["latin"],
-  variable: "--font-body",
-  display: "swap",
-  weight: ["400", "500", "600", "700", "800"],
-});
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -66,13 +53,40 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${syne.variable} ${manrope.variable}`}>
+    <html lang="en" data-type="software" data-motion="" data-radius="soft">
+      <head>
+        <meta name="page-type" content="software" />
+        <meta name="site-kind" content="software" />
+        <meta name="theme-color" content="#0B1220" />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `document.documentElement.classList.add("m-enter");`,
+          }}
+        />
+        <link
+          rel="preload"
+          href="/fonts/manrope.woff2"
+          as="font"
+          type="font/woff2"
+          crossOrigin=""
+        />
+        <link
+          rel="preload"
+          href="/fonts/syne.woff2"
+          as="font"
+          type="font/woff2"
+          crossOrigin=""
+        />
+      </head>
       <body className="site-shell font-body antialiased">
-        <JsonLd />
-        <div className="site-bg" aria-hidden="true" />
-        <Header />
-        <main>{children}</main>
-        <Footer />
+        <MotionRoot>
+          <JsonLd />
+          <div className="site-bg" aria-hidden="true" />
+          <Header />
+          <main>{children}</main>
+          <Footer />
+          <MobileBookBar />
+        </MotionRoot>
       </body>
     </html>
   );
