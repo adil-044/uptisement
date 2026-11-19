@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 
 export default function PricingPage() {
   return (
-    <div className="pt-24">
+    <div className="pt-24 page-inner-ink">
       <Pricing />
       <FAQ />
       <CTA />

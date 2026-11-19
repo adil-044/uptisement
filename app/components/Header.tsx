@@ -7,7 +7,6 @@ import { useEffect, useState } from "react";
 import { BookLink } from "./BookLink";
 
 const NAV = [
-  { href: "/services/", label: "Services" },
   { href: "/automations/", label: "Automations" },
   { href: "/work/", label: "Work" },
   { href: "/pricing/", label: "Pricing" },

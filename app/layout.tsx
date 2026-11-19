@@ -1,9 +1,7 @@
 import type { Metadata } from "next";
-import { Footer } from "./components/Footer";
-import { Header } from "./components/Header";
 import { JsonLd } from "./components/JsonLd";
-import { MobileBookBar } from "./components/MobileBookBar";
 import { MotionRoot } from "./components/MotionRoot";
+import { SiteChrome } from "./components/SiteChrome";
 import { SITE_URL } from "./lib/config";
 import "./globals.css";
 
@@ -82,10 +80,7 @@ export default function RootLayout({
         <MotionRoot>
           <JsonLd />
           <div className="site-bg" aria-hidden="true" />
-          <Header />
-          <main>{children}</main>
-          <Footer />
-          <MobileBookBar />
+          <SiteChrome>{children}</SiteChrome>
         </MotionRoot>
       </body>
     </html>
