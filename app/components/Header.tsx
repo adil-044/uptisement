@@ -15,8 +15,8 @@ const NAV = [
 ];
 
 /**
- * Superdesign shrinking-sticky-header: after ~100px, height shrinks ~20%
- * and background goes from transparent → glass.
+ * Always-on paper glass header so wordmark/nav stay AA on dark hero and light pages.
+ * Shrinks after ~100px (Superdesign shrinking-sticky-header, adapted).
  */
 export function Header() {
   const [open, setOpen] = useState(false);
@@ -39,15 +39,15 @@ export function Header() {
     <>
       <m.header
         data-superdesign="shrinking-sticky-header"
-        className={`site-header fixed inset-x-0 top-0 z-50 text-[var(--color-ink)] ${
+        className={`site-header site-header--glass fixed inset-x-0 top-0 z-50 text-[var(--color-ink)] ${
           shrunk ? "is-shrunk" : ""
         }`}
         animate={
           reduce
             ? undefined
             : {
-                paddingTop: shrunk ? 8 : 16,
-                paddingBottom: shrunk ? 8 : 16,
+                paddingTop: shrunk ? 8 : 14,
+                paddingBottom: shrunk ? 8 : 14,
               }
         }
         transition={{ duration: 0.22, ease: [0.2, 0.8, 0.2, 1] }}
@@ -59,7 +59,7 @@ export function Header() {
         >
           <Link
             href="/"
-            className="flex items-center gap-2.5 font-display text-lg font-bold tracking-tight"
+            className="flex items-center gap-2.5 font-display text-lg font-bold tracking-tight text-[var(--color-ink)]"
           >
             <Image
               src="/brand/uptisement-logo-locked.png"
@@ -88,10 +88,9 @@ export function Header() {
           </nav>
 
           <div className="flex items-center gap-2 lg:hidden">
-            {/* Book lives in MobileBookBar on small screens — avoids 3× action-repeat */}
             <button
               type="button"
-              className="inline-flex h-11 w-11 items-center justify-center rounded-md border border-[color-mix(in_srgb,var(--color-ink)_18%,transparent)]"
+              className="inline-flex h-11 w-11 items-center justify-center rounded-md border border-[color-mix(in_srgb,var(--color-ink)_22%,transparent)] bg-white/40"
               aria-label={open ? "Close menu" : "Open menu"}
               aria-expanded={open}
               aria-controls="mobile-menu"

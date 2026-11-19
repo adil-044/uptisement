@@ -40,6 +40,13 @@ export function HomeStory() {
   const progressRef = useRef(0);
 
   useEffect(() => {
+    document.documentElement.dataset.story = "1";
+    return () => {
+      delete document.documentElement.dataset.story;
+    };
+  }, []);
+
+  useEffect(() => {
     if (!root.current || prefersReducedMotion()) {
       progressRef.current = 0;
       return;

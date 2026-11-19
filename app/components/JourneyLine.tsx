@@ -76,17 +76,17 @@ export function JourneyLine({ progressRef }: Props) {
         <path
           d="M52 20 C 48 120, 58 200, 45 300 S 60 450, 48 560 S 40 720, 55 820 S 50 940, 52 980"
           fill="none"
-          stroke="color-mix(in srgb, var(--color-mint) 22%, transparent)"
-          strokeWidth="1.5"
+          stroke="color-mix(in srgb, var(--color-mint) 35%, transparent)"
+          strokeWidth="2"
         />
         <path
           ref={glowRef}
           d="M52 20 C 48 120, 58 200, 45 300 S 60 450, 48 560 S 40 720, 55 820 S 50 940, 52 980"
           fill="none"
           stroke="url(#journey-grad)"
-          strokeWidth="6"
+          strokeWidth="8"
           strokeLinecap="round"
-          opacity="0.45"
+          opacity="0.65"
           filter="url(#journey-glow)"
         />
         <path
@@ -94,12 +94,12 @@ export function JourneyLine({ progressRef }: Props) {
           d="M52 20 C 48 120, 58 200, 45 300 S 60 450, 48 560 S 40 720, 55 820 S 50 940, 52 980"
           fill="none"
           stroke="url(#journey-grad)"
-          strokeWidth="2.25"
+          strokeWidth="3"
           strokeLinecap="round"
         />
         <circle
           ref={headRef}
-          r="5"
+          r="6.5"
           fill="#3ddc97"
           stroke="#0b1220"
           strokeWidth="1.5"

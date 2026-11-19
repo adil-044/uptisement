@@ -66,6 +66,8 @@ export async function createTownScene(
   // Cap DPR hard for perf (Lighthouse + mid Android)
   const dpr = Math.min(window.devicePixelRatio || 1, mobile || low ? 1 : 1.25);
 
+  const DUSK = 0x0a101c;
+  const INDIGO = 0x152238;
   const renderer = new THREE.WebGLRenderer({
     canvas,
     antialias: !mobile,
@@ -73,27 +75,49 @@ export async function createTownScene(
     powerPreference: "high-performance",
   });
   renderer.setPixelRatio(dpr);
-  // Transparent clear so chapter gradients can wash left while town shows right
-  renderer.setClearColor(INK, 0);
+  // Opaque dusk clear — pale site-bg must not read as the sky (Remy)
+  renderer.setClearColor(DUSK, 1);
   renderer.outputColorSpace = THREE.SRGBColorSpace;
 
   const scene: Scene = new THREE.Scene();
-  scene.fog = new THREE.FogExp2(INK, 0.035);
+  scene.fog = new THREE.FogExp2(INDIGO, 0.028);
 
   const camera: PerspectiveCamera = new THREE.PerspectiveCamera(42, 1, 0.1, 80);
   camera.position.set(0, 8, 16);
 
-  const hemi = new THREE.HemisphereLight(0x6b7c9a, INK, 0.85);
+  // Warm dusk: indigo sky, amber ground bounce, low orange sun
+  const hemi = new THREE.HemisphereLight(0x3d4f72, 0x1a1008, 0.7);
   scene.add(hemi);
-  const key = new THREE.DirectionalLight(0xffc9a3, 0.55);
-  key.position.set(6, 12, 4);
+  const key = new THREE.DirectionalLight(0xff9a5c, 0.75);
+  key.position.set(-4, 3.5, 6);
   scene.add(key);
-  const accent = new THREE.PointLight(ORANGE, 0.8, 18);
+  const horizon = new THREE.PointLight(ORANGE, 1.35, 48);
+  horizon.position.set(8, 1.2, -14);
+  scene.add(horizon);
+  const accent = new THREE.PointLight(ORANGE, 1.35, 16);
   accent.position.set(-2, 2.2, 3);
   scene.add(accent);
-  const mintLight = new THREE.PointLight(MINT, 0, 14);
+  const mintLight = new THREE.PointLight(MINT, 0.15, 14);
   mintLight.position.set(4, 3, -2);
   scene.add(mintLight);
+
+  // Cheap sky band (no shaders): back plane with dusk indigo → horizon glow
+  const sky = new THREE.Mesh(
+    new THREE.PlaneGeometry(90, 40),
+    new THREE.MeshBasicMaterial({ color: 0x101828 }),
+  );
+  sky.position.set(4, 11, -22);
+  scene.add(sky);
+  const glowBand = new THREE.Mesh(
+    new THREE.PlaneGeometry(90, 8),
+    new THREE.MeshBasicMaterial({
+      color: 0xe06830,
+      transparent: true,
+      opacity: 0.55,
+    }),
+  );
+  glowBand.position.set(4, 0.6, -19.5);
+  scene.add(glowBand);
 
   // Ground plane
   const ground = new THREE.Mesh(
@@ -111,14 +135,14 @@ export async function createTownScene(
   const blockCount = low ? 22 : 30;
   const boxGeo = new THREE.BoxGeometry(1, 1, 1);
   const boxMat = new THREE.MeshStandardMaterial({
-    color: 0x1a2438,
-    roughness: 0.85,
-    metalness: 0.1,
+    color: 0x2c3c56,
+    roughness: 0.78,
+    metalness: 0.06,
   });
   const buildings: InstancedMesh = new THREE.InstancedMesh(boxGeo, boxMat, blockCount);
   const dummy = new THREE.Object3D();
   const rng = mulberry32(704);
-  const positions: { x: number; z: number; h: number }[] = [];
+  const positions: { x: number; z: number; h: number; w: number; d: number }[] = [];
   for (let i = 0; i < blockCount; i++) {
     const x = (rng() - 0.5) * 22;
     const z = (rng() - 0.5) * 18;
@@ -129,20 +153,32 @@ export async function createTownScene(
     dummy.scale.set(w, h, d);
     dummy.updateMatrix();
     buildings.setMatrixAt(i, dummy.matrix);
-    positions.push({ x, z, h });
+    positions.push({ x, z, h, w, d });
   }
   buildings.instanceMatrix.needsUpdate = true;
   scene.add(buildings);
 
-  // Window dots (emissive small boxes on a few buildings)
+  // Lit windows — a few warm emissive panes per nearby building (still cheap meshes)
   const windowGroup = new THREE.Group();
-  const winMat = new THREE.MeshBasicMaterial({ color: 0xffb86a });
-  for (let i = 0; i < Math.min(12, positions.length); i++) {
+  const winMat = new THREE.MeshBasicMaterial({ color: 0xffd699 });
+  const winGeo = new THREE.BoxGeometry(0.18, 0.2, 0.05);
+  let winCount = 0;
+  const winBudget = low ? 32 : 56;
+  for (let i = 0; i < positions.length && winCount < winBudget; i++) {
     const p = positions[i];
-    if (Math.hypot(p.x, p.z) > 10) continue;
-    const win = new THREE.Mesh(new THREE.BoxGeometry(0.15, 0.15, 0.05), winMat);
-    win.position.set(p.x + 0.35, p.h * 0.6, p.z + 0.4);
-    windowGroup.add(win);
+    if (Math.hypot(p.x, p.z) > 12) continue;
+    const floors = Math.max(1, Math.floor(p.h / 0.7));
+    for (let f = 0; f < floors && winCount < winBudget; f++) {
+      if (rng() > 0.55) continue;
+      const win = new THREE.Mesh(winGeo, winMat);
+      win.position.set(
+        p.x + p.w * 0.42 * (rng() > 0.5 ? 1 : -1),
+        0.45 + f * 0.65,
+        p.z + p.d * 0.42,
+      );
+      windowGroup.add(win);
+      winCount += 1;
+    }
   }
   scene.add(windowGroup);
 
@@ -160,23 +196,43 @@ export async function createTownScene(
   );
   cab.position.set(0.45, 0.75, 0);
   truck.add(cab);
-  const truckLight = new THREE.PointLight(ORANGE, 1.2, 6);
+  const truckLight = new THREE.PointLight(ORANGE, 2.1, 8);
   truckLight.position.set(0, 1.1, 0);
   truck.add(truckLight);
   truck.position.set(-2.2, 0, 3.2);
   scene.add(truck);
 
-  // Phone slab on truck
+  // Street lamp near truck — reads on the clear right half of the hero
+  const lamp = new THREE.Group();
+  const pole = new THREE.Mesh(
+    new THREE.CylinderGeometry(0.05, 0.07, 2.4, 6),
+    new THREE.MeshStandardMaterial({ color: 0x1a2438, roughness: 0.7 }),
+  );
+  pole.position.y = 1.2;
+  lamp.add(pole);
+  const lampHead = new THREE.Mesh(
+    new THREE.SphereGeometry(0.18, 8, 8),
+    new THREE.MeshBasicMaterial({ color: 0xffc878 }),
+  );
+  lampHead.position.y = 2.45;
+  lamp.add(lampHead);
+  const lampLight = new THREE.PointLight(0xffb060, 1.8, 10);
+  lampLight.position.y = 2.4;
+  lamp.add(lampLight);
+  lamp.position.set(-0.6, 0, 4.2);
+  scene.add(lamp);
+
+  // Phone slab on truck — readable orange glow in hero
   const phone = new THREE.Mesh(
-    new THREE.BoxGeometry(0.22, 0.4, 0.06),
+    new THREE.BoxGeometry(0.26, 0.48, 0.07),
     new THREE.MeshStandardMaterial({
       color: 0x111820,
       emissive: ORANGE,
-      emissiveIntensity: 0.35,
-      roughness: 0.4,
+      emissiveIntensity: 1.1,
+      roughness: 0.35,
     }),
   );
-  phone.position.set(-2.0, 1.35, 3.2);
+  phone.position.set(-2.0, 1.4, 3.2);
   phone.rotation.x = -0.35;
   scene.add(phone);
 
@@ -202,11 +258,12 @@ export async function createTownScene(
   geo.setAttribute("position", new THREE.BufferAttribute(positionsAttr, 3));
   geo.setAttribute("color", new THREE.BufferAttribute(colorsAttr, 3));
   const ptsMat = new THREE.PointsMaterial({
-    size: 0.08,
+    size: mobile || low ? 0.1 : 0.14,
     vertexColors: true,
     transparent: true,
-    opacity: 0.95,
+    opacity: 1,
     depthWrite: false,
+    sizeAttenuation: true,
   });
   const leadPoints: Points = new THREE.Points(geo, ptsMat);
   scene.add(leadPoints);
@@ -439,15 +496,15 @@ export async function createTownScene(
   }
 
   function camPath(p: number) {
-    // Camera keyframes — hero frames town + lit truck on the right half
+    // Camera keyframes — hero keeps truck/phone in the clear right half (past the copy wash)
     if (p < 0.08) {
       const t = p / 0.08;
-      camera.position.set(-5.5 + t * 0.8, 5.8 - t * 0.4, 13.5 - t * 1.5);
-      camera.lookAt(1.5, 1.2, 0.5);
+      camera.position.set(-6.2 + t * 0.6, 3.6, 7.2 - t * 0.4);
+      camera.lookAt(1.8, 1.15, 1.2);
     } else if (p < 0.18) {
       const t = (p - 0.08) / 0.1;
       camera.position.lerpVectors(
-        new THREE.Vector3(-4.7, 5.4, 12),
+        new THREE.Vector3(-5.6, 3.6, 6.8),
         new THREE.Vector3(-1.2, 3.2, 7),
         t,
       );
@@ -496,25 +553,26 @@ export async function createTownScene(
       pulse * (p < 0.18 ? 0.9 : 0.2);
     ring.scale.setScalar(1 + pulse * 2);
     (phone.material as InstanceType<typeof THREE.MeshStandardMaterial>).emissiveIntensity =
-      p < 0.3 ? 0.2 + pulse * 0.8 : p < 0.46 ? 0.5 : 0.15;
+      p < 0.3 ? 0.85 + pulse * 1.1 : p < 0.46 ? 0.7 : 0.35;
 
-    accent.intensity = p < 0.3 ? 0.9 : 0.25;
-    mintLight.intensity = p > 0.34 ? Math.min(1.4, (p - 0.34) * 3) : 0;
+    accent.intensity = p < 0.3 ? 1.4 : 0.4;
+    mintLight.intensity =
+      p < 0.08 ? 0.35 : p > 0.34 ? Math.min(1.6, 0.35 + (p - 0.34) * 3) : 0.45;
 
     // Without: lost path
     if (p >= 0.18 && p < 0.3) {
       const t = (p - 0.18) / 0.12;
       fillLead(pathLost, t, orangeC, t * 0.7);
       (coldRoof.material as InstanceType<typeof THREE.MeshStandardMaterial>).opacity = t;
-      scene.fog = new THREE.FogExp2(INK, 0.035 + t * 0.02);
-      boxMat.color.setRGB(0.08 + t * 0.05, 0.1, 0.14);
+      scene.fog = new THREE.FogExp2(INDIGO, 0.028 + t * 0.02);
+      boxMat.color.setRGB(0.1 + t * 0.04, 0.12, 0.18);
     } else if (p >= 0.3 && p < 0.34) {
       // Rewind
       const t = 1 - (p - 0.3) / 0.04;
       fillLead(pathLost, t, orangeC, t * 0.5);
       (coldRoof.material as InstanceType<typeof THREE.MeshStandardMaterial>).opacity = t;
-      boxMat.color.set(0x1a2438);
-      scene.fog = new THREE.FogExp2(INK, 0.035);
+      boxMat.color.set(0x243044);
+      scene.fog = new THREE.FogExp2(INDIGO, 0.028);
     } else if (p >= 0.34 && p < 0.64) {
       const t = Math.min(1, (p - 0.34) / 0.28);
       fillLead(pathCaught, t, mintC, 0);
@@ -525,7 +583,8 @@ export async function createTownScene(
       fillLead(pathCaught, t * 0.15, orangeC, 0);
       house.visible = false;
     } else if (p < 0.08) {
-      fillLead(pathCaught, 0, orangeC, 0);
+      // Hero: short mint lead thread visible from the truck
+      fillLead(pathCaught, 0.12 + p * 0.4, mintC, 0);
       house.visible = false;
       (coldRoof.material as InstanceType<typeof THREE.MeshStandardMaterial>).opacity = 0;
     } else {

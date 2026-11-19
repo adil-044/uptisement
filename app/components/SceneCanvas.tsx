@@ -107,13 +107,13 @@ export function SceneCanvas({
       };
     };
 
-    // After paint: idle with 700ms timeout so town appears within ~1s on desktop
+    // After paint: short idle so dusk town shows ~1s without blocking LCP
     let idleHandle: number | undefined;
     let timeoutHandle: ReturnType<typeof setTimeout> | undefined;
     if (typeof window.requestIdleCallback === "function") {
-      idleHandle = window.requestIdleCallback(() => void boot(), { timeout: 700 });
+      idleHandle = window.requestIdleCallback(() => void boot(), { timeout: 400 });
     } else {
-      timeoutHandle = setTimeout(() => void boot(), 200);
+      timeoutHandle = setTimeout(() => void boot(), 120);
     }
 
     return () => {
