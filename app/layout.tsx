@@ -3,6 +3,7 @@ import { Manrope, Syne } from "next/font/google";
 import { Footer } from "./components/Footer";
 import { Header } from "./components/Header";
 import { JsonLd } from "./components/JsonLd";
+import { MobileBookBar } from "./components/MobileBookBar";
 import { SITE_URL } from "./lib/config";
 import "./globals.css";
 
@@ -73,6 +74,7 @@ export default function RootLayout({
         <Header />
         <main>{children}</main>
         <Footer />
+        <MobileBookBar />
       </body>
     </html>
   );

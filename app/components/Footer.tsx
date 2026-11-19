@@ -32,16 +32,16 @@ export function Footer() {
               <Link href="/services/">Services</Link>
             </li>
             <li>
+              <Link href="/automations/">Automations</Link>
+            </li>
+            <li>
               <Link href="/work/">Work</Link>
             </li>
             <li>
               <Link href="/pricing/">Pricing</Link>
             </li>
             <li>
-              <Link href="/#reviews">Reviews</Link>
-            </li>
-            <li>
-              <Link href="/demos/sms.html">Demos</Link>
+              <Link href="/about/">About</Link>
             </li>
           </ul>
         </div>

@@ -4,6 +4,7 @@ type Props = {
   children: React.ReactNode;
   className?: string;
   "aria-label"?: string;
+  id?: string;
   onClick?: () => void;
 };
 
@@ -11,6 +12,7 @@ export function BookLink({
   children,
   className = "btn btn-primary",
   onClick,
+  id,
   ...rest
 }: Props) {
   return (
@@ -20,6 +22,7 @@ export function BookLink({
       rel="noopener noreferrer"
       className={className}
       data-book
+      id={id}
       onClick={onClick}
       {...rest}
     >

@@ -11,7 +11,7 @@ gsap.registerPlugin(ScrollTrigger);
 const FAQS = [
   {
     q: "What does a booking-first site cost?",
-    a: "Sites start from $300. Hosting & updates are $30/mo if you want me to keep it online and tuned. Missed-call text-back, the Booked-Jobs Bundle, and AI consulting are scoped on a 15-min call with a fixed quote in writing.",
+    a: "Sites start from $300. Hosting & updates are $30/mo if you want me to keep it online and tuned. Missed-call text-back, the Booked-Jobs Bundle, and AI consulting: starting price on a 15-min call, with a fixed quote in writing.",
   },
   {
     q: "Can I see a demo of my site first?",

@@ -6,11 +6,11 @@ import { useEffect, useState } from "react";
 import { BookLink } from "./BookLink";
 
 const NAV = [
-  { href: "/#services", label: "Services" },
+  { href: "/services/", label: "Services" },
+  { href: "/automations/", label: "Automations" },
   { href: "/work/", label: "Work" },
-  { href: "/#reviews", label: "Reviews" },
-  { href: "/#about", label: "About" },
   { href: "/pricing/", label: "Pricing" },
+  { href: "/about/", label: "About" },
 ];
 
 export function Header() {
@@ -45,7 +45,10 @@ export function Header() {
             compact ? "py-2.5" : "py-4"
           }`}
         >
-          <Link href="/" className="flex items-center gap-2.5 font-display text-lg font-bold tracking-tight">
+          <Link
+            href="/"
+            className="flex items-center gap-2.5 font-display text-lg font-bold tracking-tight"
+          >
             <Image
               src="/brand/uptisement-logo-locked.png"
               alt=""
@@ -74,7 +77,7 @@ export function Header() {
 
           <div className="flex items-center gap-2 lg:hidden">
             <BookLink className="btn btn-primary !min-h-11 !px-3.5 !text-sm">
-              Book a call
+              Book a 15-min call
             </BookLink>
             <button
               type="button"
@@ -91,7 +94,9 @@ export function Header() {
                     open ? "translate-y-[7px] rotate-45" : ""
                   }`}
                 />
-                <i className={`block h-0.5 bg-[var(--color-ink)] transition ${open ? "opacity-0" : ""}`} />
+                <i
+                  className={`block h-0.5 bg-[var(--color-ink)] transition ${open ? "opacity-0" : ""}`}
+                />
                 <i
                   className={`block h-0.5 bg-[var(--color-ink)] transition ${
                     open ? "-translate-y-[7px] -rotate-45" : ""

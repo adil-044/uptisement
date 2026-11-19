@@ -5,6 +5,12 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useRef } from "react";
 import { prefersReducedMotion } from "@/app/lib/motion";
+import {
+  AUTOMATION_PRICE,
+  CONSULTING_PRICE,
+  HOSTING_MONTHLY,
+  WEBSITE_FROM_SHORT,
+} from "@/app/lib/prices";
 import { BookLink } from "./BookLink";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -13,12 +19,11 @@ const SERVICES = [
   {
     id: "web-design",
     title: "Web design",
-    price: "From $300",
-    note: "Hosting & updates $30/mo",
-    // PRICE: confirmed starter; adjust if Adil changes
+    price: WEBSITE_FROM_SHORT,
+    note: HOSTING_MONTHLY,
     points: [
       "Booking-first sites built around one job: getting the call or booking",
-      "Book and Call on the first screen of every page",
+      "Book on the first screen of every page",
       "Service pages for your trade and the Ontario towns you cover",
       "Google Business Profile links, reviews section, basic local SEO",
     ],
@@ -26,11 +31,11 @@ const SERVICES = [
   {
     id: "automations",
     title: "AI automations",
-    price: "Starting price on a quick call",
-    // PRICE: fill in
+    price: AUTOMATION_PRICE,
+    // PRICE: confirm with Adil
     note: "Missed-call text-back · Quote estimator · Lead CRM",
     points: [
-      "Missed-call text-back within minutes — replies on the phone you already use",
+      "Missed-call text-back within a minute — replies on the phone you already use",
       "Quote estimator: job notes in, rough range out, you approve before it sends",
       "Lead board so every call, text and form lands in one place",
       "Fixed written quote after the call",
@@ -39,8 +44,8 @@ const SERVICES = [
   {
     id: "consulting",
     title: "AI consulting",
-    price: "Scoped on a 15-min call",
-    // PRICE: fill in
+    price: CONSULTING_PRICE,
+    // PRICE: confirm with Adil
     note: "Practical advising for Ontario owners",
     points: [
       "What to automate first — and what not to touch yet",
@@ -102,7 +107,10 @@ export function ServiceCards() {
               <p className="mt-1 text-sm text-[var(--color-muted)]">{service.note}</p>
               <ul className="mt-5 flex-1 space-y-3 text-[0.98rem] text-[var(--color-ink-soft)]">
                 {service.points.map((point) => (
-                  <li key={point} className="pl-4 relative before:absolute before:left-0 before:content-['–']">
+                  <li
+                    key={point}
+                    className="relative pl-4 before:absolute before:left-0 before:content-['–']"
+                  >
                     {point}
                   </li>
                 ))}

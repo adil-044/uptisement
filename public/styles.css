@@ -1,0 +1,103 @@
+/* Legal pages + archive lab — shares tokens with /theme.css */
+@import url("/theme.css");
+
+.skip {
+  position: absolute;
+  left: -999px;
+  top: 0;
+}
+.skip:focus {
+  left: 1rem;
+  top: 1rem;
+  z-index: 100;
+  background: white;
+  padding: 0.5rem 0.75rem;
+}
+
+.nav,
+.ui-float {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  width: min(1120px, calc(100% - 2rem));
+  margin: 0 auto;
+  padding: 1rem 0;
+}
+
+.nav .brand,
+.ui-float .logo,
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-display);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.nav nav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem 1rem;
+}
+
+.nav a {
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.legal-page,
+.legal {
+  width: min(760px, calc(100% - 2rem));
+  margin: 0 auto 4rem;
+}
+
+.legal h1 {
+  font-size: clamp(2rem, 5vw, 3rem);
+  margin: 0.5rem 0 1rem;
+}
+
+.legal h2 {
+  margin-top: 2rem;
+  font-size: 1.35rem;
+}
+
+.kicker,
+.legal-meta {
+  color: var(--color-muted);
+  font-size: 0.9rem;
+}
+
+.legal-note {
+  padding: 0.85rem 1rem;
+  background: color-mix(in srgb, var(--color-mint) 12%, white);
+  border-left: 3px solid var(--color-mint);
+}
+
+.legal ul {
+  padding-left: 1.2rem;
+}
+
+.legal li {
+  margin: 0.4rem 0;
+}
+
+.grain {
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  opacity: 0.2;
+  z-index: -1;
+}
+
+/* Minimal archive lab layout if old board assets missing */
+.menu {
+  display: none;
+}
+.menu[aria-hidden="false"],
+.menu.open {
+  display: block;
+}
