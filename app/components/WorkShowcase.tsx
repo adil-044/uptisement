@@ -76,7 +76,7 @@ export function WorkShowcase() {
                   alt={item.imageAlt}
                   fill
                   sizes="(max-width: 900px) 85vw, 560px"
-                  className="object-cover object-top"
+                  className={`object-cover object-top ${item.offline ? "opacity-80" : ""}`}
                 />
               </div>
               <div data-work-cap className="mt-4">
@@ -90,12 +90,25 @@ export function WorkShowcase() {
                 </div>
                 <h3 className="mt-3 text-2xl">{item.title}</h3>
                 <p className="mt-1 text-sm text-[var(--color-muted)]">{item.subline}</p>
+                {item.offline && (
+                  <p className="mt-1 text-xs font-semibold text-[var(--color-muted)]">
+                    Site offline
+                  </p>
+                )}
               </div>
             </>
           );
 
           const className =
             "block w-[min(85vw,560px)] shrink-0 snap-center focus-visible:outline-offset-4";
+
+          if (item.offline || !item.href) {
+            return (
+              <div key={item.title} className={className} data-work-card="">
+                {inner}
+              </div>
+            );
+          }
 
           return item.external || item.href.startsWith("http") || item.href.endsWith(".html") ? (
             <a

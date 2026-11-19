@@ -140,19 +140,38 @@ export function HomeStory() {
 
         <ChapterSection chapter={site}>
           <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {workStrip.map((item) => (
-              <a
-                key={item.title}
-                href={item.href}
-                className="block"
-                target={item.external ? "_blank" : undefined}
-                rel={item.external ? "noopener noreferrer" : undefined}
-              >
-                <LabelPill kind={item.label} />
-                <p className="mt-2 font-display text-lg font-bold">{item.title}</p>
-                <p className="text-sm text-[var(--color-muted)]">{item.subline}</p>
-              </a>
-            ))}
+            {workStrip.map((item) => {
+              const body = (
+                <>
+                  <LabelPill kind={item.label} />
+                  <p className="mt-2 font-display text-lg font-bold">{item.title}</p>
+                  <p className="text-sm text-[var(--color-muted)]">{item.subline}</p>
+                  {item.offline && (
+                    <p className="mt-1 text-xs font-semibold text-[var(--color-muted)]">
+                      Site offline
+                    </p>
+                  )}
+                </>
+              );
+              if (item.offline || !item.href) {
+                return (
+                  <div key={item.title} className="block">
+                    {body}
+                  </div>
+                );
+              }
+              return (
+                <a
+                  key={item.title}
+                  href={item.href}
+                  className="block"
+                  target={item.external ? "_blank" : undefined}
+                  rel={item.external ? "noopener noreferrer" : undefined}
+                >
+                  {body}
+                </a>
+              );
+            })}
           </div>
           <div className="mt-6">
             <a href="/work/" className="btn btn-secondary">

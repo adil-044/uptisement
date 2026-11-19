@@ -1,25 +1,10 @@
 import type { Metadata } from "next";
-import { Manrope, Syne } from "next/font/google";
 import { Footer } from "./components/Footer";
 import { Header } from "./components/Header";
 import { JsonLd } from "./components/JsonLd";
 import { MobileBookBar } from "./components/MobileBookBar";
 import { SITE_URL } from "./lib/config";
 import "./globals.css";
-
-const syne = Syne({
-  subsets: ["latin"],
-  variable: "--font-display",
-  display: "swap",
-  weight: ["600", "700", "800"],
-});
-
-const manrope = Manrope({
-  subsets: ["latin"],
-  variable: "--font-body",
-  display: "swap",
-  weight: ["400", "500", "600", "700", "800"],
-});
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -67,7 +52,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${syne.variable} ${manrope.variable}`}>
+    <html lang="en">
+      <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Syne:wght@600;700;800&display=swap"
+          rel="stylesheet"
+        />
+      </head>
       <body className="site-shell font-body antialiased">
         <JsonLd />
         <div className="site-bg" aria-hidden="true" />
