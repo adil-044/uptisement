@@ -109,15 +109,25 @@ export async function createTownScene(
   sky.position.set(4, 11, -22);
   scene.add(sky);
   const glowBand = new THREE.Mesh(
-    new THREE.PlaneGeometry(90, 8),
+    new THREE.PlaneGeometry(90, 10),
     new THREE.MeshBasicMaterial({
-      color: 0xe06830,
+      color: 0xff6a28,
       transparent: true,
-      opacity: 0.55,
+      opacity: 0.72,
     }),
   );
-  glowBand.position.set(4, 0.6, -19.5);
+  glowBand.position.set(4, 0.4, -19.5);
   scene.add(glowBand);
+  const glowBand2 = new THREE.Mesh(
+    new THREE.PlaneGeometry(70, 4),
+    new THREE.MeshBasicMaterial({
+      color: 0xffb070,
+      transparent: true,
+      opacity: 0.4,
+    }),
+  );
+  glowBand2.position.set(4, 2.2, -19);
+  scene.add(glowBand2);
 
   // Ground plane
   const ground = new THREE.Mesh(
@@ -135,9 +145,9 @@ export async function createTownScene(
   const blockCount = low ? 22 : 30;
   const boxGeo = new THREE.BoxGeometry(1, 1, 1);
   const boxMat = new THREE.MeshStandardMaterial({
-    color: 0x2c3c56,
-    roughness: 0.78,
-    metalness: 0.06,
+    color: 0x354a68,
+    roughness: 0.74,
+    metalness: 0.05,
   });
   const buildings: InstancedMesh = new THREE.InstancedMesh(boxGeo, boxMat, blockCount);
   const dummy = new THREE.Object3D();
@@ -185,14 +195,24 @@ export async function createTownScene(
   // Truck (simple group)
   const truck = new THREE.Group();
   const body = new THREE.Mesh(
-    new THREE.BoxGeometry(1.6, 0.55, 0.8),
-    new THREE.MeshStandardMaterial({ color: 0x2a3548, roughness: 0.6 }),
+    new THREE.BoxGeometry(1.8, 0.6, 0.9),
+    new THREE.MeshStandardMaterial({
+      color: 0x3a4d66,
+      roughness: 0.55,
+      emissive: 0x1a1008,
+      emissiveIntensity: 0.25,
+    }),
   );
-  body.position.y = 0.4;
+  body.position.y = 0.42;
   truck.add(body);
   const cab = new THREE.Mesh(
-    new THREE.BoxGeometry(0.55, 0.45, 0.75),
-    new THREE.MeshStandardMaterial({ color: 0x3a4a62 }),
+    new THREE.BoxGeometry(0.6, 0.5, 0.82),
+    new THREE.MeshStandardMaterial({
+      color: 0x4a5e7a,
+      roughness: 0.5,
+      emissive: ORANGE,
+      emissiveIntensity: 0.15,
+    }),
   );
   cab.position.set(0.45, 0.75, 0);
   truck.add(cab);
