@@ -163,8 +163,8 @@ export function ImmersiveHome() {
         />
       ) : null}
 
-      {/* Dim/hide the SSR wordmark via class on html */}
-      <WordmarkController dim={wordmarkDim} hidden={ending} state={beat.phone} />
+      <PhonePoster state={beat.phone} />
+      <WordmarkController dim={wordmarkDim} hidden={ending} />
 
       <StoryCopy beat={beat} />
       <StoryClock beat={beat} progress={progress} />
@@ -190,26 +190,14 @@ export function ImmersiveHome() {
   );
 }
 
-/** Sync SSR wordmark + phone poster classes without remounting them. */
-function WordmarkController({
-  dim,
-  hidden,
-  state,
-}: {
-  dim: boolean;
-  hidden: boolean;
-  state: string;
-}) {
+/** Sync SSR wordmark dim/hide without remounting it. */
+function WordmarkController({ dim, hidden }: { dim: boolean; hidden: boolean }) {
   useEffect(() => {
     const mark = document.getElementById("uptisement-brand");
     if (mark) {
       mark.classList.toggle("is-dim", dim);
       mark.classList.toggle("is-hidden", hidden);
     }
-    const phone = document.querySelector(".phone-poster");
-    if (phone) {
-      phone.className = `phone-poster phone-poster--${state}`;
-    }
-  }, [dim, hidden, state]);
+  }, [dim, hidden]);
   return null;
 }

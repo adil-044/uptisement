@@ -47,11 +47,18 @@ export function ImmersiveNav({ pillLabel }: Props) {
           data-cursor="circle"
           data-book
         >
-          <span className="immersive-nav__pill-label">{pillLabel}</span>
+          <span className="immersive-nav__pill-label immersive-nav__pill-label--full">
+            {pillLabel}
+          </span>
+          <span className="immersive-nav__pill-label immersive-nav__pill-label--short">
+            Book a call →
+          </span>
         </a>
 
         <div className="immersive-nav__menu-wrap">
-          <span className="immersive-nav__menu-label font-mono">MENU</span>
+          <span className="immersive-nav__menu-label font-mono" aria-hidden="true">
+            MENU
+          </span>
           <button
             type="button"
             className="immersive-nav__burger"

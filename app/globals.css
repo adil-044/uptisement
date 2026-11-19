@@ -1006,9 +1006,12 @@
 
   @media (max-width: 767px) {
     .immersive-wordmark {
-      top: 26%;
-      font-size: clamp(2.4rem, 13vw, 3.6rem);
-      letter-spacing: -0.055em;
+      top: 18%;
+      left: 1rem;
+      right: 1rem;
+      font-size: clamp(2.2rem, 12vw, 3.25rem);
+      letter-spacing: -0.05em;
+      z-index: 4;
     }
   }
 
@@ -1016,18 +1019,18 @@
   .phone-poster {
     pointer-events: none;
     position: fixed;
-    right: clamp(6%, 14vw, 22%);
-    top: 48%;
-    z-index: 3;
-    width: min(240px, 36vw);
+    right: clamp(8%, 16vw, 24%);
+    top: 50%;
+    z-index: 4;
+    width: min(280px, 32vw);
     aspect-ratio: 1 / 2.05;
     transform: translateY(-50%) rotate(-12deg);
-    transition: filter 0.45s ease, opacity 0.4s ease;
-  }
-
-  /* When WebGL canvas is present, soften CSS phone so 3D can read — still visible as fallback */
-  html[data-webgl="1"] .phone-poster {
-    opacity: 0.92;
+    transition:
+      filter 0.45s ease,
+      opacity 0.4s ease,
+      transform 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+      top 0.6s ease,
+      right 0.6s ease;
   }
 
   .phone-poster__body {
@@ -1050,7 +1053,7 @@
 
   .phone-poster__bezel {
     position: absolute;
-    inset: 6%;
+    inset: 5.5%;
     border-radius: 1.15rem;
     background: #070b14;
     overflow: hidden;
@@ -1059,34 +1062,17 @@
   .phone-poster__screen {
     position: absolute;
     inset: 0;
-    background: radial-gradient(
-      circle at 50% 42%,
-      rgba(61, 220, 151, 0.85) 0%,
-      rgba(61, 220, 151, 0.25) 38%,
-      #0a1220 72%
-    );
-  }
-
-  .phone-poster__core {
-    position: absolute;
-    left: 50%;
-    top: 40%;
-    width: 42%;
-    aspect-ratio: 1;
-    transform: translate(-50%, -50%);
-    border-radius: 50%;
-    background: radial-gradient(circle, #b8ffe0 0%, #3ddc97 45%, transparent 70%);
-    filter: blur(2px);
-    opacity: 0.9;
-    animation: phone-core-pulse 3.2s ease-in-out infinite;
+    background: #0a1220;
+    color: #f2f5f8;
   }
 
   .phone-poster__notch {
     position: absolute;
-    top: 4%;
+    top: 3.5%;
     left: 50%;
+    z-index: 2;
     width: 28%;
-    height: 3.5%;
+    height: 3%;
     transform: translateX(-50%);
     border-radius: 999px;
     background: rgba(0, 0, 0, 0.55);
@@ -1098,6 +1084,7 @@
     background: radial-gradient(circle, rgba(61, 220, 151, 0.35) 0%, transparent 62%);
     filter: blur(18px);
     z-index: -1;
+    transition: background 0.4s ease;
   }
 
   .phone-poster__shaft {
@@ -1143,67 +1130,248 @@
     opacity: 0.45;
   }
 
-  .phone-poster--ring .phone-poster__screen {
-    background: radial-gradient(
-      circle at 50% 42%,
-      rgba(217, 72, 15, 0.9) 0%,
-      rgba(217, 72, 15, 0.3) 40%,
-      #0a1220 75%
-    );
+  /* Screen UI (DOM mirror of canvas texture) */
+  .phone-ui {
+    position: absolute;
+    inset: 0;
+    padding: 14% 10% 10%;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    font-family: var(--font-body);
+    line-height: 1.25;
   }
 
-  .phone-poster--ring .phone-poster__core,
-  .phone-poster--missed .phone-poster__core,
-  .phone-poster--lost .phone-poster__core {
-    background: radial-gradient(circle, #ffb089 0%, #d9480f 50%, transparent 70%);
-    animation-duration: 0.55s;
+  .phone-ui__time {
+    margin: 0 0 0.75rem;
+    font-family: var(--font-mono);
+    font-size: 0.55rem;
+    letter-spacing: 0.08em;
+    opacity: 0.75;
   }
 
-  .phone-poster--lost .phone-poster__screen,
-  .phone-poster--missed .phone-poster__screen {
+  .phone-ui__avatar {
+    width: 2.4rem;
+    height: 2.4rem;
+    margin: 0.35rem auto 0.55rem;
+    border-radius: 999px;
+    display: grid;
+    place-items: center;
+    font-weight: 800;
+    border: 2px solid currentColor;
+  }
+
+  .phone-ui__title {
+    margin: 0;
+    text-align: center;
+    font-family: var(--font-display);
+    font-size: clamp(0.85rem, 2.2vw, 1.05rem);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+  }
+
+  .phone-ui__title--sm {
+    font-size: 0.85rem;
+    margin-top: 0.35rem;
+  }
+
+  .phone-ui__sub {
+    margin: 0.35rem 0 0;
+    text-align: center;
+    font-size: 0.58rem;
+    color: #b8c4d4;
+  }
+
+  .phone-ui__badge {
+    margin: 0.55rem 0 0;
+    text-align: center;
+    font-family: var(--font-mono);
+    font-size: 0.55rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+  }
+
+  .phone-ui__label {
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: 0.85rem;
+    font-weight: 800;
+  }
+
+  .phone-ui__hint {
+    margin: 0.2rem 0 0.55rem;
+    font-size: 0.5rem;
+    color: #8a96a8;
+  }
+
+  .phone-ui__bubble {
+    margin-top: 0.35rem;
+    padding: 0.55rem 0.65rem;
+    border-radius: 0.85rem 0.85rem 0.25rem 0.85rem;
+    background: var(--color-mint);
+    color: var(--color-ink);
+    font-size: 0.55rem;
+    font-weight: 600;
+    line-height: 1.35;
+  }
+
+  .phone-ui__meta {
+    margin: 0.35rem 0 0;
+    text-align: right;
+    font-family: var(--font-mono);
+    font-size: 0.45rem;
+    color: #8a96a8;
+  }
+
+  .phone-ui__card {
+    margin-top: 0.35rem;
+    padding: 0.7rem 0.65rem;
+    border-radius: 0.75rem;
+    background: #152033;
+    border: 1px solid rgba(61, 220, 151, 0.35);
+    text-align: center;
+  }
+
+  .phone-ui__card--booked {
+    border-color: var(--color-mint);
+  }
+
+  .phone-ui__eyebrow {
+    margin: 0;
+    font-family: var(--font-mono);
+    font-size: 0.45rem;
+    letter-spacing: 0.14em;
+    color: var(--color-mint);
+  }
+
+  .phone-ui__price {
+    margin: 0.35rem 0 0;
+    font-family: var(--font-display);
+    font-size: 1.05rem;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    color: var(--color-mint);
+  }
+
+  .phone-ui__stars {
+    margin: 0.45rem 0;
+    font-size: 1rem;
+    letter-spacing: 0.08em;
+    color: var(--color-mint);
+  }
+
+  .phone-ui__brand {
+    margin: auto 0 0;
+    text-align: center;
+    font-family: var(--font-display);
+    font-size: 0.95rem;
+    font-weight: 800;
+  }
+
+  .phone-ui--idle .phone-ui__brand {
+    margin-top: 35%;
+  }
+
+  .phone-ui--orange {
+    color: #ffb089;
     background: radial-gradient(
-      circle at 50% 42%,
+      circle at 50% 38%,
       rgba(217, 72, 15, 0.45) 0%,
       #0a1220 70%
     );
   }
 
-  .phone-poster--booked .phone-poster__core,
-  .phone-poster--review .phone-poster__core,
-  .phone-poster--text .phone-poster__core,
-  .phone-poster--quote .phone-poster__core {
-    opacity: 1;
-    filter: blur(1px);
+  .phone-ui--mint {
+    background: radial-gradient(
+      circle at 50% 40%,
+      rgba(61, 220, 151, 0.22) 0%,
+      #0a1220 68%
+    );
   }
 
-  .phone-poster--booked .phone-poster__glow {
-    background: radial-gradient(circle, rgba(61, 220, 151, 0.55) 0%, transparent 62%);
+  .phone-ui--glow {
+    background: radial-gradient(
+      circle at 50% 42%,
+      rgba(61, 220, 151, 0.4) 0%,
+      #0a1220 70%
+    );
   }
 
-  @keyframes phone-core-pulse {
-    0%,
-    100% {
-      transform: translate(-50%, -50%) scale(1);
-      opacity: 0.85;
-    }
-    50% {
-      transform: translate(-50%, -50%) scale(1.08);
-      opacity: 1;
-    }
+  .phone-ui--dim {
+    opacity: 0.92;
+  }
+
+  .phone-poster--ring .phone-poster__glow,
+  .phone-poster--missed .phone-poster__glow,
+  .phone-poster--lost .phone-poster__glow {
+    background: radial-gradient(circle, rgba(217, 72, 15, 0.4) 0%, transparent 62%);
+  }
+
+  .phone-poster--booked .phone-poster__glow,
+  .phone-poster--review .phone-poster__glow,
+  .phone-poster--text .phone-poster__glow,
+  .phone-poster--quote .phone-poster__glow {
+    background: radial-gradient(circle, rgba(61, 220, 151, 0.5) 0%, transparent 62%);
+  }
+
+  .phone-poster--ring {
+    transform: translateY(-52%) rotate(-5deg) translateX(-6%) scale(1.03);
+  }
+
+  .phone-poster--missed {
+    transform: translateY(-50%) rotate(-9deg) translateX(-2%);
+  }
+
+  .phone-poster--lost {
+    transform: translateY(-46%) rotate(-18deg) translateX(4%) scale(0.96);
+  }
+
+  .phone-poster--text {
+    transform: translateY(-50%) rotate(-4deg) translateX(-8%) scale(1.06);
+  }
+
+  .phone-poster--quote {
+    transform: translateY(-50%) rotate(-2deg) translateX(-10%) scale(1.08);
+  }
+
+  .phone-poster--booked {
+    transform: translateY(-50%) rotate(-8deg) translateX(-6%) scale(1.1);
+  }
+
+  .phone-poster--review {
+    transform: translateY(-50%) rotate(-11deg) translateX(-4%) scale(1.05);
   }
 
   @media (max-width: 767px) {
+    /* Phone below wordmark so brand reads clearly */
     .phone-poster {
-      right: 6%;
-      top: 38%;
-      width: min(140px, 38vw);
-      transform: translateY(-50%) rotate(-10deg);
+      left: 50%;
+      right: auto;
+      top: 42%;
+      bottom: auto;
+      width: min(132px, 36vw);
+      transform: translateX(-50%) rotate(-8deg);
     }
-  }
 
-  @media (prefers-reduced-motion: reduce) {
-    .phone-poster__core {
-      animation: none;
+    .phone-poster--ring {
+      transform: translateX(-50%) rotate(-4deg) translateY(4%);
+    }
+
+    .phone-poster--lost {
+      transform: translateX(-50%) rotate(-12deg) translateY(2%);
+    }
+
+    .phone-poster--text,
+    .phone-poster--quote,
+    .phone-poster--booked,
+    .phone-poster--review {
+      transform: translateX(-50%) rotate(-6deg);
+    }
+
+    .story-copy {
+      bottom: 4.5rem;
+      max-width: calc(100vw - 2rem);
+      z-index: 5;
     }
   }
 
@@ -1291,6 +1459,10 @@
     white-space: nowrap;
   }
 
+  .immersive-nav__pill-label--short {
+    display: none;
+  }
+
   .immersive-nav__menu-wrap {
     pointer-events: auto;
     position: absolute;
@@ -1306,6 +1478,36 @@
     font-size: 0.625rem;
     letter-spacing: 0.16em;
     color: rgba(232, 237, 243, 0.72);
+  }
+
+  @media (max-width: 767px) {
+    .immersive-nav {
+      justify-content: flex-start;
+      padding: 0.85rem 0.85rem;
+      padding-right: 3.75rem;
+    }
+
+    .immersive-nav__pill {
+      min-height: 2.5rem;
+      padding: 0.45rem 0.9rem;
+      font-size: 0.78rem;
+    }
+
+    .immersive-nav__pill-label--full {
+      display: none;
+    }
+
+    .immersive-nav__pill-label--short {
+      display: inline;
+    }
+
+    .immersive-nav__menu-label {
+      display: none;
+    }
+
+    .immersive-nav__menu-wrap {
+      right: 0.75rem;
+    }
   }
 
   .immersive-nav__burger {
@@ -1481,7 +1683,11 @@
   }
 
   .story-copy__mask {
+    /* Extra room so mask reveal never clips resting glyphs */
     overflow: hidden;
+    padding-bottom: 0.12em;
+    margin-bottom: -0.06em;
+    min-height: 1.05em;
   }
 
   .story-copy__word {
@@ -1490,9 +1696,12 @@
     font-size: clamp(2.5rem, 7vw, 4.75rem);
     font-weight: 800;
     letter-spacing: -0.045em;
-    line-height: 0.95;
+    line-height: 1.05;
     color: #f2f5f8;
     white-space: nowrap;
+    display: inline-block;
+    /* Resting transform must stay at 0 — avoid mid-shot clip */
+    will-change: transform;
   }
 
   .story-copy__sub {
