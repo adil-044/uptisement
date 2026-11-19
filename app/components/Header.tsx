@@ -34,11 +34,7 @@ export function Header() {
   return (
     <>
       <header
-        className={`fixed inset-x-0 top-0 z-50 transition-[padding,background,backdrop-filter] duration-200 ${
-          compact || open
-            ? "bg-[color-mix(in_srgb,var(--color-paper)_88%,transparent)] backdrop-blur-md border-b border-[color-mix(in_srgb,var(--color-ink)_8%,transparent)]"
-            : "bg-transparent"
-        }`}
+        className={`fixed inset-x-0 top-0 z-50 border-b border-[color-mix(in_srgb,var(--color-ink)_8%,transparent)] bg-[color-mix(in_srgb,var(--color-paper)_92%,transparent)] text-[var(--color-ink)] backdrop-blur-md transition-[padding] duration-200`}
       >
         <div
           className={`container-x flex items-center justify-between gap-3 ${

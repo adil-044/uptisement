@@ -250,6 +250,24 @@
     padding: 6rem 0 4rem;
   }
 
+  .chapter[data-chapter="hero"] {
+    padding-top: 7rem;
+    padding-bottom: 2.5rem;
+    align-items: flex-end;
+  }
+
+  @media (min-width: 768px) {
+    .chapter[data-chapter="hero"] {
+      align-items: center;
+      padding-top: 6.5rem;
+    }
+
+    .chapter[data-chapter="hero"] .chapter-panel {
+      padding-top: 0;
+      padding-bottom: 0;
+    }
+  }
+
   .chapter[data-theme="ink"],
   .chapter[data-theme="dusk"] {
     color: var(--color-paper);

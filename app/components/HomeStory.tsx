@@ -93,8 +93,8 @@ export function HomeStory() {
     <div ref={root}>
       <SceneCanvas progressRef={progressRef} variant="story" />
       <div data-story-track>
-        <ChapterSection chapter={hero} id="hero" className="pt-28 md:pt-36">
-          <div className="mt-8 flex flex-wrap gap-3">
+        <ChapterSection chapter={hero} id="hero">
+          <div className="mt-6 flex flex-wrap gap-3">
             <BookLink id="book-cta-hero">Book a 15-min call</BookLink>
             <BookLink className="btn btn-secondary">Get a free demo</BookLink>
             <a href="#chapter-704" className="btn btn-secondary">
