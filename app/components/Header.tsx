@@ -1,32 +1,23 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
-import { m, useMotionValueEvent, useReducedMotion, useScroll } from "motion/react";
+import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import { BookLink } from "./BookLink";
+import { BrandLogo } from "./BrandLogo";
+import { HaloButton } from "./HaloButton";
 
 const NAV = [
   { href: "/services/", label: "Services" },
-  { href: "/automations/", label: "Automations" },
   { href: "/work/", label: "Work" },
   { href: "/pricing/", label: "Pricing" },
   { href: "/about/", label: "About" },
+  { href: "/compare/", label: "Compare" },
 ];
 
-/**
- * Always-on paper glass header so wordmark/nav stay AA on dark hero and light pages.
- * Shrinks after ~100px (Superdesign shrinking-sticky-header, adapted).
- */
+/** Floating glass pill nav — original logo once, links, one Halo CTA. */
 export function Header() {
+  const pathname = usePathname();
   const [open, setOpen] = useState(false);
-  const [shrunk, setShrunk] = useState(false);
-  const reduce = useReducedMotion();
-  const { scrollY } = useScroll();
-
-  useMotionValueEvent(scrollY, "change", (v) => {
-    setShrunk(v > 100);
-  });
 
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
@@ -37,85 +28,73 @@ export function Header() {
 
   return (
     <>
-      <m.header
-        data-superdesign="shrinking-sticky-header"
-        className={`site-header site-header--glass fixed inset-x-0 top-0 z-50 text-[var(--color-ink)] ${
-          shrunk ? "is-shrunk" : ""
-        }`}
-        animate={
-          reduce
-            ? undefined
-            : {
-                paddingTop: shrunk ? 8 : 14,
-                paddingBottom: shrunk ? 8 : 14,
-              }
-        }
-        transition={{ duration: 0.22, ease: [0.2, 0.8, 0.2, 1] }}
-      >
-        <div
-          className={`container-x wrap flex items-center justify-between gap-3 ${
-            reduce ? "py-3" : "py-0"
-          }`}
-        >
-          <Link
-            href="/"
-            className="flex items-center gap-2.5 font-display text-lg font-bold tracking-tight text-[var(--color-ink)]"
+      <div className="pointer-events-none fixed inset-x-0 top-0 z-[200] flex justify-center px-4 pt-4 md:pt-5">
+        <header className="pointer-events-auto relative w-[min(100%,36rem)] md:w-[min(100%,54rem)]">
+          <nav
+            aria-label="Primary"
+            className="glass-surface flex items-center gap-2 rounded-full px-3 py-2 shadow-[0_12px_40px_rgba(0,0,0,0.5)] md:gap-3 md:px-4 md:py-2.5"
           >
-            <Image
-              src="/brand/uptisement-logo-locked.png"
-              alt=""
-              width={shrunk ? 24 : 28}
-              height={shrunk ? 24 : 28}
-              className="rounded-sm transition-[width,height] duration-200"
-              priority
-            />
-            <span>Uptisement</span>
-          </Link>
+            <BrandLogo />
 
-          <nav className="hidden items-center gap-6 lg:flex" aria-label="Primary">
-            {NAV.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                className="link-nav text-sm font-semibold text-[var(--color-ink-soft)]"
+            <div className="mx-auto hidden items-center gap-1 md:flex">
+              {NAV.map((item) => {
+                const active =
+                  pathname === item.href ||
+                  (item.href !== "/" && pathname?.startsWith(item.href));
+                return (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    className={`rounded-full px-3 py-1.5 text-sm font-medium transition ${
+                      active
+                        ? "bg-[color-mix(in_srgb,var(--color-purple)_14%,transparent)] text-[var(--color-text)]"
+                        : "text-[var(--color-muted)] hover:text-[var(--color-text)]"
+                    }`}
+                  >
+                    {item.label}
+                  </Link>
+                );
+              })}
+            </div>
+
+            <div className="ml-auto flex items-center gap-2 md:ml-0">
+              <HaloButton
+                href="/#claim-demo"
+                className="!min-h-9 !px-3 !text-sm"
               >
-                {item.label}
-              </Link>
-            ))}
-            <BookLink className="btn btn-book !min-h-11 !px-4 !text-sm">
-              Book a 15-min call
-            </BookLink>
+                Free demo
+              </HaloButton>
+              <button
+                type="button"
+                className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-[var(--color-border)] text-[var(--color-text)] md:hidden"
+                aria-label={open ? "Close menu" : "Open menu"}
+                aria-expanded={open}
+                aria-controls="mobile-menu"
+                onClick={() => setOpen((v) => !v)}
+              >
+                <span aria-hidden className="flex w-3.5 flex-col gap-1">
+                  <i
+                    className={`block h-px bg-[var(--color-text)] transition ${
+                      open ? "translate-y-[5px] rotate-45" : ""
+                    }`}
+                  />
+                  <i
+                    className={`block h-px bg-[var(--color-text)] transition ${
+                      open ? "opacity-0" : ""
+                    }`}
+                  />
+                  <i
+                    className={`block h-px bg-[var(--color-text)] transition ${
+                      open ? "-translate-y-[5px] -rotate-45" : ""
+                    }`}
+                  />
+                </span>
+              </button>
+            </div>
           </nav>
-
-          <div className="flex items-center gap-2 lg:hidden">
-            <button
-              type="button"
-              className="inline-flex h-11 w-11 items-center justify-center rounded-md border border-[color-mix(in_srgb,var(--color-ink)_22%,transparent)] bg-white/40"
-              aria-label={open ? "Close menu" : "Open menu"}
-              aria-expanded={open}
-              aria-controls="mobile-menu"
-              onClick={() => setOpen((v) => !v)}
-            >
-              <span className="sr-only">Menu</span>
-              <span aria-hidden className="flex w-4 flex-col gap-1.5">
-                <i
-                  className={`block h-0.5 bg-[var(--color-ink)] transition ${
-                    open ? "translate-y-[7px] rotate-45" : ""
-                  }`}
-                />
-                <i
-                  className={`block h-0.5 bg-[var(--color-ink)] transition ${open ? "opacity-0" : ""}`}
-                />
-                <i
-                  className={`block h-0.5 bg-[var(--color-ink)] transition ${
-                    open ? "-translate-y-[7px] -rotate-45" : ""
-                  }`}
-                />
-              </span>
-            </button>
-          </div>
-        </div>
-      </m.header>
+          <div className="edge-blur" aria-hidden />
+        </header>
+      </div>
 
       <div
         id="mobile-menu"
@@ -123,32 +102,33 @@ export function Header() {
         aria-modal="true"
         aria-label="Site menu"
         hidden={!open}
-        className={`fixed inset-0 z-40 lg:hidden ${open ? "pointer-events-auto" : "pointer-events-none"}`}
+        className={`fixed inset-0 z-[190] md:hidden ${
+          open ? "pointer-events-auto" : "pointer-events-none"
+        }`}
       >
         <button
           type="button"
-          className="absolute inset-0 bg-[var(--color-ink)]/40"
+          className="absolute inset-0 bg-black/70"
           aria-label="Close menu"
           onClick={() => setOpen(false)}
         />
-        <div className="absolute right-0 top-0 flex h-full w-[min(20rem,88vw)] max-w-full flex-col gap-6 bg-[var(--color-surface)] p-6 pt-24 shadow-xl">
+        <div className="glass-surface absolute inset-x-4 top-20 rounded-2xl p-5">
           <nav className="flex flex-col gap-1" aria-label="Mobile">
             {NAV.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
-                className="rounded-lg px-3 py-3 text-lg font-semibold"
+                className="rounded-xl px-3 py-3 text-lg"
                 onClick={() => setOpen(false)}
               >
                 {item.label}
               </Link>
             ))}
           </nav>
-          <BookLink onClick={() => setOpen(false)}>Book a 15-min call</BookLink>
-          <p className="text-sm text-[var(--color-muted)]">
-            <a href="mailto:sales@uptisement.com">sales@uptisement.com</a>
-            <br />
-            Southern Ontario
+          <p className="mt-4 text-sm text-[var(--color-muted)]">
+            <a href="mailto:sales@uptisement.com" className="link-plain">
+              sales@uptisement.com
+            </a>
           </p>
         </div>
       </div>

@@ -1,42 +1,48 @@
-import Image from "next/image";
 import Link from "next/link";
-import { AREA_SHORT, EMAIL, SINCE_YEAR } from "@/app/lib/config";
-import { BookLink } from "./BookLink";
+import { AREA_SHORT, BOOK_URL, EMAIL, SINCE_YEAR } from "@/app/lib/config";
+import { BrandLogo } from "./BrandLogo";
+import { HaloButton } from "./HaloButton";
 
 export function Footer() {
   return (
-    <footer className="border-t border-[color-mix(in_srgb,var(--color-ink)_12%,transparent)] pb-12 pt-12">
-      <div className="container-x wrap grid gap-10 md:grid-cols-[1.2fr_1fr_1fr]">
+    <footer className="border-t border-[var(--color-border)] pb-14 pt-14">
+      <div className="container-x wrap grid gap-10 md:grid-cols-[1.3fr_1fr_1fr]">
         <div>
-          <Link
-            href="/"
-            className="inline-flex min-h-11 items-center gap-2 font-display text-lg font-bold"
-          >
-            <Image
-              src="/brand/uptisement-logo-locked.png"
-              alt=""
-              width={26}
-              height={26}
-            />
-            Uptisement
-          </Link>
+          <BrandLogo size="footer" />
           <p className="mt-3 max-w-sm text-sm text-[var(--color-muted)]">
-            Web design, AI automations &amp; AI consulting for Ontario trades. Since{" "}
-            {SINCE_YEAR}.
+            {AREA_SHORT} · Since {SINCE_YEAR}
           </p>
-          <div className="mt-5">
-            <BookLink className="btn btn-book !text-sm">Book a 15-min call</BookLink>
+          <p className="mt-3 text-sm">
+            <a href={`mailto:${EMAIL}`} className="link-plain">
+              {EMAIL}
+            </a>
+          </p>
+          <div className="mt-6">
+            <HaloButton href="/#claim-demo">Claim free demo</HaloButton>
           </div>
+          <p className="mt-4 text-sm">
+            <a
+              href={BOOK_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              data-book
+              className="link-plain"
+            >
+              Rather talk first? Book a 15-min call →
+            </a>
+          </p>
         </div>
         <div>
-          <p className="font-display text-sm font-bold uppercase tracking-wider">Navigate</p>
-          <ul className="mt-3 space-y-1 text-sm">
+          <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[var(--color-muted)]">
+            Navigate
+          </p>
+          <ul className="mt-4 space-y-1 text-sm">
             {[
               ["/services/", "Services"],
-              ["/automations/", "Automations"],
               ["/work/", "Work"],
               ["/pricing/", "Pricing"],
               ["/about/", "About"],
+              ["/compare/", "Compare us"],
             ].map(([href, label]) => (
               <li key={href}>
                 <Link href={href} className="inline-flex min-h-11 items-center">
@@ -47,38 +53,38 @@ export function Footer() {
           </ul>
         </div>
         <div>
-          <p className="font-display text-sm font-bold uppercase tracking-wider">Contact</p>
-          <ul className="mt-3 space-y-1 text-sm">
+          <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[var(--color-muted)]">
+            More
+          </p>
+          <ul className="mt-4 space-y-1 text-sm">
             <li>
-              <a href={`mailto:${EMAIL}`} className="inline-flex min-h-11 items-center">
-                {EMAIL}
-              </a>
+              <Link href="/trades/" className="inline-flex min-h-11 items-center">
+                For trades
+              </Link>
             </li>
-            <li className="flex min-h-11 items-center">{AREA_SHORT}</li>
             <li>
-              <Link href="/privacy.html" className="inline-flex min-h-11 items-center">
+              <Link href="/salons/" className="inline-flex min-h-11 items-center">
+                For salons, spas and barbers
+              </Link>
+            </li>
+            <li>
+              <Link href="/privacy/" className="inline-flex min-h-11 items-center">
                 Privacy
               </Link>
             </li>
             <li>
-              <Link href="/cookies.html" className="inline-flex min-h-11 items-center">
+              <Link href="/cookies/" className="inline-flex min-h-11 items-center">
                 Cookies
               </Link>
             </li>
           </ul>
         </div>
       </div>
-      <div className="container-x wrap mt-10 flex flex-wrap gap-4 border-t border-[var(--color-line)] pt-6 text-xs text-[var(--color-muted)]">
+      <div className="container-x wrap mt-12 flex flex-wrap gap-4 border-t border-[var(--color-border)] pt-6 text-xs text-[var(--color-muted)]">
         <span className="inline-flex min-h-11 items-center">
           © {new Date().getFullYear()} Uptisement
         </span>
         <span className="inline-flex min-h-11 items-center">Since {SINCE_YEAR}</span>
-        <Link href="/lab.html" className="inline-flex min-h-11 items-center">
-          Lab
-        </Link>
-        <Link href="/ig-dm/" className="inline-flex min-h-11 items-center">
-          IG DM demo
-        </Link>
       </div>
     </footer>
   );
