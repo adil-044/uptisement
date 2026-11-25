@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
+import { BrandLogo } from "./BrandLogo";
 import { HaloButton } from "./HaloButton";
 
 const NAV = [
@@ -13,10 +14,7 @@ const NAV = [
   { href: "/compare/", label: "Compare" },
 ];
 
-/**
- * Floating centred Pill Nav in Glass Surface + Edge Blur.
- * Tiny MotionSites-style: wordmark · links · one Halo CTA.
- */
+/** Floating glass pill nav — original logo once, links, one Halo CTA. */
 export function Header() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
@@ -31,17 +29,12 @@ export function Header() {
   return (
     <>
       <div className="pointer-events-none fixed inset-x-0 top-0 z-50 flex justify-center px-4 pt-4 md:pt-5">
-        <header className="pointer-events-auto relative w-[min(100%,36rem)] md:w-[min(100%,52rem)]">
+        <header className="pointer-events-auto relative w-[min(100%,36rem)] md:w-[min(100%,54rem)]">
           <nav
             aria-label="Primary"
-            className="glass-surface flex items-center gap-2 rounded-full px-3 py-2 shadow-[0_12px_40px_rgba(0,0,0,0.45)] md:gap-3 md:px-4 md:py-2.5"
+            className="glass-surface flex items-center gap-2 rounded-full px-3 py-2 shadow-[0_12px_40px_rgba(0,0,0,0.5)] md:gap-3 md:px-4 md:py-2.5"
           >
-            <Link
-              href="/"
-              className="wordmark shrink-0 px-1.5 text-lg md:text-xl"
-            >
-              uptisement
-            </Link>
+            <BrandLogo />
 
             <div className="mx-auto hidden items-center gap-1 md:flex">
               {NAV.map((item) => {
@@ -54,7 +47,7 @@ export function Header() {
                     href={item.href}
                     className={`rounded-full px-3 py-1.5 text-sm font-medium transition ${
                       active
-                        ? "bg-[color-mix(in_srgb,var(--color-lilac)_16%,transparent)] text-[var(--color-text)]"
+                        ? "bg-[color-mix(in_srgb,var(--color-purple)_14%,transparent)] text-[var(--color-text)]"
                         : "text-[var(--color-muted)] hover:text-[var(--color-text)]"
                     }`}
                   >
@@ -115,7 +108,7 @@ export function Header() {
       >
         <button
           type="button"
-          className="absolute inset-0 bg-[var(--color-bg)]/70"
+          className="absolute inset-0 bg-black/70"
           aria-label="Close menu"
           onClick={() => setOpen(false)}
         />

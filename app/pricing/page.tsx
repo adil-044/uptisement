@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import { DemoFormSection } from "@/app/components/DemoFormSection";
 import { FAQList } from "@/app/components/FAQList";
-import { Reveal } from "@/app/components/Reveal";
 import { MaskedHeading } from "@/app/components/MaskedHeading";
+import { Reveal } from "@/app/components/Reveal";
+import { SpotlightCard } from "@/app/components/SpotlightCard";
 
 export const metadata: Metadata = {
   title: "Pricing",
@@ -16,20 +17,24 @@ const ROWS = [
     title: "Free demo — $0",
     body: "See a personalised preview of your website before you pay anything. It arrives within 24 hours of sending the form.",
     highlight: true,
+    span: "bento-7",
   },
   {
     title: "Website — from $300, one time",
     body: "A booking-first site, built for you. Go live if you love the demo.",
+    span: "bento-5",
   },
   {
     title: "Hosting — $30/month",
     body: null,
     remy:
       "What’s covered in hosting? I asked my boss Adil to spell it out, but he’s on a call with a client. Ask him when you book yours. — Remy",
+    span: "bento-5",
   },
   {
     title: "Automations and consulting — priced on a 15-min call",
     body: "Based on what you actually need. Start with one automation if you want, and add more later.",
+    span: "bento-7",
   },
 ];
 
@@ -46,26 +51,20 @@ export default function PricingPage() {
       </section>
 
       <section className="section pt-0">
-        <div className="container-x wrap grid gap-4">
+        <div className="container-x wrap bento">
           {ROWS.map((row, i) => (
-            <Reveal key={row.title} delay={i * 0.05}>
-              <div
-                className={`rounded-xl border p-5 md:p-6 ${
-                  row.highlight
-                    ? "border-[color-mix(in_srgb,var(--color-lilac)_40%,transparent)] bg-[color-mix(in_srgb,var(--color-lilac)_10%,transparent)]"
-                    : "border-[var(--color-border)] bg-[color-mix(in_srgb,var(--color-surface)_65%,transparent)]"
-                }`}
+            <Reveal key={row.title} delay={i * 0.05} className={row.span}>
+              <SpotlightCard
+                className={`h-full ${row.highlight ? "compare-card--highlight" : ""}`}
               >
-                <h2 className="font-display text-xl text-[var(--color-text)] md:text-2xl">
+                <h2 className="font-display text-2xl text-[var(--color-text)] md:text-3xl">
                   {row.title}
                 </h2>
                 {row.body ? (
-                  <p className="mt-3 text-[var(--color-muted)]">
-                    {row.body}
-                  </p>
+                  <p className="mt-4 text-[var(--color-muted)]">{row.body}</p>
                 ) : null}
-                {row.remy ? <p className="remy-note mt-4">{row.remy}</p> : null}
-              </div>
+                {row.remy ? <p className="remy-note mt-5">{row.remy}</p> : null}
+              </SpotlightCard>
             </Reveal>
           ))}
         </div>
@@ -74,7 +73,9 @@ export default function PricingPage() {
       <section className="section pt-0">
         <div className="container-x wrap max-w-3xl">
           <Reveal>
-            <h2 className="font-display text-3xl text-[var(--color-text)]">FAQ</h2>
+            <h2 className="font-display text-3xl text-[var(--color-text)]">
+              FAQ
+            </h2>
           </Reveal>
           <div className="mt-6">
             <FAQList

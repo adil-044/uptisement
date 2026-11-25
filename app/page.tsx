@@ -59,10 +59,7 @@ export default function HomePage() {
         <SoftAurora />
         <div className="container-x wrap relative z-10 grid items-start gap-12 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,23rem)]">
           <div>
-            <p className="wordmark wordmark-metallic text-3xl md:text-4xl">
-              uptisement
-            </p>
-            <p className="eyebrow mt-8">
+            <p className="eyebrow">
               Websites + AI for local businesses in Southern Ontario
             </p>
             <MaskedHeading className="mt-5 max-w-[11ch] font-display text-[clamp(2.6rem,7vw,5.2rem)] leading-[0.95]">
@@ -135,9 +132,9 @@ export default function HomePage() {
             </h2>
           </Reveal>
 
-          <div className="mt-12 grid gap-4 lg:grid-cols-3">
-            <SpotlightCard className="lg:col-span-1">
-              <h3 className="font-display text-2xl text-[var(--color-text)]">
+          <div className="bento mt-12">
+            <SpotlightCard className="bento-5 min-h-[14rem]">
+              <h3 className="font-display text-3xl text-[var(--color-text)]">
                 Websites and hosting
               </h3>
               <p className="mt-4 text-[var(--color-muted)]">
@@ -146,8 +143,8 @@ export default function HomePage() {
               </p>
             </SpotlightCard>
 
-            <SpotlightCard className="lg:col-span-2">
-              <h3 className="font-display text-2xl text-[var(--color-text)]">
+            <SpotlightCard className="bento-7">
+              <h3 className="font-display text-3xl text-[var(--color-text)]">
                 AI automations
               </h3>
               <p className="mt-4 text-[var(--color-muted)]">
@@ -196,8 +193,8 @@ export default function HomePage() {
               </ul>
             </SpotlightCard>
 
-            <SpotlightCard className="lg:col-span-3">
-              <h3 className="font-display text-2xl text-[var(--color-text)]">
+            <SpotlightCard className="bento-12">
+              <h3 className="font-display text-3xl text-[var(--color-text)]">
                 AI consulting
               </h3>
               <p className="mt-4 max-w-3xl text-[var(--color-muted)]">
@@ -218,12 +215,12 @@ export default function HomePage() {
               Real sites for real local businesses.
             </h2>
           </Reveal>
-          <div className="mt-10 grid gap-4 sm:grid-cols-2">
-            <SpotlightCard>
+          <div className="bento mt-10">
+            <SpotlightCard className="bento-7 min-h-[12rem]">
               <span className="label-pill" data-kind="Client site">
                 Client site
               </span>
-              <h3 className="mt-4 font-display text-3xl text-[var(--color-text)]">
+              <h3 className="mt-4 font-display text-3xl text-[var(--color-text)] md:text-4xl">
                 RHR Tax
               </h3>
               <a
@@ -235,7 +232,7 @@ export default function HomePage() {
                 rhrtax.ca →
               </a>
             </SpotlightCard>
-            <SpotlightCard>
+            <SpotlightCard className="bento-5 min-h-[12rem]">
               <span className="label-pill" data-kind="Site offline">
                 Site offline
               </span>
@@ -278,15 +275,9 @@ export default function HomePage() {
           <div className="mt-10 grid gap-3">
             {PRICING.map((row, i) => (
               <Reveal key={row.label} delay={i * 0.05}>
-                <div
-                  className={`flex flex-wrap items-baseline justify-between gap-3 rounded-2xl border px-5 py-5 ${
-                    i === 0
-                      ? "border-[color-mix(in_srgb,var(--color-lilac)_40%,transparent)] bg-[color-mix(in_srgb,var(--color-lilac)_8%,transparent)]"
-                      : "border-[var(--color-border)] bg-[var(--color-surface)]"
-                  }`}
-                >
+                <div className={`price-row ${i === 0 ? "price-row--featured" : ""}`}>
                   <div>
-                    <p className="font-display text-xl text-[var(--color-text)]">
+                    <p className="font-display text-xl text-[var(--color-text)] md:text-2xl">
                       {row.label}
                     </p>
                     {row.note ? (
@@ -295,7 +286,7 @@ export default function HomePage() {
                       </p>
                     ) : null}
                   </div>
-                  <p className="font-display text-2xl text-[var(--color-lilac)]">
+                  <p className="font-display text-2xl text-[var(--color-text)] md:text-3xl">
                     {row.value}
                   </p>
                 </div>

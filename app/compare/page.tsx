@@ -1,7 +1,12 @@
 import type { Metadata } from "next";
+import {
+  CompareMatrix,
+  type CompareRow,
+} from "@/app/components/CompareMatrix";
 import { DemoFormSection } from "@/app/components/DemoFormSection";
-import { Reveal } from "@/app/components/Reveal";
 import { MaskedHeading } from "@/app/components/MaskedHeading";
+import { Reveal } from "@/app/components/Reveal";
+import { SpotlightCard } from "@/app/components/SpotlightCard";
 
 export const metadata: Metadata = {
   title: {
@@ -12,17 +17,20 @@ export const metadata: Metadata = {
   alternates: { canonical: "/compare/" },
 };
 
-const ROWS = [
+const ROWS: CompareRow[] = [
   {
     criterion: "Price",
+    group: "cost",
     uptisement:
       "Free demo. Websites from $300, one time. Hosting $30/month. Automations and consulting priced on a 15-min call.",
     diy: "You pay the platform. Plans and add-ons vary.",
-    agency: "Typically a much larger project fee, sometimes plus a monthly retainer. Varies.",
+    agency:
+      "Typically a much larger project fee, sometimes plus a monthly retainer. Varies.",
     freelancer: "Varies widely.",
   },
   {
     criterion: "Time to launch",
+    group: "time",
     uptisement:
       "A free demo within 24 hours. Time to go live after you approve it varies.",
     diy: "You build it yourself. It takes as long as you spend on it.",
@@ -31,6 +39,7 @@ const ROWS = [
   },
   {
     criterion: "Free demo first",
+    group: "time",
     uptisement:
       "Yes. A personalised preview of your site, free, within 24 hours.",
     diy: "No. You set it up yourself.",
@@ -40,6 +49,7 @@ const ROWS = [
   },
   {
     criterion: "Built for booking",
+    group: "ownership",
     uptisement: "Yes. Sites are built around getting customers to book.",
     diy: "Possible, if you set up booking tools yourself.",
     agency: "Varies.",
@@ -47,6 +57,7 @@ const ROWS = [
   },
   {
     criterion: "Automations available",
+    group: "ownership",
     uptisement:
       "Yes. Missed-call text-back, instant quotes, review requests and booking reminders, priced on a 15-min call.",
     diy: "You add them yourself, or buy platform add-ons.",
@@ -55,6 +66,7 @@ const ROWS = [
   },
   {
     criterion: "Who does the work",
+    group: "ownership",
     uptisement: "Uptisement builds it for you. You work directly with Adil.",
     diy: "You build it yourself.",
     agency: "A team.",
@@ -62,6 +74,7 @@ const ROWS = [
   },
   {
     criterion: "Support",
+    group: "other",
     uptisement: "You work directly with Adil.",
     diy: "Platform help articles and platform support, not someone who already knows your business.",
     agency: "Varies. Often tied to a retainer.",
@@ -100,73 +113,32 @@ export default function ComparePage() {
       </section>
 
       <section className="section pt-0">
-        <div className="container-x wrap grid gap-5">
-          {ROWS.map((row, i) => (
-            <Reveal key={row.criterion} delay={i * 0.04}>
-              <div className="grid gap-3">
-                <h2 className="font-display text-xl text-[var(--color-text)]">
-                  {row.criterion}
-                </h2>
-                <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-4">
-                  <div className="compare-card compare-card--highlight">
-                    <p className="text-xs font-bold uppercase tracking-wider text-[var(--color-lilac)]">
-                      Uptisement
-                    </p>
-                    <p className="mt-2 text-sm text-[var(--color-muted)]">
-                      {row.uptisement}
-                    </p>
-                  </div>
-                  <div className="compare-card">
-                    <p className="text-xs font-bold uppercase tracking-wider text-[var(--color-muted)]">
-                      DIY builders
-                    </p>
-                    <p className="mt-2 text-sm text-[var(--color-muted)]">
-                      {row.diy}
-                    </p>
-                  </div>
-                  <div className="compare-card">
-                    <p className="text-xs font-bold uppercase tracking-wider text-[var(--color-muted)]">
-                      A big agency
-                    </p>
-                    <p className="mt-2 text-sm text-[var(--color-muted)]">
-                      {row.agency}
-                    </p>
-                  </div>
-                  <div className="compare-card">
-                    <p className="text-xs font-bold uppercase tracking-wider text-[var(--color-muted)]">
-                      A freelancer
-                    </p>
-                    <p className="mt-2 text-sm text-[var(--color-muted)]">
-                      {row.freelancer}
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </Reveal>
-          ))}
+        <div className="container-x wrap">
+          <CompareMatrix rows={ROWS} />
         </div>
       </section>
 
       <section className="section pt-0">
         <div className="container-x wrap max-w-3xl">
           <Reveal>
-            <h2 className="font-display text-2xl text-[var(--color-text)]">
+            <h2 className="font-display text-3xl text-[var(--color-text)] md:text-4xl">
               When we’re not the right fit
             </h2>
             <p className="mt-3 text-[var(--color-muted)]">
               We’re not the right fit for everyone, and that’s fine.
             </p>
-            <ul className="mt-5 grid gap-3">
-              {NOT_FIT.map((line) => (
-                <li
-                  key={line}
-                  className="text-[var(--color-muted)]"
-                >
-                  {line}
-                </li>
-              ))}
-            </ul>
-            <p className="mt-6 text-[var(--color-muted)]">
+          </Reveal>
+          <div className="bento mt-8">
+            {NOT_FIT.map((line, i) => (
+              <Reveal key={line} delay={i * 0.05} className="bento-6">
+                <SpotlightCard className="h-full">
+                  <p className="text-[var(--color-muted)]">{line}</p>
+                </SpotlightCard>
+              </Reveal>
+            ))}
+          </div>
+          <Reveal delay={0.2}>
+            <p className="mt-8 text-[var(--color-text)]">
               If you just need a clear, booking-first site, and maybe one
               automation later, we’re built for that. The free demo is the
               easiest way to see if it feels right.

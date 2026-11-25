@@ -47,7 +47,7 @@ export default function RootLayout({
       className={`${geistSans.variable} ${instrumentSerif.variable}`}
     >
       <head>
-        <meta name="theme-color" content="#0A0710" />
+        <meta name="theme-color" content="#050505" />
         <link
           rel="preload"
           href="/fonts/geist-sans.woff2"

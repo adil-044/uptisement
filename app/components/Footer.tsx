@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { AREA_SHORT, BOOK_URL, EMAIL, SINCE_YEAR } from "@/app/lib/config";
+import { BrandLogo } from "./BrandLogo";
 import { HaloButton } from "./HaloButton";
 
 export function Footer() {
@@ -7,9 +8,7 @@ export function Footer() {
     <footer className="border-t border-[var(--color-border)] pb-14 pt-14">
       <div className="container-x wrap grid gap-10 md:grid-cols-[1.3fr_1fr_1fr]">
         <div>
-          <Link href="/" className="wordmark text-2xl">
-            uptisement
-          </Link>
+          <BrandLogo size="footer" />
           <p className="mt-3 max-w-sm text-sm text-[var(--color-muted)]">
             {AREA_SHORT} · Since {SINCE_YEAR}
           </p>

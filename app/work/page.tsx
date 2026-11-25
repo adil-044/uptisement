@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { DemoFormSection } from "@/app/components/DemoFormSection";
-import { Reveal } from "@/app/components/Reveal";
 import { MaskedHeading } from "@/app/components/MaskedHeading";
+import { Reveal } from "@/app/components/Reveal";
+import { SpotlightCard } from "@/app/components/SpotlightCard";
 import { WORK_ITEMS } from "@/app/lib/work";
 
 export const metadata: Metadata = {
@@ -10,6 +11,8 @@ export const metadata: Metadata = {
     "Real work and verbatim reviews from local businesses, including RHR Tax, Kuzz Kreations, Miami Hair Spa and Chocor.",
   alternates: { canonical: "/work/" },
 };
+
+const SPANS = ["bento-7", "bento-5", "bento-5", "bento-7"];
 
 export default function WorkPage() {
   return (
@@ -30,14 +33,14 @@ export default function WorkPage() {
       </section>
 
       <section className="section pt-0">
-        <div className="container-x wrap grid gap-5">
-          {WORK_ITEMS.map((item, i) => {
-            const card = (
-              <article className="spotlight-card p-6 md:p-7">
+        <div className="container-x wrap bento">
+          {WORK_ITEMS.map((item, i) => (
+            <Reveal key={item.title} delay={i * 0.06} className={SPANS[i]}>
+              <SpotlightCard className="h-full">
                 <span className="label-pill" data-kind={item.label}>
                   {item.label}
                 </span>
-                <h2 className="mt-3 font-display text-2xl text-[var(--color-text)]">
+                <h2 className="mt-4 font-display text-3xl text-[var(--color-text)]">
                   {item.title}
                 </h2>
                 {item.href ? (
@@ -52,26 +55,16 @@ export default function WorkPage() {
                 ) : null}
                 <p className="remy-note mt-5">{item.remyNote}</p>
                 <blockquote className="mt-5 border-t border-[var(--color-border)] pt-4">
-                  <p className="text-lg text-[var(--color-text)]">
+                  <p className="font-display text-xl text-[var(--color-text)]">
                     “{item.review.quote}”
                   </p>
-                  <footer className="mt-2 text-sm font-semibold text-[var(--color-lilac)]">
+                  <footer className="mt-2 text-sm font-semibold text-[var(--color-muted)]">
                     — {item.review.attribution}
                   </footer>
                 </blockquote>
-              </article>
-            );
-
-            return (
-              <Reveal
-                key={item.title}
-                delay={i * 0.06}
-                className={item.href ? "cursor-card" : undefined}
-              >
-                {card}
-              </Reveal>
-            );
-          })}
+              </SpotlightCard>
+            </Reveal>
+          ))}
         </div>
       </section>
 

@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 40" fill="none" role="img" aria-label="Uptisement">
+  <!-- Corner mark (top-left bracket) -->
+  <path d="M3 3h14M3 3v14" stroke="currentColor" stroke-width="3.5" stroke-linecap="square"/>
+  <!-- Wordmark -->
+  <text
+    x="28"
+    y="28"
+    fill="currentColor"
+    font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, sans-serif"
+    font-size="24"
+    font-weight="600"
+    letter-spacing="-0.02em"
+  >Uptisement</text>
+</svg>
