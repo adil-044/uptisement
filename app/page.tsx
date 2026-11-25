@@ -7,10 +7,12 @@ import { DemoFormSection } from "./components/DemoFormSection";
 import { FAQList } from "./components/FAQList";
 import { LogoLoop } from "./components/LogoLoop";
 import { MaskedHeading } from "./components/MaskedHeading";
+import { ParallaxStrip } from "./components/ParallaxStrip";
 import { Reveal } from "./components/Reveal";
 import { ScrollStack } from "./components/ScrollStack";
 import { SoftAurora } from "./components/SoftAurora";
 import { SpotlightCard } from "./components/SpotlightCard";
+import { WordReveal } from "./components/WordReveal";
 import { REVIEWS } from "./lib/reviews";
 
 export const metadata: Metadata = {
@@ -62,7 +64,10 @@ export default function HomePage() {
             <p className="eyebrow">
               Websites + AI for local businesses in Southern Ontario
             </p>
-            <MaskedHeading className="mt-5 max-w-[11ch] font-display text-[clamp(2.6rem,7vw,5.2rem)] leading-[0.95]">
+            <MaskedHeading
+              priority
+              className="mt-5 max-w-[11ch] font-display text-[clamp(2.6rem,7vw,5.2rem)] leading-[0.95]"
+            >
               See your new website before you pay a cent.
             </MaskedHeading>
             <Reveal delay={0.15}>
@@ -95,9 +100,12 @@ export default function HomePage() {
       <section className="section">
         <div className="container-x wrap max-w-3xl">
           <Reveal>
-            <h2 className="font-display text-4xl text-[var(--color-text)] md:text-5xl">
+            <WordReveal
+              as="h2"
+              className="font-display text-4xl text-[var(--color-text)] md:text-5xl"
+            >
               Your next customer is searching right now.
-            </h2>
+            </WordReveal>
             <p className="section-lede text-lg">
               If your site is slow, hard to use on a phone, or makes people call
               during business hours, they book someone else. Most owners never
@@ -133,7 +141,8 @@ export default function HomePage() {
           </Reveal>
 
           <div className="bento mt-12">
-            <SpotlightCard className="bento-5 min-h-[14rem]">
+            <Reveal className="bento-5" stagger={0}>
+              <SpotlightCard className="min-h-[14rem] h-full">
               <h3 className="font-display text-3xl text-[var(--color-text)]">
                 Websites and hosting
               </h3>
@@ -141,9 +150,11 @@ export default function HomePage() {
                 Fast, mobile-first sites built around one thing: getting
                 customers to book. From $300, hosting $30/month.
               </p>
-            </SpotlightCard>
+              </SpotlightCard>
+            </Reveal>
 
-            <SpotlightCard className="bento-7">
+            <Reveal className="bento-7" stagger={1}>
+              <SpotlightCard className="h-full">
               <h3 className="font-display text-3xl text-[var(--color-text)]">
                 AI automations
               </h3>
@@ -191,9 +202,11 @@ export default function HomePage() {
                   <AutomationDiagram kind="booking-reminders" className="mt-3" />
                 </li>
               </ul>
-            </SpotlightCard>
+              </SpotlightCard>
+            </Reveal>
 
-            <SpotlightCard className="bento-12">
+            <Reveal className="bento-12" stagger={2}>
+              <SpotlightCard className="h-full">
               <h3 className="font-display text-3xl text-[var(--color-text)]">
                 AI consulting
               </h3>
@@ -202,7 +215,8 @@ export default function HomePage() {
                 you work today and show you the one or two places it saves real
                 time. Plain English, no jargon.
               </p>
-            </SpotlightCard>
+              </SpotlightCard>
+            </Reveal>
           </div>
         </div>
       </section>
@@ -211,12 +225,16 @@ export default function HomePage() {
       <section className="section">
         <div className="container-x wrap">
           <Reveal>
-            <h2 className="font-display text-4xl text-[var(--color-text)] md:text-5xl">
+            <WordReveal
+              as="h2"
+              className="font-display text-4xl text-[var(--color-text)] md:text-5xl"
+            >
               Real sites for real local businesses.
-            </h2>
+            </WordReveal>
           </Reveal>
-          <div className="bento mt-10">
-            <SpotlightCard className="bento-7 min-h-[12rem]">
+          <ParallaxStrip className="bento mt-10" distance={28}>
+            <Reveal className="bento-7" stagger={0}>
+              <SpotlightCard className="min-h-[12rem] h-full">
               <span className="label-pill" data-kind="Client site">
                 Client site
               </span>
@@ -231,8 +249,10 @@ export default function HomePage() {
               >
                 rhrtax.ca →
               </a>
-            </SpotlightCard>
-            <SpotlightCard className="bento-5 min-h-[12rem]">
+              </SpotlightCard>
+            </Reveal>
+            <Reveal className="bento-5" stagger={1}>
+              <SpotlightCard className="min-h-[12rem] h-full">
               <span className="label-pill" data-kind="Site offline">
                 Site offline
               </span>
@@ -242,8 +262,9 @@ export default function HomePage() {
               <p className="mt-4 text-sm text-[var(--color-muted)]">
                 Client site — currently offline
               </p>
-            </SpotlightCard>
-          </div>
+              </SpotlightCard>
+            </Reveal>
+          </ParallaxStrip>
           <p className="mt-6">
             <Link href="/work/" className="link-plain">
               See all work →
@@ -260,7 +281,9 @@ export default function HomePage() {
               Reviews
             </h2>
           </Reveal>
-          <CardStack reviews={REVIEWS} />
+          <ParallaxStrip distance={24}>
+            <CardStack reviews={REVIEWS} />
+          </ParallaxStrip>
         </div>
       </section>
 

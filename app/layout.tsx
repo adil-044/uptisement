@@ -4,9 +4,12 @@ import { Header } from "./components/Header";
 import { JsonLd } from "./components/JsonLd";
 import { MobileBookBar } from "./components/MobileBookBar";
 import { MotionRoot } from "./components/MotionRoot";
+import { ScrollProgress } from "./components/ScrollProgress";
 import { SmoothScroll } from "./components/SmoothScroll";
+import { ThemeProvider } from "./components/ThemeProvider";
 import { geistSans, instrumentSerif } from "./lib/fonts";
 import { SITE_URL } from "./lib/config";
+import { THEME_BOOT_SCRIPT } from "./lib/theme";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -45,9 +48,11 @@ export default function RootLayout({
     <html
       lang="en"
       className={`${geistSans.variable} ${instrumentSerif.variable}`}
+      suppressHydrationWarning
     >
       <head>
         <meta name="theme-color" content="#050505" />
+        <script dangerouslySetInnerHTML={{ __html: THEME_BOOT_SCRIPT }} />
         <link
           rel="preload"
           href="/fonts/geist-sans.woff2"
@@ -65,16 +70,19 @@ export default function RootLayout({
       </head>
       <body className="site-shell font-body antialiased">
         <MotionRoot>
-          <SmoothScroll />
-          <JsonLd />
-          <a className="skip-link" href="#content">
-            Skip to content
-          </a>
-          <div className="site-bg" aria-hidden="true" />
-          <Header />
-          <main id="content">{children}</main>
-          <Footer />
-          <MobileBookBar />
+          <ThemeProvider>
+            <SmoothScroll />
+            <ScrollProgress />
+            <JsonLd />
+            <a className="skip-link" href="#content">
+              Skip to content
+            </a>
+            <div className="site-bg" aria-hidden="true" />
+            <Header />
+            <main id="content">{children}</main>
+            <Footer />
+            <MobileBookBar />
+          </ThemeProvider>
         </MotionRoot>
       </body>
     </html>

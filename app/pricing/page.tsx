@@ -53,7 +53,7 @@ export default function PricingPage() {
       <section className="section pt-0">
         <div className="container-x wrap bento">
           {ROWS.map((row, i) => (
-            <Reveal key={row.title} delay={i * 0.05} className={row.span}>
+            <Reveal key={row.title} stagger={i} className={row.span}>
               <SpotlightCard
                 className={`h-full ${row.highlight ? "compare-card--highlight" : ""}`}
               >

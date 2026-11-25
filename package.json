@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build && node scripts/sync-pages.mjs",
+    "build:preview": "next build",
     "start": "next start",
     "lint": "next lint"
   },
