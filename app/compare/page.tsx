@@ -92,7 +92,7 @@ const NOT_FIT = [
 export default function ComparePage() {
   return (
     <>
-      <section className="section pb-8 pt-32 md:pt-40">
+      <section className="section pb-8 pt-40 md:pt-48">
         <div className="container-x wrap max-w-3xl">
           <p className="eyebrow">Compare us</p>
           <MaskedHeading className="mt-4 font-display text-[clamp(2.2rem,5vw,3.6rem)] leading-[1.02]">
