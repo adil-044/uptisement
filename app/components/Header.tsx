@@ -30,11 +30,11 @@ export function Header() {
 
   return (
     <>
-      <div className="pointer-events-none fixed inset-x-0 top-0 z-50 flex justify-center px-3 pt-4 md:pt-5">
-        <header className="pointer-events-auto relative w-full max-w-[52rem]">
+      <div className="pointer-events-none fixed inset-x-0 top-0 z-50 flex justify-center px-4 pt-4 md:pt-5">
+        <header className="pointer-events-auto relative w-[min(100%,36rem)] md:w-[min(100%,52rem)]">
           <nav
             aria-label="Primary"
-            className="glass-surface flex items-center gap-2 rounded-full px-3 py-2 md:gap-3 md:px-4 md:py-2.5"
+            className="glass-surface flex items-center gap-2 rounded-full px-3 py-2 shadow-[0_12px_40px_rgba(0,0,0,0.45)] md:gap-3 md:px-4 md:py-2.5"
           >
             <Link
               href="/"
