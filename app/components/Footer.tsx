@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import { AREA_SHORT, EMAIL, SINCE_YEAR } from "@/app/lib/config";
 import { BookLink } from "./BookLink";
@@ -12,11 +11,14 @@ export function Footer() {
             href="/"
             className="inline-flex min-h-11 items-center gap-2 font-display text-lg font-bold"
           >
-            <Image
-              src="/brand/uptisement-logo-locked.png"
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/brand/uptisement-logo-mark.png"
               alt=""
               width={26}
               height={26}
+              className="h-[26px] w-[26px] rounded-sm"
+              decoding="async"
             />
             Uptisement
           </Link>

@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { m, useMotionValueEvent, useReducedMotion, useScroll } from "motion/react";
 import { useEffect, useState } from "react";
@@ -59,13 +58,14 @@ export function Header() {
             href="/"
             className="flex items-center gap-2.5 font-display text-lg font-bold tracking-tight text-white"
           >
-            <Image
-              src="/brand/uptisement-logo-locked.png"
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/brand/uptisement-logo-mark.png"
               alt=""
-              width={shrunk ? 24 : 28}
-              height={shrunk ? 24 : 28}
-              className="rounded-sm transition-[width,height] duration-200"
-              priority
+              width={28}
+              height={28}
+              className="h-7 w-7 rounded-sm"
+              decoding="async"
             />
             <span>Uptisement</span>
           </Link>
