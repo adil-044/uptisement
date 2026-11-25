@@ -28,7 +28,7 @@ export function Header() {
 
   return (
     <>
-      <div className="pointer-events-none fixed inset-x-0 top-0 z-50 flex justify-center px-4 pt-4 md:pt-5">
+      <div className="pointer-events-none fixed inset-x-0 top-0 z-[200] flex justify-center px-4 pt-4 md:pt-5">
         <header className="pointer-events-auto relative w-[min(100%,36rem)] md:w-[min(100%,54rem)]">
           <nav
             aria-label="Primary"
@@ -102,7 +102,7 @@ export function Header() {
         aria-modal="true"
         aria-label="Site menu"
         hidden={!open}
-        className={`fixed inset-0 z-40 md:hidden ${
+        className={`fixed inset-0 z-[190] md:hidden ${
           open ? "pointer-events-auto" : "pointer-events-none"
         }`}
       >
