@@ -2,6 +2,7 @@
 
 import { useState, type FormEvent } from "react";
 import { BOOK_URL, FORM_SUBJECT, FORM_SUBMIT_URL } from "@/app/lib/config";
+import { HaloButton } from "./HaloButton";
 
 const BUSINESS_TYPES = [
   "HVAC",
@@ -17,7 +18,6 @@ type Status = "idle" | "submitting" | "success" | "error";
 
 type Props = {
   id?: string;
-  /** Compact spacing for hero placement */
   compact?: boolean;
 };
 
@@ -60,35 +60,32 @@ export function DemoForm({ id = "demo-form", compact = false }: Props) {
 
       setStatus("success");
       form.reset();
-    } catch (err) {
+    } catch {
       setStatus("error");
       setErrorMsg(
-        err instanceof Error
-          ? "Something went wrong. Email sales@uptisement.com or book a call."
-          : "Something went wrong. Email sales@uptisement.com or book a call.",
+        "Something went wrong. Email sales@uptisement.com or book a call.",
       );
     }
   }
 
+  const shell =
+    "halo-card star-border p-5 md:p-6 " +
+    (compact ? "" : "");
+
   if (status === "success") {
     return (
-      <div
-        className="form-panel"
-        role="status"
-        aria-live="polite"
-        id={id}
-      >
-        <p className="font-display text-xl font-bold text-[var(--color-mint)]">
+      <div className={shell} role="status" aria-live="polite" id={id}>
+        <p className="font-display text-2xl text-[var(--color-lilac)]">
           Got it. Your demo lands in your inbox within 24 hours.
         </p>
-        <p className={`text-sm text-[color-mix(in_srgb,white_70%,transparent)] ${compact ? "mt-2" : "mt-3"}`}>
+        <p className={`text-sm text-[var(--color-muted)] ${compact ? "mt-2" : "mt-3"}`}>
           Rather talk first?{" "}
           <a
             href={BOOK_URL}
             target="_blank"
             rel="noopener noreferrer"
             data-book
-            className="font-semibold text-[var(--color-mint)] underline underline-offset-2"
+            className="link-plain"
           >
             Book a 15-min call →
           </a>
@@ -100,17 +97,23 @@ export function DemoForm({ id = "demo-form", compact = false }: Props) {
   return (
     <form
       id={id}
-      className={`form-panel grid ${compact ? "gap-3" : "gap-3.5"}`}
+      className={`${shell} grid ${compact ? "gap-3" : "gap-3.5"}`}
       onSubmit={onSubmit}
-      noValidate={false}
     >
-      <h2 className="font-display text-xl font-bold tracking-tight text-white">
+      <h2 className="font-display text-2xl tracking-tight text-[var(--color-text)]">
         Claim your free demo
       </h2>
 
       <input type="hidden" name="_subject" value={FORM_SUBJECT} />
       <input type="hidden" name="_template" value="table" />
-      <input type="text" name="_honey" className="hidden" tabIndex={-1} autoComplete="off" aria-hidden="true" />
+      <input
+        type="text"
+        name="_honey"
+        className="hidden"
+        tabIndex={-1}
+        autoComplete="off"
+        aria-hidden="true"
+      />
 
       <div className="form-field">
         <label htmlFor={`${id}-business`}>Business name</label>
@@ -150,7 +153,8 @@ export function DemoForm({ id = "demo-form", compact = false }: Props) {
 
       <div className="form-field">
         <label htmlFor={`${id}-website`}>
-          Current website <span className="font-normal opacity-70">(optional)</span>
+          Current website{" "}
+          <span className="font-normal opacity-70">(optional)</span>
         </label>
         <input
           id={`${id}-website`}
@@ -184,15 +188,15 @@ export function DemoForm({ id = "demo-form", compact = false }: Props) {
         />
       </div>
 
-      <button
+      <HaloButton
         type="submit"
-        className="btn btn-mint w-full"
+        className="w-full"
         disabled={status === "submitting"}
       >
         {status === "submitting" ? "Sending…" : "Claim my free demo"}
-      </button>
+      </HaloButton>
 
-      <p className="text-center text-sm text-[color-mix(in_srgb,white_68%,transparent)]">
+      <p className="text-center text-sm text-[var(--color-muted)]">
         Free. No obligation. From $300 if you love it.
       </p>
 
@@ -202,14 +206,14 @@ export function DemoForm({ id = "demo-form", compact = false }: Props) {
           target="_blank"
           rel="noopener noreferrer"
           data-book
-          className="font-semibold text-[var(--color-mint)] underline underline-offset-2"
+          className="link-plain"
         >
           Rather talk first? Book a 15-min call →
         </a>
       </p>
 
       {status === "error" ? (
-        <p className="text-sm text-[#ffb199]" role="alert">
+        <p className="text-sm text-[var(--color-champagne)]" role="alert">
           {errorMsg}
         </p>
       ) : null}

@@ -5,6 +5,7 @@ import { JsonLd } from "./components/JsonLd";
 import { MobileBookBar } from "./components/MobileBookBar";
 import { MotionRoot } from "./components/MotionRoot";
 import { SmoothScroll } from "./components/SmoothScroll";
+import { geistSans, instrumentSerif } from "./lib/fonts";
 import { SITE_URL } from "./lib/config";
 import "./globals.css";
 
@@ -25,14 +26,6 @@ export const metadata: Metadata = {
     title: "See your new website before you pay a cent | Uptisement",
     description:
       "Tell us about your business. Within 24 hours we’ll send a free, personalised preview of a booking-first website built for you. From $300. Southern Ontario.",
-    images: [
-      {
-        url: "/brand/uptisement-logo-locked-with-services.png",
-        width: 1200,
-        height: 630,
-        alt: "Uptisement",
-      },
-    ],
     siteName: "Uptisement",
   },
   twitter: {
@@ -40,10 +33,6 @@ export const metadata: Metadata = {
     title: "See your new website before you pay a cent | Uptisement",
     description:
       "Free personalised website demo within 24 hours. From $300. Southern Ontario.",
-    images: ["/brand/uptisement-logo-locked-with-services.png"],
-  },
-  icons: {
-    icon: "/brand/uptisement-logo-locked.png",
   },
 };
 
@@ -53,19 +42,22 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html
+      lang="en"
+      className={`${geistSans.variable} ${instrumentSerif.variable}`}
+    >
       <head>
-        <meta name="theme-color" content="#0B1220" />
+        <meta name="theme-color" content="#0A0710" />
         <link
           rel="preload"
-          href="/fonts/manrope.woff2"
+          href="/fonts/geist-sans.woff2"
           as="font"
           type="font/woff2"
           crossOrigin=""
         />
         <link
           rel="preload"
-          href="/fonts/syne.woff2"
+          href="/fonts/instrument-serif.woff2"
           as="font"
           type="font/woff2"
           crossOrigin=""

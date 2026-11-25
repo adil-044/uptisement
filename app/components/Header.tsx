@@ -1,9 +1,9 @@
 "use client";
 
 import Link from "next/link";
-import { m, useMotionValueEvent, useReducedMotion, useScroll } from "motion/react";
+import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import { BookLink } from "./BookLink";
+import { HaloButton } from "./HaloButton";
 
 const NAV = [
   { href: "/services/", label: "Services" },
@@ -14,17 +14,12 @@ const NAV = [
 ];
 
 /**
- * Shrinking sticky header. Claim-demo CTA stays in the DOM.
+ * Floating centred Pill Nav in Glass Surface + Edge Blur.
+ * Tiny MotionSites-style: wordmark · links · one Halo CTA.
  */
 export function Header() {
+  const pathname = usePathname();
   const [open, setOpen] = useState(false);
-  const [shrunk, setShrunk] = useState(false);
-  const reduce = useReducedMotion();
-  const { scrollY } = useScroll();
-
-  useMotionValueEvent(scrollY, "change", (v) => {
-    setShrunk(v > 100);
-  });
 
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
@@ -35,94 +30,78 @@ export function Header() {
 
   return (
     <>
-      <m.header
-        className={`site-header site-header--glass fixed inset-x-0 top-0 z-50 text-white ${
-          shrunk ? "is-shrunk" : ""
-        }`}
-        animate={
-          reduce
-            ? undefined
-            : {
-                paddingTop: shrunk ? 8 : 14,
-                paddingBottom: shrunk ? 8 : 14,
-              }
-        }
-        transition={{ duration: 0.22, ease: [0.2, 0.8, 0.2, 1] }}
-      >
-        <div
-          className={`container-x wrap flex items-center justify-between gap-3 ${
-            reduce ? "py-3" : "py-0"
-          }`}
-        >
-          <Link
-            href="/"
-            className="flex items-center gap-2.5 font-display text-lg font-bold tracking-tight text-white"
+      <div className="pointer-events-none fixed inset-x-0 top-0 z-50 flex justify-center px-3 pt-4 md:pt-5">
+        <header className="pointer-events-auto relative w-full max-w-[52rem]">
+          <nav
+            aria-label="Primary"
+            className="glass-surface flex items-center gap-2 rounded-full px-3 py-2 md:gap-3 md:px-4 md:py-2.5"
           >
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src="/brand/uptisement-logo-mark.png"
-              alt=""
-              width={28}
-              height={28}
-              className="h-7 w-7 rounded-sm"
-              decoding="async"
-            />
-            <span>Uptisement</span>
-          </Link>
+            <Link
+              href="/"
+              className="wordmark shrink-0 px-1.5 text-lg md:text-xl"
+            >
+              uptisement
+            </Link>
 
-          <nav className="hidden items-center gap-6 lg:flex" aria-label="Primary">
-            {NAV.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                className="link-nav text-sm font-semibold"
+            <div className="mx-auto hidden items-center gap-1 md:flex">
+              {NAV.map((item) => {
+                const active =
+                  pathname === item.href ||
+                  (item.href !== "/" && pathname?.startsWith(item.href));
+                return (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    className={`rounded-full px-3 py-1.5 text-sm font-medium transition ${
+                      active
+                        ? "bg-[color-mix(in_srgb,var(--color-lilac)_16%,transparent)] text-[var(--color-text)]"
+                        : "text-[var(--color-muted)] hover:text-[var(--color-text)]"
+                    }`}
+                  >
+                    {item.label}
+                  </Link>
+                );
+              })}
+            </div>
+
+            <div className="ml-auto flex items-center gap-2 md:ml-0">
+              <HaloButton
+                href="/#claim-demo"
+                className="!min-h-9 !px-3 !text-sm"
               >
-                {item.label}
-              </Link>
-            ))}
-            <a href="/#claim-demo" className="btn btn-mint !min-h-11 !px-4 !text-sm">
-              Claim free demo
-            </a>
-            <BookLink className="btn btn-secondary !min-h-11 !px-3 !text-sm">
-              Book a 15-min call
-            </BookLink>
+                Free demo
+              </HaloButton>
+              <button
+                type="button"
+                className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-[var(--color-border)] text-[var(--color-text)] md:hidden"
+                aria-label={open ? "Close menu" : "Open menu"}
+                aria-expanded={open}
+                aria-controls="mobile-menu"
+                onClick={() => setOpen((v) => !v)}
+              >
+                <span aria-hidden className="flex w-3.5 flex-col gap-1">
+                  <i
+                    className={`block h-px bg-[var(--color-text)] transition ${
+                      open ? "translate-y-[5px] rotate-45" : ""
+                    }`}
+                  />
+                  <i
+                    className={`block h-px bg-[var(--color-text)] transition ${
+                      open ? "opacity-0" : ""
+                    }`}
+                  />
+                  <i
+                    className={`block h-px bg-[var(--color-text)] transition ${
+                      open ? "-translate-y-[5px] -rotate-45" : ""
+                    }`}
+                  />
+                </span>
+              </button>
+            </div>
           </nav>
-
-          <div className="flex items-center gap-2 lg:hidden">
-            <a
-              href="/#claim-demo"
-              className="btn btn-mint !min-h-10 !px-3 !text-sm"
-            >
-              Free demo
-            </a>
-            <button
-              type="button"
-              className="inline-flex h-11 w-11 items-center justify-center rounded-md border border-[color-mix(in_srgb,white_22%,transparent)] bg-white/5"
-              aria-label={open ? "Close menu" : "Open menu"}
-              aria-expanded={open}
-              aria-controls="mobile-menu"
-              onClick={() => setOpen((v) => !v)}
-            >
-              <span className="sr-only">Menu</span>
-              <span aria-hidden className="flex w-4 flex-col gap-1.5">
-                <i
-                  className={`block h-0.5 bg-white transition ${
-                    open ? "translate-y-[7px] rotate-45" : ""
-                  }`}
-                />
-                <i
-                  className={`block h-0.5 bg-white transition ${open ? "opacity-0" : ""}`}
-                />
-                <i
-                  className={`block h-0.5 bg-white transition ${
-                    open ? "-translate-y-[7px] -rotate-45" : ""
-                  }`}
-                />
-              </span>
-            </button>
-          </div>
-        </div>
-      </m.header>
+          <div className="edge-blur" aria-hidden />
+        </header>
+      </div>
 
       <div
         id="mobile-menu"
@@ -130,39 +109,33 @@ export function Header() {
         aria-modal="true"
         aria-label="Site menu"
         hidden={!open}
-        className={`fixed inset-0 z-40 lg:hidden ${open ? "pointer-events-auto" : "pointer-events-none"}`}
+        className={`fixed inset-0 z-40 md:hidden ${
+          open ? "pointer-events-auto" : "pointer-events-none"
+        }`}
       >
         <button
           type="button"
-          className="absolute inset-0 bg-[var(--color-ink)]/60"
+          className="absolute inset-0 bg-[var(--color-bg)]/70"
           aria-label="Close menu"
           onClick={() => setOpen(false)}
         />
-        <div className="absolute right-0 top-0 flex h-full w-[min(20rem,88vw)] max-w-full flex-col gap-6 bg-[var(--color-ink-soft)] p-6 pt-24 shadow-xl">
+        <div className="glass-surface absolute inset-x-4 top-20 rounded-2xl p-5">
           <nav className="flex flex-col gap-1" aria-label="Mobile">
             {NAV.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
-                className="rounded-lg px-3 py-3 text-lg font-semibold"
+                className="rounded-xl px-3 py-3 text-lg"
                 onClick={() => setOpen(false)}
               >
                 {item.label}
               </Link>
             ))}
-            <a
-              href="/#claim-demo"
-              className="rounded-lg px-3 py-3 text-lg font-semibold text-[var(--color-mint)]"
-              onClick={() => setOpen(false)}
-            >
-              Claim free demo
-            </a>
           </nav>
-          <BookLink onClick={() => setOpen(false)}>Book a 15-min call</BookLink>
-          <p className="text-sm text-[color-mix(in_srgb,white_65%,transparent)]">
-            <a href="mailto:sales@uptisement.com">sales@uptisement.com</a>
-            <br />
-            Southern Ontario
+          <p className="mt-4 text-sm text-[var(--color-muted)]">
+            <a href="mailto:sales@uptisement.com" className="link-plain">
+              sales@uptisement.com
+            </a>
           </p>
         </div>
       </div>

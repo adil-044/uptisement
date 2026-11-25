@@ -42,11 +42,11 @@ export function CookiePreferences() {
   }
 
   return (
-    <div className="surface-panel mt-4 p-5" id="pref-panel">
+    <div className="spotlight-card mt-4 p-5" id="pref-panel">
       <label className="flex items-start gap-3 py-2 text-sm">
         <input type="checkbox" checked disabled className="mt-1" />
         <span>
-          <strong className="text-white">Essential</strong> — site security,
+          <strong className="text-[var(--color-text)]">Essential</strong> — site security,
           consent memory, load balancing. Always on.
         </span>
       </label>
@@ -58,7 +58,7 @@ export function CookiePreferences() {
           onChange={(e) => setAnalytics(e.target.checked)}
         />
         <span>
-          <strong className="text-white">Analytics</strong> — Microsoft Clarity,
+          <strong className="text-[var(--color-text)]">Analytics</strong> — Microsoft Clarity,
           Google Analytics (when configured). Helps us see how the site is used.
         </span>
       </label>
@@ -70,14 +70,14 @@ export function CookiePreferences() {
           onChange={(e) => setMarketing(e.target.checked)}
         />
         <span>
-          <strong className="text-white">Marketing</strong> — Meta Pixel and
+          <strong className="text-[var(--color-text)]">Marketing</strong> — Meta Pixel and
           similar ads tags (when configured). Measure campaigns / remarketing.
         </span>
       </label>
       <div className="mt-4 flex flex-wrap gap-2">
         <button
           type="button"
-          className="btn btn-secondary !text-sm"
+          className="halo-btn !min-h-10 !text-sm"
           onClick={() =>
             save(
               { analytics: false, marketing: false },
@@ -89,7 +89,7 @@ export function CookiePreferences() {
         </button>
         <button
           type="button"
-          className="btn btn-secondary !text-sm"
+          className="halo-btn !min-h-10 !text-sm"
           onClick={() =>
             save({ analytics, marketing }, "Preferences saved.")
           }
@@ -98,7 +98,7 @@ export function CookiePreferences() {
         </button>
         <button
           type="button"
-          className="btn btn-mint !text-sm"
+          className="halo-btn !min-h-10 !text-sm"
           onClick={() =>
             save(
               { analytics: true, marketing: true },
@@ -109,7 +109,7 @@ export function CookiePreferences() {
           Accept all
         </button>
       </div>
-      <p className="mt-3 min-h-5 text-sm text-[var(--color-mint)]" aria-live="polite">
+      <p className="mt-3 min-h-5 text-sm text-[var(--color-lilac)]" aria-live="polite">
         {status}
       </p>
     </div>

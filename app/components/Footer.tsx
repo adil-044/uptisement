@@ -1,47 +1,43 @@
 import Link from "next/link";
-import { AREA_SHORT, EMAIL, SINCE_YEAR } from "@/app/lib/config";
-import { BookLink } from "./BookLink";
+import { AREA_SHORT, BOOK_URL, EMAIL, SINCE_YEAR } from "@/app/lib/config";
+import { HaloButton } from "./HaloButton";
 
 export function Footer() {
   return (
-    <footer className="border-t border-[color-mix(in_srgb,white_10%,transparent)] pb-12 pt-12">
-      <div className="container-x wrap grid gap-10 md:grid-cols-[1.2fr_1fr_1fr]">
+    <footer className="border-t border-[var(--color-border)] pb-14 pt-14">
+      <div className="container-x wrap grid gap-10 md:grid-cols-[1.3fr_1fr_1fr]">
         <div>
-          <Link
-            href="/"
-            className="inline-flex min-h-11 items-center gap-2 font-display text-lg font-bold"
-          >
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src="/brand/uptisement-logo-mark.png"
-              alt=""
-              width={26}
-              height={26}
-              className="h-[26px] w-[26px] rounded-sm"
-              decoding="async"
-            />
-            Uptisement
+          <Link href="/" className="wordmark text-2xl">
+            uptisement
           </Link>
-          <p className="mt-3 max-w-sm text-sm text-[color-mix(in_srgb,white_65%,transparent)]">
+          <p className="mt-3 max-w-sm text-sm text-[var(--color-muted)]">
             {AREA_SHORT} · Since {SINCE_YEAR}
           </p>
-          <p className="mt-2 text-sm">
-            <a
-              href={`mailto:${EMAIL}`}
-              className="font-semibold text-[var(--color-mint)] underline underline-offset-2"
-            >
+          <p className="mt-3 text-sm">
+            <a href={`mailto:${EMAIL}`} className="link-plain">
               {EMAIL}
             </a>
           </p>
-          <div className="mt-5">
-            <BookLink className="btn btn-book !text-sm">Book a 15-min call</BookLink>
+          <div className="mt-6">
+            <HaloButton href="/#claim-demo">Claim free demo</HaloButton>
           </div>
+          <p className="mt-4 text-sm">
+            <a
+              href={BOOK_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              data-book
+              className="link-plain"
+            >
+              Rather talk first? Book a 15-min call →
+            </a>
+          </p>
         </div>
         <div>
-          <p className="font-display text-sm font-bold uppercase tracking-wider">
+          <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[var(--color-muted)]">
             Navigate
           </p>
-          <ul className="mt-3 space-y-1 text-sm">
+          <ul className="mt-4 space-y-1 text-sm">
             {[
               ["/services/", "Services"],
               ["/work/", "Work"],
@@ -58,10 +54,10 @@ export function Footer() {
           </ul>
         </div>
         <div>
-          <p className="font-display text-sm font-bold uppercase tracking-wider">
+          <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[var(--color-muted)]">
             More
           </p>
-          <ul className="mt-3 space-y-1 text-sm">
+          <ul className="mt-4 space-y-1 text-sm">
             <li>
               <Link href="/trades/" className="inline-flex min-h-11 items-center">
                 For trades
@@ -85,7 +81,7 @@ export function Footer() {
           </ul>
         </div>
       </div>
-      <div className="container-x wrap mt-10 flex flex-wrap gap-4 border-t border-[color-mix(in_srgb,white_10%,transparent)] pt-6 text-xs text-[color-mix(in_srgb,white_55%,transparent)]">
+      <div className="container-x wrap mt-12 flex flex-wrap gap-4 border-t border-[var(--color-border)] pt-6 text-xs text-[var(--color-muted)]">
         <span className="inline-flex min-h-11 items-center">
           © {new Date().getFullYear()} Uptisement
         </span>

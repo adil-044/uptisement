@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { DemoFormSection } from "@/app/components/DemoFormSection";
 import { FAQList } from "@/app/components/FAQList";
 import { Reveal } from "@/app/components/Reveal";
-import { SlideUpHeadline } from "@/app/components/SlideUpHeadline";
+import { MaskedHeading } from "@/app/components/MaskedHeading";
 
 export const metadata: Metadata = {
   title: "Pricing",
@@ -36,12 +36,12 @@ const ROWS = [
 export default function PricingPage() {
   return (
     <>
-      <section className="section pb-8 pt-28 md:pt-32">
+      <section className="section pb-8 pt-32 md:pt-40">
         <div className="container-x wrap max-w-3xl">
           <p className="eyebrow">Pricing</p>
-          <SlideUpHeadline className="mt-4 font-display text-[clamp(2rem,4.5vw,3.2rem)] font-bold text-white">
+          <MaskedHeading className="mt-4 font-display text-[clamp(2.2rem,5vw,3.6rem)] leading-[1.02]">
             Simple pricing. See your site first.
-          </SlideUpHeadline>
+          </MaskedHeading>
         </div>
       </section>
 
@@ -52,15 +52,15 @@ export default function PricingPage() {
               <div
                 className={`rounded-xl border p-5 md:p-6 ${
                   row.highlight
-                    ? "border-[color-mix(in_srgb,var(--color-mint)_40%,transparent)] bg-[color-mix(in_srgb,var(--color-mint)_10%,transparent)]"
-                    : "border-[color-mix(in_srgb,white_10%,transparent)] bg-[color-mix(in_srgb,var(--color-ink-soft)_65%,transparent)]"
+                    ? "border-[color-mix(in_srgb,var(--color-lilac)_40%,transparent)] bg-[color-mix(in_srgb,var(--color-lilac)_10%,transparent)]"
+                    : "border-[var(--color-border)] bg-[color-mix(in_srgb,var(--color-surface)_65%,transparent)]"
                 }`}
               >
-                <h2 className="font-display text-xl font-bold text-white md:text-2xl">
+                <h2 className="font-display text-xl text-[var(--color-text)] md:text-2xl">
                   {row.title}
                 </h2>
                 {row.body ? (
-                  <p className="mt-3 text-[color-mix(in_srgb,white_74%,transparent)]">
+                  <p className="mt-3 text-[var(--color-muted)]">
                     {row.body}
                   </p>
                 ) : null}
@@ -74,7 +74,7 @@ export default function PricingPage() {
       <section className="section pt-0">
         <div className="container-x wrap max-w-3xl">
           <Reveal>
-            <h2 className="font-display text-3xl font-bold text-white">FAQ</h2>
+            <h2 className="font-display text-3xl text-[var(--color-text)]">FAQ</h2>
           </Reveal>
           <div className="mt-6">
             <FAQList

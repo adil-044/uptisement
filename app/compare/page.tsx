@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { DemoFormSection } from "@/app/components/DemoFormSection";
 import { Reveal } from "@/app/components/Reveal";
-import { SlideUpHeadline } from "@/app/components/SlideUpHeadline";
+import { MaskedHeading } from "@/app/components/MaskedHeading";
 
 export const metadata: Metadata = {
   title: {
@@ -79,19 +79,19 @@ const NOT_FIT = [
 export default function ComparePage() {
   return (
     <>
-      <section className="section pb-8 pt-28 md:pt-32">
+      <section className="section pb-8 pt-32 md:pt-40">
         <div className="container-x wrap max-w-3xl">
           <p className="eyebrow">Compare us</p>
-          <SlideUpHeadline className="mt-4 font-display text-[clamp(2rem,4.5vw,3.2rem)] font-bold text-white">
+          <MaskedHeading className="mt-4 font-display text-[clamp(2.2rem,5vw,3.6rem)] leading-[1.02]">
             How we compare.
-          </SlideUpHeadline>
+          </MaskedHeading>
           <Reveal delay={0.1}>
             <p className="section-lede">
               You can build a site yourself, hire a big agency, or work with a
               freelancer. Uptisement is a fourth option: a free preview of a
               booking-first site, then a simple path to go live if you want it.
             </p>
-            <p className="mt-4 text-[color-mix(in_srgb,white_72%,transparent)]">
+            <p className="mt-4 text-[var(--color-muted)]">
               This is a straight comparison. No named local companies, and no
               made-up numbers for anyone else.
             </p>
@@ -104,39 +104,39 @@ export default function ComparePage() {
           {ROWS.map((row, i) => (
             <Reveal key={row.criterion} delay={i * 0.04}>
               <div className="grid gap-3">
-                <h2 className="font-display text-xl font-bold text-white">
+                <h2 className="font-display text-xl text-[var(--color-text)]">
                   {row.criterion}
                 </h2>
                 <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-4">
                   <div className="compare-card compare-card--highlight">
-                    <p className="text-xs font-bold uppercase tracking-wider text-[var(--color-mint)]">
+                    <p className="text-xs font-bold uppercase tracking-wider text-[var(--color-lilac)]">
                       Uptisement
                     </p>
-                    <p className="mt-2 text-sm text-[color-mix(in_srgb,white_82%,transparent)]">
+                    <p className="mt-2 text-sm text-[var(--color-muted)]">
                       {row.uptisement}
                     </p>
                   </div>
                   <div className="compare-card">
-                    <p className="text-xs font-bold uppercase tracking-wider text-[color-mix(in_srgb,white_55%,transparent)]">
+                    <p className="text-xs font-bold uppercase tracking-wider text-[var(--color-muted)]">
                       DIY builders
                     </p>
-                    <p className="mt-2 text-sm text-[color-mix(in_srgb,white_72%,transparent)]">
+                    <p className="mt-2 text-sm text-[var(--color-muted)]">
                       {row.diy}
                     </p>
                   </div>
                   <div className="compare-card">
-                    <p className="text-xs font-bold uppercase tracking-wider text-[color-mix(in_srgb,white_55%,transparent)]">
+                    <p className="text-xs font-bold uppercase tracking-wider text-[var(--color-muted)]">
                       A big agency
                     </p>
-                    <p className="mt-2 text-sm text-[color-mix(in_srgb,white_72%,transparent)]">
+                    <p className="mt-2 text-sm text-[var(--color-muted)]">
                       {row.agency}
                     </p>
                   </div>
                   <div className="compare-card">
-                    <p className="text-xs font-bold uppercase tracking-wider text-[color-mix(in_srgb,white_55%,transparent)]">
+                    <p className="text-xs font-bold uppercase tracking-wider text-[var(--color-muted)]">
                       A freelancer
                     </p>
-                    <p className="mt-2 text-sm text-[color-mix(in_srgb,white_72%,transparent)]">
+                    <p className="mt-2 text-sm text-[var(--color-muted)]">
                       {row.freelancer}
                     </p>
                   </div>
@@ -150,23 +150,23 @@ export default function ComparePage() {
       <section className="section pt-0">
         <div className="container-x wrap max-w-3xl">
           <Reveal>
-            <h2 className="font-display text-2xl font-bold text-white">
+            <h2 className="font-display text-2xl text-[var(--color-text)]">
               When we’re not the right fit
             </h2>
-            <p className="mt-3 text-[color-mix(in_srgb,white_70%,transparent)]">
+            <p className="mt-3 text-[var(--color-muted)]">
               We’re not the right fit for everyone, and that’s fine.
             </p>
             <ul className="mt-5 grid gap-3">
               {NOT_FIT.map((line) => (
                 <li
                   key={line}
-                  className="text-[color-mix(in_srgb,white_74%,transparent)]"
+                  className="text-[var(--color-muted)]"
                 >
                   {line}
                 </li>
               ))}
             </ul>
-            <p className="mt-6 text-[color-mix(in_srgb,white_78%,transparent)]">
+            <p className="mt-6 text-[var(--color-muted)]">
               If you just need a clear, booking-first site, and maybe one
               automation later, we’re built for that. The free demo is the
               easiest way to see if it feels right.

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { DemoFormSection } from "@/app/components/DemoFormSection";
 import { Reveal } from "@/app/components/Reveal";
-import { SlideUpHeadline } from "@/app/components/SlideUpHeadline";
+import { MaskedHeading } from "@/app/components/MaskedHeading";
 import { WORK_ITEMS } from "@/app/lib/work";
 
 export const metadata: Metadata = {
@@ -14,12 +14,12 @@ export const metadata: Metadata = {
 export default function WorkPage() {
   return (
     <>
-      <section className="section pb-8 pt-28 md:pt-32">
+      <section className="section pb-8 pt-32 md:pt-40">
         <div className="container-x wrap max-w-3xl">
           <p className="eyebrow">Work · Since 2023</p>
-          <SlideUpHeadline className="mt-4 font-display text-[clamp(2rem,4.5vw,3.2rem)] font-bold text-white">
+          <MaskedHeading className="mt-4 font-display text-[clamp(2.2rem,5vw,3.6rem)] leading-[1.02]">
             Real sites for real local businesses.
-          </SlideUpHeadline>
+          </MaskedHeading>
           <Reveal delay={0.1}>
             <p className="section-lede">
               A short look at businesses we’ve worked with. Reviews are their
@@ -33,11 +33,11 @@ export default function WorkPage() {
         <div className="container-x wrap grid gap-5">
           {WORK_ITEMS.map((item, i) => {
             const card = (
-              <article className="surface-panel p-6 md:p-7">
+              <article className="spotlight-card p-6 md:p-7">
                 <span className="label-pill" data-kind={item.label}>
                   {item.label}
                 </span>
-                <h2 className="mt-3 font-display text-2xl font-bold text-white">
+                <h2 className="mt-3 font-display text-2xl text-[var(--color-text)]">
                   {item.title}
                 </h2>
                 {item.href ? (
@@ -45,17 +45,17 @@ export default function WorkPage() {
                     href={item.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="mt-2 inline-flex font-semibold text-[var(--color-mint)] underline underline-offset-2"
+                    className="mt-2 inline-flex link-plain"
                   >
                     rhrtax.ca →
                   </a>
                 ) : null}
                 <p className="remy-note mt-5">{item.remyNote}</p>
-                <blockquote className="mt-5 border-t border-[color-mix(in_srgb,white_10%,transparent)] pt-4">
-                  <p className="text-lg text-white">
+                <blockquote className="mt-5 border-t border-[var(--color-border)] pt-4">
+                  <p className="text-lg text-[var(--color-text)]">
                     “{item.review.quote}”
                   </p>
-                  <footer className="mt-2 text-sm font-semibold text-[var(--color-mint)]">
+                  <footer className="mt-2 text-sm font-semibold text-[var(--color-lilac)]">
                     — {item.review.attribution}
                   </footer>
                 </blockquote>

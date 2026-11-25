@@ -1,11 +1,16 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { AutomationDiagram } from "./components/AutomationDiagram";
+import { CardStack } from "./components/CardStack";
 import { DemoForm } from "./components/DemoForm";
 import { DemoFormSection } from "./components/DemoFormSection";
 import { FAQList } from "./components/FAQList";
+import { LogoLoop } from "./components/LogoLoop";
+import { MaskedHeading } from "./components/MaskedHeading";
 import { Reveal } from "./components/Reveal";
-import { SlideUpHeadline } from "./components/SlideUpHeadline";
+import { ScrollStack } from "./components/ScrollStack";
+import { SoftAurora } from "./components/SoftAurora";
+import { SpotlightCard } from "./components/SpotlightCard";
 import { REVIEWS } from "./lib/reviews";
 
 export const metadata: Metadata = {
@@ -19,17 +24,17 @@ export const metadata: Metadata = {
 
 const HOW_STEPS = [
   {
-    n: "1",
+    n: "01",
     title: "Tell us about your business.",
     body: "Two minutes, the form above.",
   },
   {
-    n: "2",
+    n: "02",
     title: "We build your demo.",
     body: "A real preview of your site, with your name, services and a booking button. In your inbox within 24 hours.",
   },
   {
-    n: "3",
+    n: "03",
     title: "You decide.",
     body: "Love it? Go live from $300. Not for you? Keep the ideas, no hard feelings.",
   },
@@ -49,26 +54,22 @@ const PRICING = [
 export default function HomePage() {
   return (
     <>
-      {/* Hero — form beside headline */}
-      <section className="relative overflow-hidden pb-16 pt-28 md:pt-32">
-        <div
-          className="glow-orb glow-orb--drift absolute -left-10 top-16 h-64 w-64"
-          aria-hidden
-        />
-        <div
-          className="glow-orb absolute -right-16 top-40 h-72 w-72 opacity-30"
-          aria-hidden
-        />
-        <div className="container-x wrap grid items-start gap-10 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,22.5rem)]">
-          <div className="relative z-10">
-            <p className="eyebrow">
+      {/* Hero */}
+      <section className="relative overflow-hidden pb-20 pt-28 md:pb-28 md:pt-36">
+        <SoftAurora />
+        <div className="container-x wrap relative z-10 grid items-start gap-12 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,23rem)]">
+          <div>
+            <p className="wordmark wordmark-metallic text-3xl md:text-4xl">
+              uptisement
+            </p>
+            <p className="eyebrow mt-8">
               Websites + AI for local businesses in Southern Ontario
             </p>
-            <SlideUpHeadline className="mt-4 max-w-2xl font-display text-[clamp(2.1rem,5vw,3.6rem)] font-bold tracking-tight text-white">
+            <MaskedHeading className="mt-5 max-w-[11ch] font-display text-[clamp(2.6rem,7vw,5.2rem)] leading-[0.95]">
               See your new website before you pay a cent.
-            </SlideUpHeadline>
-            <Reveal delay={0.12}>
-              <p className="section-lede mt-5 text-lg">
+            </MaskedHeading>
+            <Reveal delay={0.15}>
+              <p className="section-lede mt-6 text-lg md:text-xl">
                 Tell us about your business. Within 24 hours we&apos;ll send you
                 a free, personalised preview of a booking-first website built for
                 you.
@@ -81,24 +82,26 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Trust strip */}
-      <Reveal>
-        <section className="border-y border-[color-mix(in_srgb,white_8%,transparent)] py-5">
-          <p className="container-x wrap text-center text-sm font-semibold tracking-wide text-[color-mix(in_srgb,white_70%,transparent)]">
-            Serving Southern Ontario since 2023 · Trusted by RHR Tax · Kuzz
-            Kreations · Miami Hair Spa · Chocor
+      {/* Trust strip — Logo Loop */}
+      <section className="border-y border-[var(--color-border)] py-8">
+        <div className="container-x wrap">
+          <p className="mb-5 text-center text-xs font-semibold uppercase tracking-[0.16em] text-[var(--color-muted)]">
+            Serving Southern Ontario since 2023 · Trusted by
           </p>
-        </section>
-      </Reveal>
+          <LogoLoop
+            names={["RHR Tax", "Kuzz Kreations", "Miami Hair Spa", "Chocor"]}
+          />
+        </div>
+      </section>
 
       {/* Problem */}
       <section className="section">
         <div className="container-x wrap max-w-3xl">
           <Reveal>
-            <h2 className="font-display text-3xl font-bold tracking-tight text-white md:text-4xl">
+            <h2 className="font-display text-4xl text-[var(--color-text)] md:text-5xl">
               Your next customer is searching right now.
             </h2>
-            <p className="section-lede">
+            <p className="section-lede text-lg">
               If your site is slow, hard to use on a phone, or makes people call
               during business hours, they book someone else. Most owners never
               find out how many jobs they lost.
@@ -107,116 +110,102 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* How it works */}
+      {/* How it works — Scroll Stack */}
       <section className="section pt-0">
         <div className="container-x wrap">
           <Reveal>
             <p className="eyebrow">How it works</p>
-            <h2 className="mt-3 font-display text-3xl font-bold text-white md:text-4xl">
+            <h2 className="mt-4 max-w-xl font-display text-4xl text-[var(--color-text)] md:text-5xl">
               Three steps. You stay in control.
             </h2>
           </Reveal>
-          <ol className="relative mt-10 grid gap-6 md:grid-cols-3">
-            {HOW_STEPS.map((step, i) => (
-              <Reveal key={step.n} delay={i * 0.08} as="li" className="relative">
-                <div className="surface-panel h-full p-5">
-                  <span className="font-display text-sm font-bold text-[var(--color-mint)]">
-                    Step {step.n}
-                  </span>
-                  <h3 className="mt-2 font-display text-xl font-bold text-white">
-                    {step.title}
-                  </h3>
-                  <p className="mt-2 text-[color-mix(in_srgb,white_72%,transparent)]">
-                    {step.body}
-                  </p>
-                </div>
-              </Reveal>
-            ))}
-          </ol>
+          <div className="mt-12">
+            <ScrollStack items={HOW_STEPS} />
+          </div>
         </div>
       </section>
 
-      {/* Services */}
-      <section className="section border-t border-[color-mix(in_srgb,white_8%,transparent)]">
+      {/* Services — Spotlight / bento */}
+      <section className="section border-t border-[var(--color-border)]">
         <div className="container-x wrap">
           <Reveal>
             <p className="eyebrow">What we do</p>
-            <h2 className="mt-3 font-display text-3xl font-bold text-white md:text-4xl">
+            <h2 className="mt-4 font-display text-4xl text-[var(--color-text)] md:text-5xl">
               Websites, automations, consulting.
             </h2>
           </Reveal>
 
-          <div className="mt-10 grid gap-5 lg:grid-cols-3">
-            <Reveal className="surface-panel cursor-card p-5">
-              <h3 className="font-display text-xl font-bold text-white">
+          <div className="mt-12 grid gap-4 lg:grid-cols-3">
+            <SpotlightCard className="lg:col-span-1">
+              <h3 className="font-display text-2xl text-[var(--color-text)]">
                 Websites and hosting
               </h3>
-              <p className="mt-3 text-[color-mix(in_srgb,white_72%,transparent)]">
+              <p className="mt-4 text-[var(--color-muted)]">
                 Fast, mobile-first sites built around one thing: getting
                 customers to book. From $300, hosting $30/month.
               </p>
-            </Reveal>
+            </SpotlightCard>
 
-            <Reveal delay={0.06} className="surface-panel cursor-card p-5 lg:col-span-2">
-              <h3 className="font-display text-xl font-bold text-white">
+            <SpotlightCard className="lg:col-span-2">
+              <h3 className="font-display text-2xl text-[var(--color-text)]">
                 AI automations
               </h3>
-              <p className="mt-3 text-[color-mix(in_srgb,white_72%,transparent)]">
+              <p className="mt-4 text-[var(--color-muted)]">
                 Small systems that work while you&apos;re on the job. Start with
                 one, add more when it pays for itself.
               </p>
-              <ul className="mt-5 grid gap-4 sm:grid-cols-2">
+              <ul className="mt-6 grid gap-5 sm:grid-cols-2">
                 <li>
-                  <p className="text-sm font-semibold text-white">
+                  <p className="text-sm font-semibold text-[var(--color-text)]">
                     Missed-call text-back
                   </p>
-                  <p className="mt-1 text-sm text-[color-mix(in_srgb,white_68%,transparent)]">
+                  <p className="mt-1 text-sm text-[var(--color-muted)]">
                     Miss a call, the customer gets a text in seconds, the job
                     stays yours.
                   </p>
                   <AutomationDiagram kind="missed-call" className="mt-3" />
                 </li>
                 <li>
-                  <p className="text-sm font-semibold text-white">
+                  <p className="text-sm font-semibold text-[var(--color-text)]">
                     Instant quotes
                   </p>
-                  <p className="mt-1 text-sm text-[color-mix(in_srgb,white_68%,transparent)]">
+                  <p className="mt-1 text-sm text-[var(--color-muted)]">
                     Customers get a rough price range online; you approve before
                     it goes out.
                   </p>
                   <AutomationDiagram kind="instant-quotes" className="mt-3" />
                 </li>
                 <li>
-                  <p className="text-sm font-semibold text-white">
+                  <p className="text-sm font-semibold text-[var(--color-text)]">
                     Review requests
                   </p>
-                  <p className="mt-1 text-sm text-[color-mix(in_srgb,white_68%,transparent)]">
+                  <p className="mt-1 text-sm text-[var(--color-muted)]">
                     Happy customers get a polite nudge to leave a Google review.
                   </p>
                   <AutomationDiagram kind="review-requests" className="mt-3" />
                 </li>
                 <li>
-                  <p className="text-sm font-semibold text-white">
+                  <p className="text-sm font-semibold text-[var(--color-text)]">
                     Booking reminders
                   </p>
-                  <p className="mt-1 text-sm text-[color-mix(in_srgb,white_68%,transparent)]">
+                  <p className="mt-1 text-sm text-[var(--color-muted)]">
                     Fewer no-shows, without you chasing anyone.
                   </p>
                   <AutomationDiagram kind="booking-reminders" className="mt-3" />
                 </li>
               </ul>
-            </Reveal>
+            </SpotlightCard>
 
-            <Reveal delay={0.1} className="surface-panel cursor-card p-5 lg:col-span-3">
-              <h3 className="font-display text-xl font-bold text-white">
+            <SpotlightCard className="lg:col-span-3">
+              <h3 className="font-display text-2xl text-[var(--color-text)]">
                 AI consulting
               </h3>
-              <p className="mt-3 max-w-3xl text-[color-mix(in_srgb,white_72%,transparent)]">
+              <p className="mt-4 max-w-3xl text-[var(--color-muted)]">
                 Not sure where AI fits in your business? We&apos;ll look at how
                 you work today and show you the one or two places it saves real
                 time. Plain English, no jargon.
               </p>
-            </Reveal>
+            </SpotlightCard>
           </div>
         </div>
       </section>
@@ -225,113 +214,96 @@ export default function HomePage() {
       <section className="section">
         <div className="container-x wrap">
           <Reveal>
-            <h2 className="font-display text-3xl font-bold text-white md:text-4xl">
+            <h2 className="font-display text-4xl text-[var(--color-text)] md:text-5xl">
               Real sites for real local businesses.
             </h2>
           </Reveal>
-          <div className="mt-8 grid gap-4 sm:grid-cols-2">
-            <Reveal className="surface-panel cursor-card p-5">
+          <div className="mt-10 grid gap-4 sm:grid-cols-2">
+            <SpotlightCard>
               <span className="label-pill" data-kind="Client site">
                 Client site
               </span>
-              <h3 className="mt-3 font-display text-2xl font-bold text-white">
+              <h3 className="mt-4 font-display text-3xl text-[var(--color-text)]">
                 RHR Tax
               </h3>
               <a
                 href="https://rhrtax.ca"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-3 inline-flex font-semibold text-[var(--color-mint)] underline underline-offset-2"
+                className="link-plain mt-4 inline-flex"
               >
                 rhrtax.ca →
               </a>
-            </Reveal>
-            <Reveal delay={0.08} className="surface-panel p-5">
+            </SpotlightCard>
+            <SpotlightCard>
               <span className="label-pill" data-kind="Site offline">
                 Site offline
               </span>
-              <h3 className="mt-3 font-display text-2xl font-bold text-white">
+              <h3 className="mt-4 font-display text-3xl text-[var(--color-text)]">
                 Chocor
               </h3>
-              <p className="mt-3 text-sm text-[color-mix(in_srgb,white_60%,transparent)]">
+              <p className="mt-4 text-sm text-[var(--color-muted)]">
                 Client site — currently offline
               </p>
-            </Reveal>
+            </SpotlightCard>
           </div>
-          <p className="mt-5">
-            <Link
-              href="/work/"
-              className="font-semibold text-[var(--color-mint)] underline underline-offset-2"
-            >
+          <p className="mt-6">
+            <Link href="/work/" className="link-plain">
               See all work →
             </Link>
           </p>
         </div>
       </section>
 
-      {/* Reviews */}
+      {/* Reviews — Card Stack */}
       <section className="section pt-0">
         <div className="container-x wrap">
           <Reveal>
-            <h2 className="font-display text-3xl font-bold text-white">
+            <h2 className="mb-10 font-display text-4xl text-[var(--color-text)]">
               Reviews
             </h2>
           </Reveal>
-          <ul className="mt-8 grid gap-4 md:grid-cols-2">
-            {REVIEWS.map((r, i) => (
-              <Reveal key={r.attribution} delay={i * 0.06} as="li">
-                <blockquote className="surface-panel h-full p-5">
-                  <p className="text-lg text-white">&ldquo;{r.quote}&rdquo;</p>
-                  <footer className="mt-3 text-sm font-semibold text-[var(--color-mint)]">
-                    {r.attribution}
-                  </footer>
-                </blockquote>
-              </Reveal>
-            ))}
-          </ul>
+          <CardStack reviews={REVIEWS} />
         </div>
       </section>
 
       {/* Pricing */}
-      <section className="section border-t border-[color-mix(in_srgb,white_8%,transparent)]">
+      <section className="section border-t border-[var(--color-border)]">
         <div className="container-x wrap">
           <Reveal>
-            <h2 className="font-display text-3xl font-bold text-white md:text-4xl">
+            <h2 className="font-display text-4xl text-[var(--color-text)] md:text-5xl">
               Simple pricing
             </h2>
           </Reveal>
-          <div className="mt-8 grid gap-3">
+          <div className="mt-10 grid gap-3">
             {PRICING.map((row, i) => (
               <Reveal key={row.label} delay={i * 0.05}>
                 <div
-                  className={`flex flex-wrap items-baseline justify-between gap-3 rounded-xl border px-4 py-4 ${
+                  className={`flex flex-wrap items-baseline justify-between gap-3 rounded-2xl border px-5 py-5 ${
                     i === 0
-                      ? "border-[color-mix(in_srgb,var(--color-mint)_40%,transparent)] bg-[color-mix(in_srgb,var(--color-mint)_10%,transparent)]"
-                      : "border-[color-mix(in_srgb,white_10%,transparent)] bg-[color-mix(in_srgb,var(--color-ink-soft)_60%,transparent)]"
+                      ? "border-[color-mix(in_srgb,var(--color-lilac)_40%,transparent)] bg-[color-mix(in_srgb,var(--color-lilac)_8%,transparent)]"
+                      : "border-[var(--color-border)] bg-[var(--color-surface)]"
                   }`}
                 >
                   <div>
-                    <p className="font-display text-lg font-bold text-white">
+                    <p className="font-display text-xl text-[var(--color-text)]">
                       {row.label}
                     </p>
                     {row.note ? (
-                      <p className="text-sm text-[color-mix(in_srgb,white_65%,transparent)]">
+                      <p className="text-sm text-[var(--color-muted)]">
                         {row.note}
                       </p>
                     ) : null}
                   </div>
-                  <p className="font-display text-xl font-bold text-[var(--color-mint)]">
+                  <p className="font-display text-2xl text-[var(--color-lilac)]">
                     {row.value}
                   </p>
                 </div>
               </Reveal>
             ))}
           </div>
-          <p className="mt-5">
-            <Link
-              href="/pricing/"
-              className="font-semibold text-[var(--color-mint)] underline underline-offset-2"
-            >
+          <p className="mt-6">
+            <Link href="/pricing/" className="link-plain">
               Full pricing →
             </Link>
           </p>
@@ -342,9 +314,11 @@ export default function HomePage() {
       <section className="section">
         <div className="container-x wrap max-w-3xl">
           <Reveal>
-            <h2 className="font-display text-3xl font-bold text-white">FAQ</h2>
+            <h2 className="font-display text-4xl text-[var(--color-text)]">
+              FAQ
+            </h2>
           </Reveal>
-          <div className="mt-6">
+          <div className="mt-8">
             <FAQList
               items={[
                 {
@@ -387,7 +361,10 @@ export default function HomePage() {
         </div>
       </section>
 
-      <DemoFormSection headline="Your free demo is 24 hours away." formId="demo-home-bottom" />
+      <DemoFormSection
+        headline="Your free demo is 24 hours away."
+        formId="demo-home-bottom"
+      />
     </>
   );
 }

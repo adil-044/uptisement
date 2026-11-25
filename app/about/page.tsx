@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { DemoFormSection } from "@/app/components/DemoFormSection";
 import { Reveal } from "@/app/components/Reveal";
-import { SlideUpHeadline } from "@/app/components/SlideUpHeadline";
+import { MaskedHeading } from "@/app/components/MaskedHeading";
 import { EMAIL } from "@/app/lib/config";
 
 export const metadata: Metadata = {
@@ -22,26 +22,26 @@ const HOW_I_WORK = [
 export default function AboutPage() {
   return (
     <>
-      <section className="section pb-8 pt-28 md:pt-32">
+      <section className="section pb-8 pt-32 md:pt-40">
         <div className="container-x wrap max-w-3xl">
           <p className="eyebrow">About · Southern Ontario · Since 2023</p>
-          <SlideUpHeadline className="mt-4 font-display text-[clamp(2rem,4.5vw,3.2rem)] font-bold text-white">
+          <MaskedHeading className="mt-4 font-display text-[clamp(2.2rem,5vw,3.6rem)] leading-[1.02]">
             Built for local owners, by someone who works the same way.
-          </SlideUpHeadline>
+          </MaskedHeading>
         </div>
       </section>
 
       <section className="section pt-0">
         <div className="container-x wrap max-w-3xl grid gap-10">
           <Reveal>
-            <h2 className="font-display text-2xl font-bold text-white">
+            <h2 className="font-display text-2xl text-[var(--color-text)]">
               Who’s behind Uptisement
             </h2>
-            <p className="mt-4 text-[color-mix(in_srgb,white_74%,transparent)]">
+            <p className="mt-4 text-[var(--color-muted)]">
               Uptisement is run by Adil Khatri, in Southern Ontario, and has been
               since 2023.
             </p>
-            <p className="mt-3 text-[color-mix(in_srgb,white_74%,transparent)]">
+            <p className="mt-3 text-[var(--color-muted)]">
               We work with owner-run local businesses: trades first, and also
               salons, spas, barbers and dental clinics.
             </p>
@@ -54,18 +54,18 @@ export default function AboutPage() {
 
           <div>
             <Reveal>
-              <h2 className="font-display text-2xl font-bold text-white">
+              <h2 className="font-display text-2xl text-[var(--color-text)]">
                 How I work
               </h2>
             </Reveal>
             <ol className="mt-6 grid gap-4">
               {HOW_I_WORK.map((line, i) => (
                 <Reveal key={line} delay={i * 0.08} as="li">
-                  <div className="surface-panel p-5">
-                    <span className="font-display text-sm font-bold text-[var(--color-mint)]">
+                  <div className="spotlight-card p-5">
+                    <span className="font-display text-sm font-bold text-[var(--color-lilac)]">
                       {i + 1}
                     </span>
-                    <p className="mt-2 text-[color-mix(in_srgb,white_78%,transparent)]">
+                    <p className="mt-2 text-[var(--color-muted)]">
                       {line}
                     </p>
                   </div>
@@ -73,17 +73,17 @@ export default function AboutPage() {
               ))}
             </ol>
             <Reveal delay={0.2}>
-              <p className="mt-5 text-[color-mix(in_srgb,white_74%,transparent)]">
+              <p className="mt-5 text-[var(--color-muted)]">
                 Everything is done remotely.
               </p>
             </Reveal>
           </div>
 
           <Reveal>
-            <h2 className="font-display text-2xl font-bold text-white">
+            <h2 className="font-display text-2xl text-[var(--color-text)]">
               Get in touch
             </h2>
-            <p className="mt-4 text-[color-mix(in_srgb,white_74%,transparent)]">
+            <p className="mt-4 text-[var(--color-muted)]">
               Claim a free demo with the form below, or book a 15-min call if
               you’d rather talk first.
             </p>
@@ -91,7 +91,7 @@ export default function AboutPage() {
               Email:{" "}
               <a
                 href={`mailto:${EMAIL}`}
-                className="font-semibold text-[var(--color-mint)] underline underline-offset-2"
+                className="link-plain"
               >
                 {EMAIL}
               </a>

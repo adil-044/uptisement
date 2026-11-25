@@ -13,15 +13,15 @@ export function DemoFormSection({
   return (
     <section
       id="claim-demo"
-      className="section border-t border-[color-mix(in_srgb,white_8%,transparent)]"
+      className="section border-t border-[var(--color-border)]"
       aria-labelledby={`${formId}-heading`}
     >
-      <div className="container-x wrap grid gap-8 lg:grid-cols-[1fr_minmax(0,24rem)] lg:items-start">
+      <div className="container-x wrap grid gap-10 lg:grid-cols-[1fr_minmax(0,24rem)] lg:items-start">
         <div>
           <p className="eyebrow">Free demo</p>
           <h2
             id={`${formId}-heading`}
-            className="mt-3 max-w-xl font-display text-3xl font-bold tracking-tight text-white md:text-4xl"
+            className="mt-4 max-w-xl font-display text-4xl text-[var(--color-text)] md:text-5xl"
           >
             {headline}
           </h2>

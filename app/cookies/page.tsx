@@ -12,13 +12,13 @@ export const metadata: Metadata = {
 
 export default function CookiesPage() {
   return (
-    <section className="section pb-16 pt-28 md:pt-32">
+    <section className="section pb-16 pt-32 md:pt-40">
       <div className="container-x wrap max-w-3xl legal-prose">
         <p className="eyebrow">Legal</p>
-        <h1 className="mt-3 font-display text-4xl font-bold text-white">
+        <h1 className="mt-3 font-display text-4xl text-[var(--color-text)]">
           Cookie Policy
         </h1>
-        <p className="mt-4 text-sm text-[color-mix(in_srgb,white_65%,transparent)]">
+        <p className="mt-4 text-sm text-[var(--color-muted)]">
           Effective: 10 September 2026 · See also{" "}
           <Link href="/privacy/">Privacy Policy</Link>
         </p>

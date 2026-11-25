@@ -110,7 +110,7 @@ export function AutomationDiagram({ kind, className }: Props) {
       {!reduce ? (
         <button
           type="button"
-          className="justify-self-start text-xs font-semibold text-[color-mix(in_srgb,white_55%,transparent)] underline-offset-2 hover:text-[var(--color-mint)] hover:underline"
+          className="justify-self-start text-xs font-semibold text-[var(--color-muted)] underline-offset-2 hover:text-[var(--color-lilac)] hover:underline"
           onClick={replay}
         >
           Replay

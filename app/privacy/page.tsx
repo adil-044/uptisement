@@ -11,18 +11,18 @@ export const metadata: Metadata = {
 
 export default function PrivacyPage() {
   return (
-    <section className="section pb-16 pt-28 md:pt-32">
+    <section className="section pb-16 pt-32 md:pt-40">
       <div className="container-x wrap max-w-3xl legal-prose">
         <p className="eyebrow">Legal</p>
-        <h1 className="mt-3 font-display text-4xl font-bold text-white">
+        <h1 className="mt-3 font-display text-4xl text-[var(--color-text)]">
           Privacy Policy
         </h1>
-        <p className="mt-4 text-sm text-[color-mix(in_srgb,white_65%,transparent)]">
+        <p className="mt-4 text-sm text-[var(--color-muted)]">
           Effective: 10 September 2026 · Controller: Uptisement · Contact:{" "}
           <a href={`mailto:${EMAIL}`}>{EMAIL}</a> · Southern Ontario
         </p>
         <p className="remy-note mt-5 !border-l-[var(--color-line)] !bg-[color-mix(in_srgb,white_6%,transparent)]">
-          <strong className="text-white">Not legal advice.</strong> This policy
+          <strong className="text-[var(--color-text)]">Not legal advice.</strong> This policy
           explains how we handle personal data for a global audience (including
           GDPR/UK GDPR, CCPA/CPRA, PIPEDA, and similar laws). Laws vary by
           country; we apply the stricter practical standard where we can.
