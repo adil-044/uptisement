@@ -7,6 +7,12 @@ export const EMAIL = "sales@uptisement.com";
 export const FOUNDER = "Adil Khatri";
 export const FOUNDER_FIRST = "Adil";
 export const SINCE_YEAR = 2023;
-export const AREA =
-  "Based in Southern Ontario, working with trades across Ontario";
 export const AREA_SHORT = "Southern Ontario";
+export const AREA =
+  "Based in Southern Ontario, working with trades and local businesses across Ontario";
+
+/** FormSubmit AJAX endpoint — do not POST test submissions from agents. */
+export const FORM_SUBMIT_URL =
+  "https://formsubmit.co/ajax/khatriadil044@gmail.com";
+
+export const FORM_SUBJECT = "Uptisement free demo request";

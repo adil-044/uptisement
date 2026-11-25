@@ -1,194 +1,60 @@
-export type WorkLabel =
-  | "Client site"
-  | "Pitch concept"
-  | "Demo build"
-  | "Interactive demo (simulated)";
+export type WorkLabel = "Client site" | "Site offline" | "Client";
 
 export type WorkItem = {
   title: string;
   label: WorkLabel;
-  subline: string;
-  /** Omit or leave empty for non-clickable cards (e.g. offline client sites). */
+  /** Remy note — verbatim from approved copy. */
+  remyNote: string;
+  review: {
+    quote: string;
+    attribution: string;
+  };
   href?: string;
-  image: string;
-  imageAlt: string;
-  external?: boolean;
-  /** Domain lapsed / site offline — show card without a link. */
-  offline?: boolean;
-  group: "client" | "trades" | "other";
 };
 
-export const WORK_DISCLAIMER =
-  "Client sites are live projects built for paying clients. Pitch concepts are unsolicited redesigns for real businesses that did not commission them. Demo builds and interactive demos are fictional or simulated — no real SMS or AI is running.";
-
+/** Work page projects — no invented deliverables, industries, or results. */
 export const WORK_ITEMS: WorkItem[] = [
-  {
-    title: "Chocor",
-    label: "Client site",
-    subline: "Client site built by Adil",
-    image: "/work/chocor.jpg",
-    imageAlt: "Chocor client site (offline)",
-    offline: true,
-    group: "client",
-  },
   {
     title: "RHR Tax",
     label: "Client site",
-    subline: "Live client site — tax and accounting",
     href: "https://rhrtax.ca",
-    image: "/work/rhrtax.jpg",
-    imageAlt: "Screenshot of the rhrtax.ca client website",
-    external: true,
-    group: "client",
+    remyNote:
+      "I asked my boss Adil what to write here, but he’s busy helping clients. Check back soon, or just ask him on a call. — Remy",
+    review: {
+      quote:
+        "Adil is really friendly and helpful for all kinds of problems digitally.",
+      attribution: "RHR Tax",
+    },
   },
   {
-    title: "Emergency HVAC",
-    label: "Pitch concept",
-    subline: "Redesign concept: urgency + book-first layout",
-    href: "https://adil-044.github.io/emergency-hvac-ottawa/",
-    image:
-      "https://images.pexels.com/photos/5463575/pexels-photo-5463575.jpeg?auto=compress&cs=tinysrgb&w=900",
-    imageAlt: "HVAC technician on a call-out",
-    external: true,
-    group: "trades",
+    title: "Chocor",
+    label: "Site offline",
+    remyNote:
+      "The write-up for this project is still on Adil’s desk. I asked; his next client call started first. Their review is below, or you can ask him on a 15-min call. — Remy",
+    review: {
+      quote: "I really like how fast the development was.",
+      attribution: "Chocor",
+    },
   },
   {
-    title: "Trade roofing",
-    label: "Demo build",
-    subline: 'Fictional roofer: "Leak today? Crew today." booking path',
-    href: "/demos/roofing.html",
-    image:
-      "https://images.pexels.com/photos/32050401/pexels-photo-32050401.jpeg?auto=compress&cs=tinysrgb&w=900",
-    imageAlt: "Roofers on a residential job",
-    group: "trades",
+    title: "Kuzz Kreations",
+    label: "Client",
+    remyNote:
+      "I pinged Adil for a short story about this one, but he’s snowed under with actual client work — the good kind. Check back soon, or claim a free demo and you’ll see how we work. — Remy",
+    review: {
+      quote: "Such a quick response and the rates are so good.",
+      attribution: "Kuzz Kreations",
+    },
   },
   {
-    title: "Boiler / hydronic",
-    label: "Demo build",
-    subline: "Fictional heating co: no-heat urgency layout",
-    href: "/demos/boiler.html",
-    image:
-      "https://images.pexels.com/photos/7859953/pexels-photo-7859953.jpeg?auto=compress&cs=tinysrgb&w=900",
-    imageAlt: "Technician working on heating equipment",
-    group: "trades",
+    title: "Miami Hair Spa",
+    label: "Client",
+    remyNote:
+      "I asked Adil for a few lines on what we did here, but he’s tied up with clients this week. The review is theirs; for the details, ask him on a call. — Remy",
+    review: {
+      quote:
+        "Been working with Adil for 3 years for all kinds of automations and development, and happy since.",
+      attribution: "Miami Hair Spa",
+    },
   },
-  {
-    title: "Missed-call SMS",
-    label: "Interactive demo (simulated)",
-    subline: "See the text-back fire",
-    href: "/demos/sms.html",
-    image:
-      "https://images.pexels.com/photos/3943951/pexels-photo-3943951.jpeg?auto=compress&cs=tinysrgb&w=900",
-    imageAlt: "Phone in hand for follow-up texts",
-    group: "trades",
-  },
-  {
-    title: "Quote estimator",
-    label: "Interactive demo (simulated)",
-    subline: "Job notes in, rough range out, you approve",
-    href: "/demos/estimator.html",
-    image:
-      "https://images.pexels.com/photos/16243258/pexels-photo-16243258.jpeg?auto=compress&cs=tinysrgb&w=900",
-    imageAlt: "Workshop tools for quote estimating",
-    group: "trades",
-  },
-  {
-    title: "Hot-lead CRM",
-    label: "Interactive demo (simulated)",
-    subline: "New → Warm → Booked board",
-    href: "/demos/crm.html",
-    image:
-      "https://images.pexels.com/photos/19432567/pexels-photo-19432567.jpeg?auto=compress&cs=tinysrgb&w=900",
-    imageAlt: "Lead pipeline board concept",
-    group: "trades",
-  },
-  {
-    title: "Book above the fold",
-    label: "Demo build",
-    subline: "Calendar or call on screen one",
-    href: "/demos/book-fold.html",
-    image:
-      "https://images.pexels.com/photos/8488061/pexels-photo-8488061.jpeg?auto=compress&cs=tinysrgb&w=900",
-    imageAlt: "Booking path above the fold concept",
-    group: "trades",
-  },
-  {
-    title: "Saco Hair",
-    label: "Pitch concept",
-    subline: "Salon redesign concept",
-    href: "https://adil-044.github.io/saco-hair-ottawa/",
-    image:
-      "https://images.pexels.com/photos/7750144/pexels-photo-7750144.jpeg?auto=compress&cs=tinysrgb&w=700",
-    imageAlt: "Salon chair redesign concept",
-    external: true,
-    group: "other",
-  },
-  {
-    title: "Magnolia Spa",
-    label: "Pitch concept",
-    subline: "Spa redesign concept",
-    href: "https://adil-044.github.io/magnolia-spa-ottawa/",
-    image:
-      "https://images.pexels.com/photos/3757942/pexels-photo-3757942.jpeg?auto=compress&cs=tinysrgb&w=700",
-    imageAlt: "Spa atmosphere redesign concept",
-    external: true,
-    group: "other",
-  },
-  {
-    title: "Glorious Nails",
-    label: "Pitch concept",
-    subline: "Nail studio redesign concept",
-    href: "https://adil-044.github.io/glorious-nails-ottawa/",
-    image:
-      "https://images.pexels.com/photos/3992850/pexels-photo-3992850.jpeg?auto=compress&cs=tinysrgb&w=700",
-    imageAlt: "Nail studio redesign concept",
-    external: true,
-    group: "other",
-  },
-  {
-    title: "Beau More",
-    label: "Pitch concept",
-    subline: "Nail spa redesign concept",
-    href: "https://adil-044.github.io/beaumore-demo/",
-    image:
-      "https://images.pexels.com/photos/34885844/pexels-photo-34885844.jpeg?auto=compress&cs=tinysrgb&w=700",
-    imageAlt: "Nail spa redesign concept",
-    external: true,
-    group: "other",
-  },
-  {
-    title: "John A",
-    label: "Pitch concept",
-    subline: "Barbershop redesign concept",
-    href: "https://adil-044.github.io/john-a-atelier/",
-    image:
-      "https://images.pexels.com/photos/18503604/pexels-photo-18503604.jpeg?auto=compress&cs=tinysrgb&w=700",
-    imageAlt: "Barbershop redesign concept",
-    external: true,
-    group: "other",
-  },
-  {
-    title: "OG Barbershop",
-    label: "Pitch concept",
-    subline: "Barbershop booking concept",
-    href: "https://adil-044.github.io/og-barbershop-demo/",
-    image:
-      "https://images.pexels.com/photos/12074386/pexels-photo-12074386.jpeg?auto=compress&cs=tinysrgb&w=700",
-    imageAlt: "Barbershop booking concept",
-    external: true,
-    group: "other",
-  },
-];
-
-export const TRADES = [
-  "HVAC",
-  "Roofing",
-  "Plumbing",
-  "Electrical",
-  "Landscaping",
-  "General contracting",
-  "Renovations",
-  "Cleaning",
-  "Auto service",
-  "Local retail",
 ];

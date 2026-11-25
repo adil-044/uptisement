@@ -1,0 +1,181 @@
+import type { Metadata } from "next";
+import { DemoFormSection } from "@/app/components/DemoFormSection";
+import { Reveal } from "@/app/components/Reveal";
+import { SlideUpHeadline } from "@/app/components/SlideUpHeadline";
+
+export const metadata: Metadata = {
+  title: {
+    absolute: "Compare Uptisement | DIY, agencies and freelancers",
+  },
+  description:
+    "See how Uptisement compares with building it yourself, hiring a big agency, or working with a freelancer. Free demo first. Websites from $300.",
+  alternates: { canonical: "/compare/" },
+};
+
+const ROWS = [
+  {
+    criterion: "Price",
+    uptisement:
+      "Free demo. Websites from $300, one time. Hosting $30/month. Automations and consulting priced on a 15-min call.",
+    diy: "You pay the platform. Plans and add-ons vary.",
+    agency: "Typically a much larger project fee, sometimes plus a monthly retainer. Varies.",
+    freelancer: "Varies widely.",
+  },
+  {
+    criterion: "Time to launch",
+    uptisement:
+      "A free demo within 24 hours. Time to go live after you approve it varies.",
+    diy: "You build it yourself. It takes as long as you spend on it.",
+    agency: "Varies, often weeks or more.",
+    freelancer: "Varies.",
+  },
+  {
+    criterion: "Free demo first",
+    uptisement:
+      "Yes. A personalised preview of your site, free, within 24 hours.",
+    diy: "No. You set it up yourself.",
+    agency:
+      "Uncommon. You usually get a proposal or a discovery call, not a preview of your site.",
+    freelancer: "Uncommon. Varies.",
+  },
+  {
+    criterion: "Built for booking",
+    uptisement: "Yes. Sites are built around getting customers to book.",
+    diy: "Possible, if you set up booking tools yourself.",
+    agency: "Varies.",
+    freelancer: "Varies.",
+  },
+  {
+    criterion: "Automations available",
+    uptisement:
+      "Yes. Missed-call text-back, instant quotes, review requests and booking reminders, priced on a 15-min call.",
+    diy: "You add them yourself, or buy platform add-ons.",
+    agency: "Varies. Sometimes part of a larger package.",
+    freelancer: "Varies.",
+  },
+  {
+    criterion: "Who does the work",
+    uptisement: "Uptisement builds it for you. You work directly with Adil.",
+    diy: "You build it yourself.",
+    agency: "A team.",
+    freelancer: "One freelancer.",
+  },
+  {
+    criterion: "Support",
+    uptisement: "You work directly with Adil.",
+    diy: "Platform help articles and platform support, not someone who already knows your business.",
+    agency: "Varies. Often tied to a retainer.",
+    freelancer: "Varies. Often winds down when the project ends.",
+  },
+];
+
+const NOT_FIT = [
+  "If you enjoy building and want to design the site yourself, a DIY builder is a better match.",
+  "If you need a large custom web app, a national brand campaign, or a big in-house team around you, a larger agency is a better match.",
+  "If you already have a freelancer or agency you trust for a wider scope of work, you may not need us.",
+  "If you need a live website tomorrow, we can’t promise that. We can send a demo within 24 hours. Going live happens after you approve it.",
+];
+
+export default function ComparePage() {
+  return (
+    <>
+      <section className="section pb-8 pt-28 md:pt-32">
+        <div className="container-x wrap max-w-3xl">
+          <p className="eyebrow">Compare us</p>
+          <SlideUpHeadline className="mt-4 font-display text-[clamp(2rem,4.5vw,3.2rem)] font-bold text-white">
+            How we compare.
+          </SlideUpHeadline>
+          <Reveal delay={0.1}>
+            <p className="section-lede">
+              You can build a site yourself, hire a big agency, or work with a
+              freelancer. Uptisement is a fourth option: a free preview of a
+              booking-first site, then a simple path to go live if you want it.
+            </p>
+            <p className="mt-4 text-[color-mix(in_srgb,white_72%,transparent)]">
+              This is a straight comparison. No named local companies, and no
+              made-up numbers for anyone else.
+            </p>
+          </Reveal>
+        </div>
+      </section>
+
+      <section className="section pt-0">
+        <div className="container-x wrap grid gap-5">
+          {ROWS.map((row, i) => (
+            <Reveal key={row.criterion} delay={i * 0.04}>
+              <div className="grid gap-3">
+                <h2 className="font-display text-xl font-bold text-white">
+                  {row.criterion}
+                </h2>
+                <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-4">
+                  <div className="compare-card compare-card--highlight">
+                    <p className="text-xs font-bold uppercase tracking-wider text-[var(--color-mint)]">
+                      Uptisement
+                    </p>
+                    <p className="mt-2 text-sm text-[color-mix(in_srgb,white_82%,transparent)]">
+                      {row.uptisement}
+                    </p>
+                  </div>
+                  <div className="compare-card">
+                    <p className="text-xs font-bold uppercase tracking-wider text-[color-mix(in_srgb,white_55%,transparent)]">
+                      DIY builders
+                    </p>
+                    <p className="mt-2 text-sm text-[color-mix(in_srgb,white_72%,transparent)]">
+                      {row.diy}
+                    </p>
+                  </div>
+                  <div className="compare-card">
+                    <p className="text-xs font-bold uppercase tracking-wider text-[color-mix(in_srgb,white_55%,transparent)]">
+                      A big agency
+                    </p>
+                    <p className="mt-2 text-sm text-[color-mix(in_srgb,white_72%,transparent)]">
+                      {row.agency}
+                    </p>
+                  </div>
+                  <div className="compare-card">
+                    <p className="text-xs font-bold uppercase tracking-wider text-[color-mix(in_srgb,white_55%,transparent)]">
+                      A freelancer
+                    </p>
+                    <p className="mt-2 text-sm text-[color-mix(in_srgb,white_72%,transparent)]">
+                      {row.freelancer}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </Reveal>
+          ))}
+        </div>
+      </section>
+
+      <section className="section pt-0">
+        <div className="container-x wrap max-w-3xl">
+          <Reveal>
+            <h2 className="font-display text-2xl font-bold text-white">
+              When we’re not the right fit
+            </h2>
+            <p className="mt-3 text-[color-mix(in_srgb,white_70%,transparent)]">
+              We’re not the right fit for everyone, and that’s fine.
+            </p>
+            <ul className="mt-5 grid gap-3">
+              {NOT_FIT.map((line) => (
+                <li
+                  key={line}
+                  className="text-[color-mix(in_srgb,white_74%,transparent)]"
+                >
+                  {line}
+                </li>
+              ))}
+            </ul>
+            <p className="mt-6 text-[color-mix(in_srgb,white_78%,transparent)]">
+              If you just need a clear, booking-first site, and maybe one
+              automation later, we’re built for that. The free demo is the
+              easiest way to see if it feels right.
+            </p>
+          </Reveal>
+        </div>
+      </section>
+
+      <DemoFormSection headline="See a preview for your business." />
+    </>
+  );
+}
