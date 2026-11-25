@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { BrandLogo } from "./BrandLogo";
 import { HaloButton } from "./HaloButton";
+import { ThemeToggle } from "./ThemeToggle";
 
 const NAV = [
   { href: "/services/", label: "Services" },
@@ -14,7 +15,7 @@ const NAV = [
   { href: "/compare/", label: "Compare" },
 ];
 
-/** Floating glass pill nav — original logo once, links, one Halo CTA. */
+/** Floating glass pill nav — original logo once, links, theme toggle, one Halo CTA. */
 export function Header() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
@@ -29,10 +30,10 @@ export function Header() {
   return (
     <>
       <div className="pointer-events-none fixed inset-x-0 top-0 z-[200] flex justify-center px-4 pt-4 md:pt-5">
-        <header className="pointer-events-auto relative w-[min(100%,36rem)] md:w-[min(100%,54rem)]">
+        <header className="pointer-events-auto relative w-[min(100%,38rem)] md:w-[min(100%,58rem)]">
           <nav
             aria-label="Primary"
-            className="glass-surface flex items-center gap-2 rounded-full px-3 py-2 shadow-[0_12px_40px_rgba(0,0,0,0.5)] md:gap-3 md:px-4 md:py-2.5"
+            className="glass-surface flex items-center gap-2 rounded-full px-3 py-2 md:gap-3 md:px-4 md:py-2.5"
           >
             <BrandLogo />
 
@@ -58,6 +59,7 @@ export function Header() {
             </div>
 
             <div className="ml-auto flex items-center gap-2 md:ml-0">
+              <ThemeToggle className="hidden md:inline-flex" />
               <HaloButton
                 href="/#claim-demo"
                 className="!min-h-9 !px-3 !text-sm"
@@ -108,7 +110,7 @@ export function Header() {
       >
         <button
           type="button"
-          className="absolute inset-0 bg-black/70"
+          className="absolute inset-0 bg-[var(--color-overlay)]"
           aria-label="Close menu"
           onClick={() => setOpen(false)}
         />
@@ -125,6 +127,10 @@ export function Header() {
               </Link>
             ))}
           </nav>
+          <div className="mt-4 flex items-center justify-between gap-3 border-t border-[var(--color-border)] pt-4">
+            <p className="text-sm text-[var(--color-muted)]">Appearance</p>
+            <ThemeToggle size="menu" />
+          </div>
           <p className="mt-4 text-sm text-[var(--color-muted)]">
             <a href="mailto:sales@uptisement.com" className="link-plain">
               sales@uptisement.com
