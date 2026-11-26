@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import { ClarityEvents } from "./components/ClarityEvents";
+import { ClarityInit } from "./components/ClarityInit";
 import { Footer } from "./components/Footer";
 import { Header } from "./components/Header";
 import { JsonLd } from "./components/JsonLd";
@@ -71,6 +73,8 @@ export default function RootLayout({
       <body className="site-shell font-body antialiased">
         <MotionRoot>
           <ThemeProvider>
+            <ClarityInit />
+            <ClarityEvents />
             <SmoothScroll />
             <ScrollProgress />
             <JsonLd />
