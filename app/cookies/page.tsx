@@ -29,7 +29,7 @@ export default function CookiesPage() {
           analytics in your browser or with an ad blocker.
         </p>
 
-        <h2 id="clarity">Microsoft Clarity</h2>
+        <h2 id="clarity-analytics">Microsoft Clarity</h2>
         <p>
           We use <strong>Microsoft Clarity</strong> to understand how visitors
           use uptisement.com — things like clicks, scrolling, and session
