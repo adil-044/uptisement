@@ -1,5 +1,12 @@
 import Link from "next/link";
-import { AREA_SHORT, BOOK_URL, EMAIL, SINCE_YEAR } from "@/app/lib/config";
+import {
+  AREA_SHORT,
+  BOOK_URL,
+  EMAIL,
+  PHONE_DISPLAY,
+  PHONE_TEL,
+  SINCE_YEAR,
+} from "@/app/lib/config";
 import { BrandLogo } from "./BrandLogo";
 import { HaloButton } from "./HaloButton";
 
@@ -15,6 +22,11 @@ export function Footer() {
           <p className="mt-3 text-sm">
             <a href={`mailto:${EMAIL}`} className="link-plain">
               {EMAIL}
+            </a>
+          </p>
+          <p className="mt-2 text-sm">
+            <a href={`tel:${PHONE_TEL}`} className="link-plain">
+              {PHONE_DISPLAY}
             </a>
           </p>
           <div className="mt-6">

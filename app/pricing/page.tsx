@@ -30,7 +30,7 @@ const ROWS: PriceRow[] = [
   },
   {
     title: "Website — from $300, one time",
-    body: "A booking-first site, built for you. Go live if you love the demo.",
+    body: "A booking-first site, built for you. After you approve the demo, a complete website is delivered within 24 hours, including 2 rounds of revisions.",
     span: "bento-5",
   },
   {
@@ -106,7 +106,7 @@ export default function PricingPage() {
                 {
                   question: "How long after I say yes until the site is live?",
                   answer:
-                    "Your demo arrives within 24 hours. After you approve it, we’ll plan the go-live with you — book a call if you want to talk timing.",
+                    "After you approve the demo, a complete website is delivered within 24 hours, including 2 rounds of revisions.",
                 },
                 {
                   question: "What’s included in the website?",
@@ -120,13 +120,8 @@ export default function PricingPage() {
                 },
                 {
                   question: "Do I own my website?",
-                  answer: (
-                    <p className="remy-note">
-                      I’d love to put a simple yes here. I asked Adil to sign
-                      off, and he’s still with a client. Book a 15-min call and
-                      you can ask him yourself. — Remy
-                    </p>
-                  ),
+                  answer:
+                    "Yes. You own your website and your domain.",
                 },
                 {
                   question: "What happens after I go live?",

@@ -2,9 +2,9 @@ import {
   AREA,
   EMAIL,
   FOUNDER,
-  FOUNDER_LINKEDIN_URL,
   GBP_URL,
   INSTAGRAM_URL,
+  PHONE_E164,
   SITE_NAME,
   SITE_URL,
   SINCE_YEAR,
@@ -15,8 +15,8 @@ const DESCRIPTION =
   "Websites and AI automations for trades, salons and local businesses across Ontario. Booking-first websites from $300, with a free preview before you pay.";
 
 /*
- * TODO(Adil): add `telephone` and a fuller `address` (addressLocality) once a
- * public business phone / location is confirmed. Do not add placeholder values.
+ * TODO(Adil): add a fuller `address` (addressLocality) once a public business
+ * location is confirmed. Do not add placeholder values.
  */
 export function JsonLd() {
   const sameAs = [INSTAGRAM_URL, GBP_URL].filter(Boolean);
@@ -40,6 +40,7 @@ export function JsonLd() {
         logo: `${SITE_URL}/brand/logo-icon.png`,
         image: `${SITE_URL}/brand/logo-lockup-light.png`,
         email: EMAIL,
+        telephone: PHONE_E164,
         slogan: TAGLINE,
         description: DESCRIPTION,
         foundingDate: String(SINCE_YEAR),
@@ -64,7 +65,6 @@ export function JsonLd() {
         founder: {
           "@type": "Person",
           name: FOUNDER,
-          sameAs: [FOUNDER_LINKEDIN_URL],
         },
         sameAs,
         disambiguatingDescription: AREA,

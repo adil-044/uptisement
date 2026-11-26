@@ -4,6 +4,12 @@ export const BOOK_URL = "https://calendly.com/uptisement/30min";
 export const SITE_URL = "https://uptisement.com";
 export const SITE_NAME = "Uptisement";
 export const EMAIL = "sales@uptisement.com";
+/** Display format for the public business phone (footer, UI). */
+export const PHONE_DISPLAY = "(226) 966-5375";
+/** tel: href value (digits only, with country code). */
+export const PHONE_TEL = "+12269665375";
+/** E.164-style value for JSON-LD `telephone`. */
+export const PHONE_E164 = "+1-226-966-5375";
 export const FOUNDER = "Adil Khatri";
 export const FOUNDER_FIRST = "Adil";
 export const SINCE_YEAR = 2023;
@@ -13,8 +19,6 @@ export const TAGLINE = "Websites and AI automations";
 
 /** Public profiles that describe the business (used in JSON-LD sameAs). */
 export const INSTAGRAM_URL = "https://www.instagram.com/uptisement/";
-export const FOUNDER_LINKEDIN_URL =
-  "https://www.linkedin.com/in/adil-khatri-121236218/";
 /**
  * TODO(Adil): paste the public Google Business Profile / Maps share URL here
  * (Maps → your profile → Share → copy link). Left empty until confirmed; empty

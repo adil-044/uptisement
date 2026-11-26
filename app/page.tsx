@@ -349,7 +349,7 @@ export default function HomePage() {
                 {
                   question: "How fast is it?",
                   answer:
-                    "Your demo arrives within 24 hours of sending the form.",
+                    "Your demo arrives within 24 hours of sending the form. After you say yes, a complete website is delivered within 24 hours, including 2 rounds of revisions.",
                 },
                 {
                   question: "What do I need to give you?",
@@ -358,13 +358,8 @@ export default function HomePage() {
                 },
                 {
                   question: "Do I own my website?",
-                  answer: (
-                    <p className="remy-note">
-                      I asked my boss Adil to confirm this in writing, but
-                      he&apos;s busy helping a client. Book a 15-min call and
-                      he&apos;ll walk you through it. — Remy
-                    </p>
-                  ),
+                  answer:
+                    "Yes. You own your website and your domain.",
                 },
                 {
                   question: "Do you only work with trades?",
