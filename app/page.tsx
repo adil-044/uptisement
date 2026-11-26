@@ -17,10 +17,11 @@ import { REVIEWS } from "./lib/reviews";
 
 export const metadata: Metadata = {
   title: {
-    absolute: "See your new website before you pay a cent | Uptisement",
+    absolute:
+      "Websites and AI automations for Ontario trades & salons — see yours before you pay | Uptisement",
   },
   description:
-    "Tell us about your business. Within 24 hours we’ll send a free, personalised preview of a booking-first website built for you. From $300. Southern Ontario.",
+    "Uptisement builds booking-first websites and AI automations for trades, salons and local businesses across Ontario. See a free preview of your site within 24 hours, before you pay. Websites from $300.",
   alternates: { canonical: "/" },
 };
 
@@ -45,7 +46,11 @@ const HOW_STEPS = [
 const PRICING = [
   { label: "Free demo", value: "$0", note: "See your site first." },
   { label: "Website", value: "from $300", note: "One time." },
-  { label: "Hosting", value: "$30/month", note: "" },
+  {
+    label: "Hosting",
+    value: "$30/month",
+    note: "Up to 5 pages, plus admin access.",
+  },
   {
     label: "Automations and consulting",
     value: "Priced on a 15-min call",
@@ -62,19 +67,20 @@ export default function HomePage() {
         <div className="container-x wrap relative z-10 grid items-start gap-12 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,23rem)]">
           <div>
             <p className="eyebrow">
-              Websites + AI for local businesses in Southern Ontario
+              Websites and AI automations · Ontario trades and salons
             </p>
             <MaskedHeading
               priority
-              className="mt-5 max-w-[11ch] font-display text-[clamp(2.6rem,7vw,5.2rem)] leading-[0.95]"
+              className="mt-5 max-w-[14ch] font-display text-[clamp(2.4rem,6.2vw,4.8rem)] leading-[0.95]"
             >
-              See your new website before you pay a cent.
+              Websites and AI automations. See yours before you pay a cent.
             </MaskedHeading>
             <Reveal delay={0.15}>
               <p className="section-lede mt-6 text-lg md:text-xl">
-                Tell us about your business. Within 24 hours we&apos;ll send you
-                a free, personalised preview of a booking-first website built for
-                you.
+                Uptisement builds booking-first websites and AI automations for
+                trades, salons and local businesses across Ontario. Tell us about
+                your business. Within 24 hours we&apos;ll send you a free,
+                personalised preview of a website built for you.
               </p>
             </Reveal>
           </div>

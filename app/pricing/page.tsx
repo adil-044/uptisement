@@ -12,7 +12,16 @@ export const metadata: Metadata = {
   alternates: { canonical: "/pricing/" },
 };
 
-const ROWS = [
+type PriceRow = {
+  title: string;
+  body: string | null;
+  /** Optional Remy aside, shown after the factual body. */
+  remy?: string | null;
+  highlight?: boolean;
+  span: string;
+};
+
+const ROWS: PriceRow[] = [
   {
     title: "Free demo — $0",
     body: "See a personalised preview of your website before you pay anything. It arrives within 24 hours of sending the form.",
@@ -26,9 +35,8 @@ const ROWS = [
   },
   {
     title: "Hosting — $30/month",
-    body: null,
-    remy:
-      "What’s covered in hosting? I asked my boss Adil to spell it out, but he’s on a call with a client. Ask him when you book yours. — Remy",
+    body: "Hosting for your website (up to 5 pages), plus admin access so you can log in and manage your site yourself.",
+    remy: null,
     span: "bento-5",
   },
   {
@@ -108,7 +116,7 @@ export default function PricingPage() {
                 {
                   question: "What’s included in hosting?",
                   answer:
-                    "Book a 15-min call and we’ll go over what’s covered, and how it works month to month.",
+                    "Hosting is $30 a month. It covers hosting for a website of up to 5 pages, plus admin access so you can log in and manage your site yourself.",
                 },
                 {
                   question: "Do I own my website?",

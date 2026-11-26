@@ -15,27 +15,27 @@ import "./globals.css";
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "See your new website before you pay a cent | Uptisement",
+    default: "Websites and AI automations for Ontario trades & salons — see yours before you pay | Uptisement",
     template: "%s | Uptisement",
   },
   description:
-    "Tell us about your business. Within 24 hours we’ll send a free, personalised preview of a booking-first website built for you. From $300. Southern Ontario.",
+    "Uptisement builds booking-first websites and AI automations for trades, salons and local businesses across Ontario. See a free preview of your site within 24 hours, before you pay. Websites from $300.",
   alternates: {
     canonical: "/",
   },
   openGraph: {
     type: "website",
     url: SITE_URL,
-    title: "See your new website before you pay a cent | Uptisement",
+    title: "Websites and AI automations for Ontario trades & salons — see yours before you pay | Uptisement",
     description:
-      "Tell us about your business. Within 24 hours we’ll send a free, personalised preview of a booking-first website built for you. From $300. Southern Ontario.",
+      "Uptisement builds booking-first websites and AI automations for trades, salons and local businesses across Ontario. See a free preview of your site within 24 hours, before you pay. Websites from $300.",
     siteName: "Uptisement",
   },
   twitter: {
     card: "summary_large_image",
-    title: "See your new website before you pay a cent | Uptisement",
+    title: "Websites and AI automations for Ontario trades & salons — see yours before you pay | Uptisement",
     description:
-      "Free personalised website demo within 24 hours. From $300. Southern Ontario.",
+      "Websites and AI automations for Ontario trades and salons. Free preview within 24 hours, before you pay. From $300.",
   },
 };
 
