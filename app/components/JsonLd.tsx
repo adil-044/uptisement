@@ -66,6 +66,7 @@ export function JsonLd() {
           "@type": "Person",
           name: FOUNDER,
         },
+        ...(GBP_URL ? { hasMap: GBP_URL } : {}),
         sameAs,
         disambiguatingDescription: AREA,
       },

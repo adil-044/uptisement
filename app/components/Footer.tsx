@@ -3,6 +3,7 @@ import {
   AREA_SHORT,
   BOOK_URL,
   EMAIL,
+  GBP_URL,
   PHONE_DISPLAY,
   PHONE_TEL,
   SINCE_YEAR,
@@ -29,6 +30,18 @@ export function Footer() {
               {PHONE_DISPLAY}
             </a>
           </p>
+          {GBP_URL ? (
+            <p className="mt-2 text-sm">
+              <a
+                href={GBP_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="link-plain"
+              >
+                Find us on Google
+              </a>
+            </p>
+          ) : null}
           <div className="mt-6">
             <HaloButton href="/#claim-demo">Claim free demo</HaloButton>
           </div>

@@ -20,11 +20,11 @@ export const TAGLINE = "Websites and AI automations";
 /** Public profiles that describe the business (used in JSON-LD sameAs). */
 export const INSTAGRAM_URL = "https://www.instagram.com/uptisement/";
 /**
- * TODO(Adil): paste the public Google Business Profile / Maps share URL here
- * (Maps → your profile → Share → copy link). Left empty until confirmed; empty
- * values are filtered out of the JSON-LD.
+ * Google Business Profile / Maps URL. Resolved from the public share link
+ * https://maps.app.goo.gl/xH8spK7GYJnKwB8w5 to a stable cid URL.
  */
-export const GBP_URL = "";
+export const GBP_URL =
+  "https://www.google.com/maps?cid=5340017389546596870";
 export const AREA_SHORT = "Southern Ontario";
 export const AREA =
   "Based in Southern Ontario, working with trades and local businesses across Ontario";
