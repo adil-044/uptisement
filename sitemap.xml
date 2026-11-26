@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://uptisement.com/</loc></url>
-  <url><loc>https://uptisement.com/services/</loc></url>
-  <url><loc>https://uptisement.com/work/</loc></url>
-  <url><loc>https://uptisement.com/pricing/</loc></url>
-  <url><loc>https://uptisement.com/about/</loc></url>
-  <url><loc>https://uptisement.com/compare/</loc></url>
-  <url><loc>https://uptisement.com/trades/</loc></url>
-  <url><loc>https://uptisement.com/salons/</loc></url>
-  <url><loc>https://uptisement.com/privacy/</loc></url>
-  <url><loc>https://uptisement.com/cookies/</loc></url>
+  <url><loc>https://uptisement.com/</loc><lastmod>2026-11-26</lastmod></url>
+  <url><loc>https://uptisement.com/services/</loc><lastmod>2026-11-25</lastmod></url>
+  <url><loc>https://uptisement.com/work/</loc><lastmod>2026-11-25</lastmod></url>
+  <url><loc>https://uptisement.com/pricing/</loc><lastmod>2026-11-26</lastmod></url>
+  <url><loc>https://uptisement.com/about/</loc><lastmod>2026-11-25</lastmod></url>
+  <url><loc>https://uptisement.com/compare/</loc><lastmod>2026-11-25</lastmod></url>
+  <url><loc>https://uptisement.com/trades/</loc><lastmod>2026-11-25</lastmod></url>
+  <url><loc>https://uptisement.com/salons/</loc><lastmod>2026-11-25</lastmod></url>
+  <url><loc>https://uptisement.com/privacy/</loc><lastmod>2026-11-25</lastmod></url>
+  <url><loc>https://uptisement.com/cookies/</loc><lastmod>2026-11-25</lastmod></url>
 </urlset>

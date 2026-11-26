@@ -1,5 +1,13 @@
 import Link from "next/link";
-import { AREA_SHORT, BOOK_URL, EMAIL, SINCE_YEAR } from "@/app/lib/config";
+import {
+  AREA_SHORT,
+  BOOK_URL,
+  EMAIL,
+  GBP_URL,
+  PHONE_DISPLAY,
+  PHONE_TEL,
+  SINCE_YEAR,
+} from "@/app/lib/config";
 import { BrandLogo } from "./BrandLogo";
 import { HaloButton } from "./HaloButton";
 
@@ -17,6 +25,23 @@ export function Footer() {
               {EMAIL}
             </a>
           </p>
+          <p className="mt-2 text-sm">
+            <a href={`tel:${PHONE_TEL}`} className="link-plain">
+              {PHONE_DISPLAY}
+            </a>
+          </p>
+          {GBP_URL ? (
+            <p className="mt-2 text-sm">
+              <a
+                href={GBP_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="link-plain"
+              >
+                Find us on Google
+              </a>
+            </p>
+          ) : null}
           <div className="mt-6">
             <HaloButton href="/#claim-demo">Claim free demo</HaloButton>
           </div>

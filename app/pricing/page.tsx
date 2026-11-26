@@ -12,7 +12,16 @@ export const metadata: Metadata = {
   alternates: { canonical: "/pricing/" },
 };
 
-const ROWS = [
+type PriceRow = {
+  title: string;
+  body: string | null;
+  /** Optional Remy aside, shown after the factual body. */
+  remy?: string | null;
+  highlight?: boolean;
+  span: string;
+};
+
+const ROWS: PriceRow[] = [
   {
     title: "Free demo — $0",
     body: "See a personalised preview of your website before you pay anything. It arrives within 24 hours of sending the form.",
@@ -21,14 +30,13 @@ const ROWS = [
   },
   {
     title: "Website — from $300, one time",
-    body: "A booking-first site, built for you. Go live if you love the demo.",
+    body: "A booking-first site, built for you. After you approve the demo, a complete website is delivered within 24 hours, including 2 rounds of revisions.",
     span: "bento-5",
   },
   {
     title: "Hosting — $30/month",
-    body: null,
-    remy:
-      "What’s covered in hosting? I asked my boss Adil to spell it out, but he’s on a call with a client. Ask him when you book yours. — Remy",
+    body: "Hosting for your website (up to 5 pages), plus admin access so you can log in and manage your site yourself.",
+    remy: null,
     span: "bento-5",
   },
   {
@@ -74,6 +82,44 @@ export default function PricingPage() {
         <div className="container-x wrap max-w-3xl">
           <Reveal>
             <h2 className="font-display text-3xl text-[var(--color-text)]">
+              Hosting cancellation
+            </h2>
+            <p className="section-lede mt-4">
+              Applies to websites and ecommerce stores. Month to month — no
+              contract.
+            </p>
+          </Reveal>
+          <ul className="mt-6 space-y-4 text-[var(--color-muted)]">
+            <li>
+              Cancel any time with 30 days&apos; notice by email or text.
+            </li>
+            <li>
+              You keep everything. You own your site and domain, so on
+              cancelling we hand over the site files and domain access. For
+              stores, that includes an export of products, orders and customer
+              data.
+            </li>
+            <li>
+              No partial-month refunds. Hosting runs to the end of the paid
+              month, then stops.
+            </li>
+            <li>
+              Missed payments: we send a reminder, the site stays up for a
+              14-day grace period, and after that it&apos;s paused (not
+              deleted). Paying the balance restores it.
+            </li>
+            <li>
+              Data is kept for 30 days after cancelling, then deleted, so
+              there&apos;s time to grab anything.
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <section className="section pt-0">
+        <div className="container-x wrap max-w-3xl">
+          <Reveal>
+            <h2 className="font-display text-3xl text-[var(--color-text)]">
               FAQ
             </h2>
           </Reveal>
@@ -98,7 +144,7 @@ export default function PricingPage() {
                 {
                   question: "How long after I say yes until the site is live?",
                   answer:
-                    "Your demo arrives within 24 hours. After you approve it, we’ll plan the go-live with you — book a call if you want to talk timing.",
+                    "After you approve the demo, a complete website is delivered within 24 hours, including 2 rounds of revisions.",
                 },
                 {
                   question: "What’s included in the website?",
@@ -108,17 +154,17 @@ export default function PricingPage() {
                 {
                   question: "What’s included in hosting?",
                   answer:
-                    "Book a 15-min call and we’ll go over what’s covered, and how it works month to month.",
+                    "Hosting is $30 a month. It covers hosting for a website of up to 5 pages, plus admin access so you can log in and manage your site yourself.",
+                },
+                {
+                  question: "Can I cancel hosting?",
+                  answer:
+                    "Yes. Hosting is month to month — no contract. Cancel any time with 30 days’ notice by email or text. You keep your site and domain; we hand over the files and access. No partial-month refunds. Full details are in Hosting cancellation above.",
                 },
                 {
                   question: "Do I own my website?",
-                  answer: (
-                    <p className="remy-note">
-                      I’d love to put a simple yes here. I asked Adil to sign
-                      off, and he’s still with a client. Book a 15-min call and
-                      you can ask him yourself. — Remy
-                    </p>
-                  ),
+                  answer:
+                    "Yes. You own your website and your domain.",
                 },
                 {
                   question: "What happens after I go live?",
