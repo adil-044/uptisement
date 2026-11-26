@@ -34,3 +34,10 @@ export const FORM_SUBMIT_URL =
   "https://formsubmit.co/ajax/khatriadil044@gmail.com";
 
 export const FORM_SUBJECT = "Uptisement free demo request";
+
+/** Microsoft Clarity project ID (session replay / heatmaps). */
+export const CLARITY_PROJECT_ID = "zjjw8adu7u";
+
+/** Microsoft privacy statement (Clarity / Microsoft products). */
+export const MICROSOFT_PRIVACY_URL =
+  "https://privacy.microsoft.com/privacystatement";

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { EMAIL, SITE_URL } from "@/app/lib/config";
+import { EMAIL, MICROSOFT_PRIVACY_URL, SITE_URL } from "@/app/lib/config";
 
 export const metadata: Metadata = {
   title: "Privacy Policy",
@@ -49,8 +49,9 @@ export default function PrivacyPage() {
           </li>
           <li>
             <strong>Cookies &amp; similar tech</strong> — see{" "}
-            <Link href="/cookies/">Cookie Policy</Link>. Analytics/ads load only
-            with your consent where required.
+            <Link href="/cookies/">Cookie Policy</Link>. We use Microsoft Clarity
+            for site analytics (clicks, scrolling, session replays). Optional
+            marketing tags only load if you accept them in cookie preferences.
           </li>
           <li>
             <strong>Communications</strong> — messages you send us; for Canadian
@@ -79,12 +80,21 @@ export default function PrivacyPage() {
             legitimate interests.
           </li>
           <li>
-            <strong>Analytics (e.g. Microsoft Clarity, Google Analytics)</strong>{" "}
-            — consent where required (EEA/UK and similar).
+            <strong>Analytics (Microsoft Clarity)</strong> — to understand how
+            the site is used and improve it. Clarity uses cookies; Microsoft
+            processes the data. See{" "}
+            <a
+              href={MICROSOFT_PRIVACY_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Microsoft’s privacy statement
+            </a>
+            . You can opt out with browser settings or an ad blocker.
           </li>
           <li>
             <strong>Advertising / remarketing (e.g. Meta Pixel)</strong> —
-            consent where required.
+            only if you accept marketing cookies in preferences.
           </li>
           <li>
             <strong>Legal compliance</strong> — legal obligation (including tax,
@@ -102,8 +112,12 @@ export default function PrivacyPage() {
           <li>Calendly (scheduling)</li>
           <li>Email / phone providers (including Quo)</li>
           <li>
-            Analytics / ads vendors only if you consent (Clarity, Google, Meta,
-            etc.)
+            Microsoft Clarity (analytics / session insight) — see Microsoft’s
+            privacy statement
+          </li>
+          <li>
+            Optional ads vendors (e.g. Meta) only if you accept marketing
+            cookies
           </li>
         </ul>
         <p>

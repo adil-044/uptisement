@@ -1,5 +1,6 @@
 "use client";
 
+import { clarityEvent } from "@/app/lib/clarity";
 import { useTheme } from "./ThemeProvider";
 
 type Props = {
@@ -17,7 +18,10 @@ export function ThemeToggle({ className = "", size = "nav" }: Props) {
   return (
     <button
       type="button"
-      onClick={toggleTheme}
+      onClick={() => {
+        clarityEvent("theme_toggle");
+        toggleTheme();
+      }}
       className={`inline-flex ${dim} items-center justify-center rounded-full border border-[var(--color-border)] text-[var(--color-text)] transition hover:border-[color-mix(in_srgb,var(--color-purple)_40%,var(--color-border))] hover:bg-[color-mix(in_srgb,var(--color-purple)_8%,transparent)] ${className}`}
       aria-label={isLight ? "Switch to dark mode" : "Switch to light mode"}
       title={isLight ? "Dark mode" : "Light mode"}

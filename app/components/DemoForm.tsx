@@ -1,6 +1,7 @@
 "use client";
 
-import { useState, type FormEvent } from "react";
+import { useRef, useState, type FormEvent } from "react";
+import { clarityEvent } from "@/app/lib/clarity";
 import { BOOK_URL, FORM_SUBJECT, FORM_SUBMIT_URL } from "@/app/lib/config";
 import { HaloButton } from "./HaloButton";
 
@@ -28,6 +29,13 @@ type Props = {
 export function DemoForm({ id = "demo-form", compact = false }: Props) {
   const [status, setStatus] = useState<Status>("idle");
   const [errorMsg, setErrorMsg] = useState("");
+  const startedRef = useRef(false);
+
+  function onFirstFocus() {
+    if (startedRef.current) return;
+    startedRef.current = true;
+    clarityEvent("demo_form_start");
+  }
 
   async function onSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -58,6 +66,7 @@ export function DemoForm({ id = "demo-form", compact = false }: Props) {
         throw new Error(json.message || "Submit failed");
       }
 
+      clarityEvent("demo_form_submit");
       setStatus("success");
       form.reset();
     } catch {
@@ -99,6 +108,7 @@ export function DemoForm({ id = "demo-form", compact = false }: Props) {
       id={id}
       className={`${shell} grid ${compact ? "gap-3" : "gap-3.5"}`}
       onSubmit={onSubmit}
+      onFocusCapture={onFirstFocus}
     >
       <h2 className="font-display text-2xl tracking-tight text-[var(--color-text)]">
         Claim your free demo

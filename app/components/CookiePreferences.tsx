@@ -58,8 +58,9 @@ export function CookiePreferences() {
           onChange={(e) => setAnalytics(e.target.checked)}
         />
         <span>
-          <strong className="text-[var(--color-text)]">Analytics</strong> — Microsoft Clarity,
-          Google Analytics (when configured). Helps us see how the site is used.
+          <strong className="text-[var(--color-text)]">Analytics</strong> — Microsoft Clarity
+          is described on this page. Use browser settings or an ad blocker to
+          opt out of analytics scripts.
         </span>
       </label>
       <label className="flex items-start gap-3 py-2 text-sm">
