@@ -82,6 +82,44 @@ export default function PricingPage() {
         <div className="container-x wrap max-w-3xl">
           <Reveal>
             <h2 className="font-display text-3xl text-[var(--color-text)]">
+              Hosting cancellation
+            </h2>
+            <p className="section-lede mt-4">
+              Applies to websites and ecommerce stores. Month to month — no
+              contract.
+            </p>
+          </Reveal>
+          <ul className="mt-6 space-y-4 text-[var(--color-muted)]">
+            <li>
+              Cancel any time with 30 days&apos; notice by email or text.
+            </li>
+            <li>
+              You keep everything. You own your site and domain, so on
+              cancelling we hand over the site files and domain access. For
+              stores, that includes an export of products, orders and customer
+              data.
+            </li>
+            <li>
+              No partial-month refunds. Hosting runs to the end of the paid
+              month, then stops.
+            </li>
+            <li>
+              Missed payments: we send a reminder, the site stays up for a
+              14-day grace period, and after that it&apos;s paused (not
+              deleted). Paying the balance restores it.
+            </li>
+            <li>
+              Data is kept for 30 days after cancelling, then deleted, so
+              there&apos;s time to grab anything.
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <section className="section pt-0">
+        <div className="container-x wrap max-w-3xl">
+          <Reveal>
+            <h2 className="font-display text-3xl text-[var(--color-text)]">
               FAQ
             </h2>
           </Reveal>
@@ -117,6 +155,11 @@ export default function PricingPage() {
                   question: "What’s included in hosting?",
                   answer:
                     "Hosting is $30 a month. It covers hosting for a website of up to 5 pages, plus admin access so you can log in and manage your site yourself.",
+                },
+                {
+                  question: "Can I cancel hosting?",
+                  answer:
+                    "Yes. Hosting is month to month — no contract. Cancel any time with 30 days’ notice by email or text. You keep your site and domain; we hand over the files and access. No partial-month refunds. Full details are in Hosting cancellation above.",
                 },
                 {
                   question: "Do I own my website?",
