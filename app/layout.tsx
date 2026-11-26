@@ -10,7 +10,7 @@ import { ScrollProgress } from "./components/ScrollProgress";
 import { SmoothScroll } from "./components/SmoothScroll";
 import { ThemeProvider } from "./components/ThemeProvider";
 import { geistSans, instrumentSerif } from "./lib/fonts";
-import { SITE_URL } from "./lib/config";
+import { GOOGLE_SITE_VERIFICATION, SITE_URL } from "./lib/config";
 import { THEME_BOOT_SCRIPT } from "./lib/theme";
 import "./globals.css";
 
@@ -38,6 +38,9 @@ export const metadata: Metadata = {
     title: "Websites and AI automations for Ontario trades & salons — see yours before you pay | Uptisement",
     description:
       "Websites and AI automations for Ontario trades and salons. Free preview within 24 hours, before you pay. From $300.",
+  },
+  verification: {
+    google: GOOGLE_SITE_VERIFICATION,
   },
 };
 

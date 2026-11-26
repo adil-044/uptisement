@@ -38,6 +38,10 @@ export const FORM_SUBJECT = "Uptisement free demo request";
 /** Microsoft Clarity project ID (session replay / heatmaps). */
 export const CLARITY_PROJECT_ID = "zjjw8adu7u";
 
+/** Google Search Console site verification token (meta content). */
+export const GOOGLE_SITE_VERIFICATION =
+  "QYYO45uArXHVp48hi53CZo1l_cgPIaPUMGQ1Ux1FwfE";
+
 /** Microsoft privacy statement (Clarity / Microsoft products). */
 export const MICROSOFT_PRIVACY_URL =
   "https://privacy.microsoft.com/privacystatement";
