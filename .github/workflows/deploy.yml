@@ -1,14 +1,11 @@
-# Optional GitHub Actions deploy for when Pages source is switched to "GitHub Actions".
-# Until then, the live site is served from the static export synced to the repo root
-# (branch `main`, folder `/`).
+# Publishes only the Next.js static export (`out/`) to GitHub Pages.
+# After merge, set: Settings → Pages → Build and deployment → Source = GitHub Actions
 name: Deploy to GitHub Pages
 
 on:
+  push:
+    branches: [main]
   workflow_dispatch:
-  # Enable the push trigger after:
-  # Settings → Pages → Build and deployment → Source → GitHub Actions
-  # push:
-  #   branches: [main]
 
 permissions:
   contents: read
@@ -32,11 +29,14 @@ jobs:
           node-version: 22
           cache: npm
 
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
       - name: Install
         run: npm ci
 
       - name: Build static export
-        run: npx next build
+        run: npm run build
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
