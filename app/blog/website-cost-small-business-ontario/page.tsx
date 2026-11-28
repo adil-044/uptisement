@@ -56,7 +56,7 @@ const FAQ_ITEMS = [
     question:
       "How much does a basic website cost for a small business in Ontario?",
     answer:
-      "Published prices from Ontario web design firms put a starter site of about 3–5 pages at roughly $1,000–$4,000, with larger custom sites costing more. A DIY builder has no build fee but a monthly plan. Uptisement's booking-first websites start at $300 one time.",
+      "Published prices from Ontario web design firms put a starter site of about 3–5 pages at roughly $500–$4,000, with larger custom sites costing more. A DIY builder has no build fee but a monthly plan. Uptisement's booking-first websites start at $300 one time.",
   },
   {
     question: "How much does a website cost per month in Canada?",
@@ -183,10 +183,10 @@ export default function WebsiteCostOntarioPostPage() {
             <Reveal>
               <p>
                 <strong>Short answer:</strong> Most Ontario small businesses that
-                hire a web design firm pay roughly $1,000 to $6,000 for a starter
-                or small custom website, going by the prices Ontario firms
-                publish themselves, plus hosting every month and a domain every
-                year. Building it yourself on a site builder costs less in cash
+                hire a web design firm pay roughly $500 to $4,000 for a starter
+                website, going by the prices Ontario firms publish themselves,
+                plus hosting every month and a domain every year. Building it
+                yourself on a site builder costs less in cash
                 (Squarespace&apos;s Canadian plans start at CA$21 a month billed
                 yearly), but more of your time. At Uptisement, a booking-first
                 website starts at $300 one time, hosting is $30 a month, and you
@@ -210,6 +210,39 @@ export default function WebsiteCostOntarioPostPage() {
                 online store. Here is what published Ontario and Canadian pricing
                 pages showed when I read them in November 2026. These are typical
                 ranges, not quotes, and most firms list prices before HST.
+                Published examples include{" "}
+                <a
+                  href="https://topreach.ca/website-design/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  TopReach
+                </a>{" "}
+                at $499 for up to five pages,{" "}
+                <a
+                  href="https://formory.ca/pricing/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Formory
+                </a>{" "}
+                at $990 for up to six pages,{" "}
+                <a
+                  href="https://leadlls.com/web-design/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Lead Web Studio
+                </a>{" "}
+                at $899–$2,999, and{" "}
+                <a
+                  href="https://marketingflow.ca/web-design-pricing/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  MarketingFlow
+                </a>{" "}
+                at $500–$2,999.
               </p>
               <div className="blog-table-wrap" role="region" aria-label="Typical website prices" tabIndex={0}>
                 <table className="legal-table">
@@ -242,7 +275,7 @@ export default function WebsiteCostOntarioPostPage() {
                     </tr>
                     <tr>
                       <td>Starter site from a local firm (about 3–5 pages)</td>
-                      <td>Roughly $1,000–$4,000</td>
+                      <td>Roughly $500–$4,000</td>
                       <td>Hosting, often around $20–$30/month</td>
                       <td>A small studio or agency</td>
                     </tr>
@@ -255,7 +288,7 @@ export default function WebsiteCostOntarioPostPage() {
                     <tr>
                       <td>Online store</td>
                       <td>
-                        Often from about $4,000, and more for big catalogues
+                        Often from about $3,500, and more for big catalogues
                       </td>
                       <td>Platform fees, apps and hosting</td>
                       <td>An agency</td>

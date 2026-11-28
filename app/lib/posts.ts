@@ -22,7 +22,7 @@ export const POSTS: BlogPost[] = [
     description:
       "What a small business website costs in Ontario in 2026: agency, freelancer and DIY prices, hosting and domain costs, and what trades and salons need.",
     excerpt:
-      "Most Ontario small businesses that hire a web design firm pay roughly $1,000 to $6,000 for a starter or small custom website, going by the prices Ontario firms publish themselves, plus hosting every month and a domain every year.",
+      "Most Ontario small businesses that hire a web design firm pay roughly $500 to $4,000 for a starter website, going by the prices Ontario firms publish themselves, plus hosting every month and a domain every year.",
     datePublished: "2026-11-28",
     dateModified: "2026-11-28",
     dateDisplay: "November 28, 2026",
