@@ -32,7 +32,7 @@ const ROWS: CompareRow[] = [
     criterion: "Time to launch",
     group: "time",
     uptisement:
-      "A free demo within 24 hours. Time to go live after you approve it varies.",
+      "A free demo within 24 hours. After you approve it, a complete website is delivered within 24 hours, including 2 rounds of revisions.",
     diy: "You build it yourself. It takes as long as you spend on it.",
     agency: "Varies, often weeks or more.",
     freelancer: "Varies.",
