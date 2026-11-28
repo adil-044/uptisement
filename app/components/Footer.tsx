@@ -66,6 +66,7 @@ export function Footer() {
               ["/services/", "Services"],
               ["/work/", "Work"],
               ["/pricing/", "Pricing"],
+              ["/blog/", "Blog"],
               ["/about/", "About"],
               ["/compare/", "Compare us"],
             ].map(([href, label]) => (

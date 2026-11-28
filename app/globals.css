@@ -710,6 +710,55 @@
     color: var(--color-text);
   }
 
+  .blog-prose {
+    color: var(--color-muted);
+    font-size: 1.05rem;
+    line-height: 1.7;
+  }
+
+  .blog-prose h2 {
+    margin-top: 2.75rem;
+    margin-bottom: 0.85rem;
+    font-family: var(--font-display);
+    font-size: clamp(1.55rem, 3vw, 1.9rem);
+    line-height: 1.2;
+    color: var(--color-text);
+  }
+
+  .blog-prose p,
+  .blog-prose ul,
+  .blog-prose ol {
+    margin-top: 1rem;
+  }
+
+  .blog-prose ul,
+  .blog-prose ol {
+    padding-left: 1.25rem;
+    display: grid;
+    gap: 0.65rem;
+  }
+
+  .blog-prose strong {
+    color: var(--color-text);
+    font-weight: 600;
+  }
+
+  .blog-prose a {
+    color: var(--color-text);
+    text-decoration: underline;
+    text-underline-offset: 0.15em;
+  }
+
+  .blog-table-wrap {
+    margin-top: 1.25rem;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .blog-table-wrap .legal-table {
+    min-width: 40rem;
+  }
+
   /* Headline: primary text with faint purple tail */
   .masked-heading {
     background-image: linear-gradient(
